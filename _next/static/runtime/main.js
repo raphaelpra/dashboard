@@ -499,7 +499,7 @@ function connect(options) {
       error.name = err.name;
       error.stack = err.stack; // __NEXT_DIST_DIR is provided by webpack
 
-      (0, _sourceMapSupport.rewriteStacktrace)(error, "/Users/jerome/opencovid19-fr/dashboard/.next");
+      (0, _sourceMapSupport.rewriteStacktrace)(error, "/Users/Theoofe/Living-Data/covid19-dashboard/.next");
       return error;
     }
   };
