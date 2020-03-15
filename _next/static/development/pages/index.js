@@ -811,7 +811,7 @@ var regionLayer = {
   paint: {
     'circle-opacity': 0.6,
     'circle-color': _styles_colors__WEBPACK_IMPORTED_MODULE_0__["default"].orange,
-    'circle-radius': ['interpolate', ['linear'], ['number', ['get', 'casConfirmes']], 0, 10, 1500, 100]
+    'circle-radius': ['interpolate', ['linear'], ['number', ['get', 'casConfirmes']], 0, 10, 1800, 80]
   }
 };
 var regionCountLayer = {
@@ -79277,7 +79277,7 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ 2:
+/***/ 1:
 /*!**********************************************************************************************************************************!*\
   !*** multi next-client-pages-loader?page=%2F&absolutePagePath=%2FUsers%2Fjerome%2Fopencovid19-fr%2Fdashboard%2Fpages%2Findex.js ***!
   \**********************************************************************************************************************************/
@@ -79300,5 +79300,5 @@ module.exports = dll_82519ec661270f7f484f;
 
 /***/ })
 
-},[[2,"static/runtime/webpack.js"]]]);
+},[[1,"static/runtime/webpack.js"]]]);
 //# sourceMappingURL=index.js.map
