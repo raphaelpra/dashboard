@@ -38,7 +38,19 @@ var options = {
   },
   scales: {
     xAxes: [{
-      stacked: true
+      stacked: true,
+      type: 'time',
+      time: {
+        unit: 'day',
+        displayFormats: {
+          day: 'DD/MM'
+        },
+        tooltipFormat: 'DD/MM'
+      },
+      gridLines: {
+        offsetGridLines: true
+      },
+      offset: true
     }],
     yAxes: [{
       stacked: true
@@ -75,7 +87,7 @@ var formatData = function formatData(data) {
 
   return {
     labels: data.map(function (h) {
-      return h.date;
+      return new Date(h.date);
     }),
     datasets: datasets
   };
@@ -90,7 +102,7 @@ var ConfirmedChart = function ConfirmedChart(_ref) {
     },
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 47
+      lineNumber: 59
     },
     __self: this
   }, __jsx(react_chartjs_2__WEBPACK_IMPORTED_MODULE_2__["Bar"], {
@@ -99,7 +111,7 @@ var ConfirmedChart = function ConfirmedChart(_ref) {
     height: height,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 48
+      lineNumber: 60
     },
     __self: this
   }));
@@ -232,7 +244,7 @@ var DateNav = function DateNav(_ref) {
       lineNumber: 20
     },
     __self: this
-  }, "Donn\xE9es du ", formatedDate), __jsx("div", {
+  }, "Donn\xE9es au ", formatedDate), __jsx("div", {
     onClick: next,
     className: styled_jsx_style__WEBPACK_IMPORTED_MODULE_0___default.a.dynamic([["3697947657", [_styles_colors__WEBPACK_IMPORTED_MODULE_5__["default"].lightGrey, _styles_colors__WEBPACK_IMPORTED_MODULE_5__["default"].darkerGrey, _styles_theme__WEBPACK_IMPORTED_MODULE_4__["default"].mobileDisplay]]]) + " " + "report-nav ".concat(next ? '' : 'disabled'),
     __source: {
@@ -250,7 +262,7 @@ var DateNav = function DateNav(_ref) {
     id: "3697947657",
     dynamic: [_styles_colors__WEBPACK_IMPORTED_MODULE_5__["default"].lightGrey, _styles_colors__WEBPACK_IMPORTED_MODULE_5__["default"].darkerGrey, _styles_theme__WEBPACK_IMPORTED_MODULE_4__["default"].mobileDisplay],
     __self: this
-  }, ".menu-header.__jsx-style-dynamic-selector{z-index:2;display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-flex-flow:nowrap;-ms-flex-flow:nowrap;flex-flow:nowrap;-webkit-box-pack:justify;-webkit-justify-content:space-between;-ms-flex-pack:justify;justify-content:space-between;-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;text-align:center;box-shadow:0 1px 4px ".concat(_styles_colors__WEBPACK_IMPORTED_MODULE_5__["default"].lightGrey, ";padding:1em;background-color:").concat(_styles_colors__WEBPACK_IMPORTED_MODULE_5__["default"].darkerGrey, ";color:#fff;}.report-nav.disabled.__jsx-style-dynamic-selector{color:#ffffff55;}.report-nav.disabled.__jsx-style-dynamic-selector:hover{cursor:initial;}.report-nav.__jsx-style-dynamic-selector:hover{cursor:pointer;}@media (max-width:").concat(_styles_theme__WEBPACK_IMPORTED_MODULE_4__["default"].mobileDisplay, "){.menu-header.__jsx-style-dynamic-selector{font-size:small;padding:0.5em 1em;}.menu-header.__jsx-style-dynamic-selector h2.__jsx-style-dynamic-selector{margin:0.2em;}}\n/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9Vc2Vycy9qZXJvbWUvb3BlbmNvdmlkMTktZnIvZGFzaGJvYXJkL2NvbXBvbmVudHMvZGF0ZS1uYXYuanMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBc0JrQixBQUdxQixBQWFNLEFBSUQsQUFJQSxBQUtHLEFBS0gsVUE5QkYsR0ErQmIsRUFkRixBQUlBLENBUkEsQUFhc0Isa0JBQ3BCLGtEQTFCaUIsK0RBQ2EsbUhBQ1gsNkZBQ0Qsa0JBQ2dDLGtEQUN0QyxZQUNrQyw4Q0FDbkMsV0FDYiIsImZpbGUiOiIvVXNlcnMvamVyb21lL29wZW5jb3ZpZDE5LWZyL2Rhc2hib2FyZC9jb21wb25lbnRzL2RhdGUtbmF2LmpzIiwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0IFJlYWN0IGZyb20gJ3JlYWN0J1xuaW1wb3J0IFByb3BUeXBlcyBmcm9tICdwcm9wLXR5cGVzJ1xuaW1wb3J0IHtDaGV2cm9uTGVmdCwgQ2hldnJvblJpZ2h0fSBmcm9tICdyZWFjdC1mZWF0aGVyJ1xuXG5pbXBvcnQgdGhlbWUgZnJvbSAnLi4vc3R5bGVzL3RoZW1lJ1xuaW1wb3J0IGNvbG9ycyBmcm9tICcuLi9zdHlsZXMvY29sb3JzJ1xuXG5jb25zdCBmb3JtYXREYXRlID0gaXNvU3RyaW5nID0+IHtcbiAgY29uc3QgZGF0ZSA9IG5ldyBEYXRlKGlzb1N0cmluZylcblxuICByZXR1cm4gZGF0ZS50b0xvY2FsZURhdGVTdHJpbmcoKVxufVxuXG5jb25zdCBEYXRlTmF2ID0gKHtkYXRlLCBwcmV2LCBuZXh0fSkgPT4ge1xuICBjb25zdCBmb3JtYXRlZERhdGUgPSBmb3JtYXREYXRlKGRhdGUpXG5cbiAgcmV0dXJuIChcbiAgICA8ZGl2IGNsYXNzTmFtZT0nbWVudS1oZWFkZXInPlxuICAgICAgPGRpdiBjbGFzc05hbWU9e2ByZXBvcnQtbmF2ICR7cHJldiA/ICcnIDogJ2Rpc2FibGVkJ31gfSBvbkNsaWNrPXtwcmV2fT48Q2hldnJvbkxlZnQgLz48L2Rpdj5cbiAgICAgIDxoMj5Eb25uw6llcyBkdSB7Zm9ybWF0ZWREYXRlfTwvaDI+XG4gICAgICA8ZGl2IGNsYXNzTmFtZT17YHJlcG9ydC1uYXYgJHtuZXh0ID8gJycgOiAnZGlzYWJsZWQnfWB9IG9uQ2xpY2s9e25leHR9PjxDaGV2cm9uUmlnaHQgLz48L2Rpdj5cblxuICAgICAgPHN0eWxlIGpzeD57YFxuICAgICAgICAubWVudS1oZWFkZXIge1xuICAgICAgICAgIHotaW5kZXg6IDI7XG4gICAgICAgICAgZGlzcGxheTogZmxleDtcbiAgICAgICAgICBmbGV4LWZsb3c6IG5vd3JhcDtcbiAgICAgICAgICBqdXN0aWZ5LWNvbnRlbnQ6IHNwYWNlLWJldHdlZW47XG4gICAgICAgICAgYWxpZ24taXRlbXM6IGNlbnRlcjtcbiAgICAgICAgICB0ZXh0LWFsaWduOiBjZW50ZXI7XG4gICAgICAgICAgYm94LXNoYWRvdzogMCAxcHggNHB4ICR7Y29sb3JzLmxpZ2h0R3JleX07XG4gICAgICAgICAgcGFkZGluZzogMWVtO1xuICAgICAgICAgIGJhY2tncm91bmQtY29sb3I6ICR7Y29sb3JzLmRhcmtlckdyZXl9O1xuICAgICAgICAgIGNvbG9yOiAjZmZmO1xuICAgICAgICB9XG5cbiAgICAgICAgLnJlcG9ydC1uYXYuZGlzYWJsZWQge1xuICAgICAgICAgIGNvbG9yOiAjZmZmZmZmNTU7XG4gICAgICAgIH1cblxuICAgICAgICAucmVwb3J0LW5hdi5kaXNhYmxlZDpob3ZlciB7XG4gICAgICAgICAgY3Vyc29yOiBpbml0aWFsO1xuICAgICAgICB9XG5cbiAgICAgICAgLnJlcG9ydC1uYXY6aG92ZXIge1xuICAgICAgICAgIGN1cnNvcjogcG9pbnRlcjtcbiAgICAgICAgfVxuXG4gICAgICAgIEBtZWRpYSAobWF4LXdpZHRoOiAke3RoZW1lLm1vYmlsZURpc3BsYXl9KSB7XG4gICAgICAgICAgLm1lbnUtaGVhZGVyIHtcbiAgICAgICAgICAgIGZvbnQtc2l6ZTogc21hbGw7XG4gICAgICAgICAgICBwYWRkaW5nOiAwLjVlbSAxZW07XG4gICAgICAgICAgfVxuXG4gICAgICAgICAgLm1lbnUtaGVhZGVyIGgyIHtcbiAgICAgICAgICAgIG1hcmdpbjogMC4yZW07XG4gICAgICAgICAgfVxuICAgICAgICB9XG4gICAgICBgfTwvc3R5bGU+XG4gICAgPC9kaXY+XG4gIClcbn1cblxuRGF0ZU5hdi5kZWZhdWx0UHJvcHMgPSB7XG4gIHByZXY6IG51bGwsXG4gIG5leHQ6IG51bGxcbn1cblxuRGF0ZU5hdi5wcm9wVHlwZXMgPSB7XG4gIGRhdGU6IFByb3BUeXBlcy5zdHJpbmcuaXNSZXF1aXJlZCxcbiAgcHJldjogUHJvcFR5cGVzLmZ1bmMsXG4gIG5leHQ6IFByb3BUeXBlcy5mdW5jXG59XG5cbmV4cG9ydCBkZWZhdWx0IERhdGVOYXZcbiJdfQ== */\n/*@ sourceURL=/Users/jerome/opencovid19-fr/dashboard/components/date-nav.js */")));
+  }, ".menu-header.__jsx-style-dynamic-selector{z-index:2;display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-flex-flow:nowrap;-ms-flex-flow:nowrap;flex-flow:nowrap;-webkit-box-pack:justify;-webkit-justify-content:space-between;-ms-flex-pack:justify;justify-content:space-between;-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;text-align:center;box-shadow:0 1px 4px ".concat(_styles_colors__WEBPACK_IMPORTED_MODULE_5__["default"].lightGrey, ";padding:1em;background-color:").concat(_styles_colors__WEBPACK_IMPORTED_MODULE_5__["default"].darkerGrey, ";color:#fff;}.report-nav.disabled.__jsx-style-dynamic-selector{color:#ffffff55;}.report-nav.disabled.__jsx-style-dynamic-selector:hover{cursor:initial;}.report-nav.__jsx-style-dynamic-selector:hover{cursor:pointer;}@media (max-width:").concat(_styles_theme__WEBPACK_IMPORTED_MODULE_4__["default"].mobileDisplay, "){.menu-header.__jsx-style-dynamic-selector{font-size:small;padding:0.5em 1em;}.menu-header.__jsx-style-dynamic-selector h2.__jsx-style-dynamic-selector{margin:0.2em;}}\n/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9Vc2Vycy9qZXJvbWUvb3BlbmNvdmlkMTktZnIvZGFzaGJvYXJkL2NvbXBvbmVudHMvZGF0ZS1uYXYuanMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBc0JrQixBQUdxQixBQWFNLEFBSUQsQUFJQSxBQUtHLEFBS0gsVUE5QkYsR0ErQmIsRUFkRixBQUlBLENBUkEsQUFhc0Isa0JBQ3BCLGtEQTFCaUIsK0RBQ2EsbUhBQ1gsNkZBQ0Qsa0JBQ2dDLGtEQUN0QyxZQUNrQyw4Q0FDbkMsV0FDYiIsImZpbGUiOiIvVXNlcnMvamVyb21lL29wZW5jb3ZpZDE5LWZyL2Rhc2hib2FyZC9jb21wb25lbnRzL2RhdGUtbmF2LmpzIiwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0IFJlYWN0IGZyb20gJ3JlYWN0J1xuaW1wb3J0IFByb3BUeXBlcyBmcm9tICdwcm9wLXR5cGVzJ1xuaW1wb3J0IHtDaGV2cm9uTGVmdCwgQ2hldnJvblJpZ2h0fSBmcm9tICdyZWFjdC1mZWF0aGVyJ1xuXG5pbXBvcnQgdGhlbWUgZnJvbSAnLi4vc3R5bGVzL3RoZW1lJ1xuaW1wb3J0IGNvbG9ycyBmcm9tICcuLi9zdHlsZXMvY29sb3JzJ1xuXG5jb25zdCBmb3JtYXREYXRlID0gaXNvU3RyaW5nID0+IHtcbiAgY29uc3QgZGF0ZSA9IG5ldyBEYXRlKGlzb1N0cmluZylcblxuICByZXR1cm4gZGF0ZS50b0xvY2FsZURhdGVTdHJpbmcoKVxufVxuXG5jb25zdCBEYXRlTmF2ID0gKHtkYXRlLCBwcmV2LCBuZXh0fSkgPT4ge1xuICBjb25zdCBmb3JtYXRlZERhdGUgPSBmb3JtYXREYXRlKGRhdGUpXG5cbiAgcmV0dXJuIChcbiAgICA8ZGl2IGNsYXNzTmFtZT0nbWVudS1oZWFkZXInPlxuICAgICAgPGRpdiBjbGFzc05hbWU9e2ByZXBvcnQtbmF2ICR7cHJldiA/ICcnIDogJ2Rpc2FibGVkJ31gfSBvbkNsaWNrPXtwcmV2fT48Q2hldnJvbkxlZnQgLz48L2Rpdj5cbiAgICAgIDxoMj5Eb25uw6llcyBhdSB7Zm9ybWF0ZWREYXRlfTwvaDI+XG4gICAgICA8ZGl2IGNsYXNzTmFtZT17YHJlcG9ydC1uYXYgJHtuZXh0ID8gJycgOiAnZGlzYWJsZWQnfWB9IG9uQ2xpY2s9e25leHR9PjxDaGV2cm9uUmlnaHQgLz48L2Rpdj5cblxuICAgICAgPHN0eWxlIGpzeD57YFxuICAgICAgICAubWVudS1oZWFkZXIge1xuICAgICAgICAgIHotaW5kZXg6IDI7XG4gICAgICAgICAgZGlzcGxheTogZmxleDtcbiAgICAgICAgICBmbGV4LWZsb3c6IG5vd3JhcDtcbiAgICAgICAgICBqdXN0aWZ5LWNvbnRlbnQ6IHNwYWNlLWJldHdlZW47XG4gICAgICAgICAgYWxpZ24taXRlbXM6IGNlbnRlcjtcbiAgICAgICAgICB0ZXh0LWFsaWduOiBjZW50ZXI7XG4gICAgICAgICAgYm94LXNoYWRvdzogMCAxcHggNHB4ICR7Y29sb3JzLmxpZ2h0R3JleX07XG4gICAgICAgICAgcGFkZGluZzogMWVtO1xuICAgICAgICAgIGJhY2tncm91bmQtY29sb3I6ICR7Y29sb3JzLmRhcmtlckdyZXl9O1xuICAgICAgICAgIGNvbG9yOiAjZmZmO1xuICAgICAgICB9XG5cbiAgICAgICAgLnJlcG9ydC1uYXYuZGlzYWJsZWQge1xuICAgICAgICAgIGNvbG9yOiAjZmZmZmZmNTU7XG4gICAgICAgIH1cblxuICAgICAgICAucmVwb3J0LW5hdi5kaXNhYmxlZDpob3ZlciB7XG4gICAgICAgICAgY3Vyc29yOiBpbml0aWFsO1xuICAgICAgICB9XG5cbiAgICAgICAgLnJlcG9ydC1uYXY6aG92ZXIge1xuICAgICAgICAgIGN1cnNvcjogcG9pbnRlcjtcbiAgICAgICAgfVxuXG4gICAgICAgIEBtZWRpYSAobWF4LXdpZHRoOiAke3RoZW1lLm1vYmlsZURpc3BsYXl9KSB7XG4gICAgICAgICAgLm1lbnUtaGVhZGVyIHtcbiAgICAgICAgICAgIGZvbnQtc2l6ZTogc21hbGw7XG4gICAgICAgICAgICBwYWRkaW5nOiAwLjVlbSAxZW07XG4gICAgICAgICAgfVxuXG4gICAgICAgICAgLm1lbnUtaGVhZGVyIGgyIHtcbiAgICAgICAgICAgIG1hcmdpbjogMC4yZW07XG4gICAgICAgICAgfVxuICAgICAgICB9XG4gICAgICBgfTwvc3R5bGU+XG4gICAgPC9kaXY+XG4gIClcbn1cblxuRGF0ZU5hdi5kZWZhdWx0UHJvcHMgPSB7XG4gIHByZXY6IG51bGwsXG4gIG5leHQ6IG51bGxcbn1cblxuRGF0ZU5hdi5wcm9wVHlwZXMgPSB7XG4gIGRhdGU6IFByb3BUeXBlcy5zdHJpbmcuaXNSZXF1aXJlZCxcbiAgcHJldjogUHJvcFR5cGVzLmZ1bmMsXG4gIG5leHQ6IFByb3BUeXBlcy5mdW5jXG59XG5cbmV4cG9ydCBkZWZhdWx0IERhdGVOYXZcbiJdfQ== */\n/*@ sourceURL=/Users/jerome/opencovid19-fr/dashboard/components/date-nav.js */")));
 };
 
 DateNav.defaultProps = {
@@ -811,7 +823,7 @@ var regionLayer = {
   paint: {
     'circle-opacity': 0.6,
     'circle-color': _styles_colors__WEBPACK_IMPORTED_MODULE_0__["default"].orange,
-    'circle-radius': ['interpolate', ['linear'], ['number', ['get', 'casConfirmes']], 0, 10, 1800, 80]
+    'circle-radius': ['interpolate', ['linear'], ['sqrt', ['number', ['get', 'casConfirmes']]], 0, 10, 50, 80]
   }
 };
 var regionCountLayer = {
@@ -855,21 +867,21 @@ var RegionSumup = function RegionSumup(_ref) {
       casConfirmes = _ref.casConfirmes,
       history = _ref.history;
   return __jsx("div", {
-    className: "jsx-2853009100" + " " + 'sumup-container',
+    className: "jsx-514667733" + " " + 'sumup-container',
     __source: {
       fileName: _jsxFileName,
       lineNumber: 7
     },
     __self: this
   }, __jsx("div", {
-    className: "jsx-2853009100" + " " + 'title',
+    className: "jsx-514667733" + " " + 'title',
     __source: {
       fileName: _jsxFileName,
       lineNumber: 8
     },
     __self: this
   }, nom), __jsx("div", {
-    className: "jsx-2853009100",
+    className: "jsx-514667733",
     __source: {
       fileName: _jsxFileName,
       lineNumber: 9
@@ -884,15 +896,15 @@ var RegionSumup = function RegionSumup(_ref) {
     },
     __self: this
   }), __jsx(styled_jsx_style__WEBPACK_IMPORTED_MODULE_0___default.a, {
-    id: "2853009100",
+    id: "514667733",
     __self: this
-  }, ".sumup-container.jsx-2853009100{font-size:larger;}.title.jsx-2853009100{font-weight:bold;}\n/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9Vc2Vycy9qZXJvbWUvb3BlbmNvdmlkMTktZnIvZGFzaGJvYXJkL2NvbXBvbmVudHMvcmVhY3QtbWFwLWdsL3N1bXVwLmpzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQVlnQixBQUc0QixBQUlBLGlCQUhuQixBQUlBIiwiZmlsZSI6Ii9Vc2Vycy9qZXJvbWUvb3BlbmNvdmlkMTktZnIvZGFzaGJvYXJkL2NvbXBvbmVudHMvcmVhY3QtbWFwLWdsL3N1bXVwLmpzIiwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0IFJlYWN0IGZyb20gJ3JlYWN0J1xuaW1wb3J0IFByb3BUeXBlcyBmcm9tICdwcm9wLXR5cGVzJ1xuXG5pbXBvcnQgQ29uZmlybWVkQ2hhcnQgZnJvbSAnLi4vY29uZmlybWVkLWNoYXJ0J1xuXG5jb25zdCBSZWdpb25TdW11cCA9ICh7bm9tLCBjYXNDb25maXJtZXMsIGhpc3Rvcnl9KSA9PiAoXG4gIDxkaXYgY2xhc3NOYW1lPSdzdW11cC1jb250YWluZXInPlxuICAgIDxkaXYgY2xhc3NOYW1lPSd0aXRsZSc+e25vbX08L2Rpdj5cbiAgICA8ZGl2PntjYXNDb25maXJtZXN9IGNhcyBjb25maXJtw6lzPC9kaXY+XG5cbiAgICA8Q29uZmlybWVkQ2hhcnQgZGF0YT17SlNPTi5wYXJzZShoaXN0b3J5KX0gaGVpZ2h0PXsyNDB9IC8+XG5cbiAgICA8c3R5bGUganN4PntgXG4gICAgICAgIC5zdW11cC1jb250YWluZXIge1xuICAgICAgICAgIGZvbnQtc2l6ZTogbGFyZ2VyO1xuICAgICAgICB9XG5cbiAgICAgICAgLnRpdGxlIHtcbiAgICAgICAgICBmb250LXdlaWdodDogYm9sZDtcbiAgICAgICAgfVxuICAgICAgYH08L3N0eWxlPlxuICA8L2Rpdj5cbilcblxuUmVnaW9uU3VtdXAucHJvcFR5cGVzID0ge1xuICBub206IFByb3BUeXBlcy5zdHJpbmcuaXNSZXF1aXJlZCxcbiAgY2FzQ29uZmlybWVzOiBQcm9wVHlwZXMubnVtYmVyLmlzUmVxdWlyZWQsXG4gIGhpc3Rvcnk6IFByb3BUeXBlcy5hcnJheS5pc1JlcXVpcmVkXG59XG5cbmV4cG9ydCBkZWZhdWx0IFJlZ2lvblN1bXVwXG4iXX0= */\n/*@ sourceURL=/Users/jerome/opencovid19-fr/dashboard/components/react-map-gl/sumup.js */"));
+  }, ".sumup-container.jsx-514667733{font-size:larger;}.title.jsx-514667733{font-weight:bold;}\n/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9Vc2Vycy9qZXJvbWUvb3BlbmNvdmlkMTktZnIvZGFzaGJvYXJkL2NvbXBvbmVudHMvcmVhY3QtbWFwLWdsL3N1bXVwLmpzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQVlnQixBQUcwQixBQUlBLGlCQUhuQixBQUlBIiwiZmlsZSI6Ii9Vc2Vycy9qZXJvbWUvb3BlbmNvdmlkMTktZnIvZGFzaGJvYXJkL2NvbXBvbmVudHMvcmVhY3QtbWFwLWdsL3N1bXVwLmpzIiwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0IFJlYWN0IGZyb20gJ3JlYWN0J1xuaW1wb3J0IFByb3BUeXBlcyBmcm9tICdwcm9wLXR5cGVzJ1xuXG5pbXBvcnQgQ29uZmlybWVkQ2hhcnQgZnJvbSAnLi4vY29uZmlybWVkLWNoYXJ0J1xuXG5jb25zdCBSZWdpb25TdW11cCA9ICh7bm9tLCBjYXNDb25maXJtZXMsIGhpc3Rvcnl9KSA9PiAoXG4gIDxkaXYgY2xhc3NOYW1lPSdzdW11cC1jb250YWluZXInPlxuICAgIDxkaXYgY2xhc3NOYW1lPSd0aXRsZSc+e25vbX08L2Rpdj5cbiAgICA8ZGl2PntjYXNDb25maXJtZXN9IGNhcyBjb25maXJtw6lzPC9kaXY+XG5cbiAgICA8Q29uZmlybWVkQ2hhcnQgZGF0YT17SlNPTi5wYXJzZShoaXN0b3J5KX0gaGVpZ2h0PXsyNDB9IC8+XG5cbiAgICA8c3R5bGUganN4PntgXG4gICAgICAuc3VtdXAtY29udGFpbmVyIHtcbiAgICAgICAgZm9udC1zaXplOiBsYXJnZXI7XG4gICAgICB9XG5cbiAgICAgIC50aXRsZSB7XG4gICAgICAgIGZvbnQtd2VpZ2h0OiBib2xkO1xuICAgICAgfVxuICAgIGB9PC9zdHlsZT5cbiAgPC9kaXY+XG4pXG5cblJlZ2lvblN1bXVwLnByb3BUeXBlcyA9IHtcbiAgbm9tOiBQcm9wVHlwZXMuc3RyaW5nLmlzUmVxdWlyZWQsXG4gIGNhc0NvbmZpcm1lczogUHJvcFR5cGVzLm51bWJlci5pc1JlcXVpcmVkLFxuICBoaXN0b3J5OiBQcm9wVHlwZXMuc3RyaW5nLmlzUmVxdWlyZWRcbn1cblxuZXhwb3J0IGRlZmF1bHQgUmVnaW9uU3VtdXBcbiJdfQ== */\n/*@ sourceURL=/Users/jerome/opencovid19-fr/dashboard/components/react-map-gl/sumup.js */"));
 };
 
 RegionSumup.propTypes = {
   nom: prop_types__WEBPACK_IMPORTED_MODULE_2___default.a.string.isRequired,
   casConfirmes: prop_types__WEBPACK_IMPORTED_MODULE_2___default.a.number.isRequired,
-  history: prop_types__WEBPACK_IMPORTED_MODULE_2___default.a.array.isRequired
+  history: prop_types__WEBPACK_IMPORTED_MODULE_2___default.a.string.isRequired
 };
 /* harmony default export */ __webpack_exports__["default"] = (RegionSumup);
 
