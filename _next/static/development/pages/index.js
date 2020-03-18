@@ -979,6 +979,7 @@ var __jsx = react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement;
 var RegionSumup = function RegionSumup(_ref) {
   var nom = _ref.nom,
       casConfirmes = _ref.casConfirmes,
+      deces = _ref.deces,
       history = _ref.history;
   var data = JSON.parse(history).filter(function (r) {
     return r.source.nom === 'Santé publique France';
@@ -1004,23 +1005,31 @@ var RegionSumup = function RegionSumup(_ref) {
       lineNumber: 12
     },
     __self: this
-  }, casConfirmes, " cas confirm\xE9s"), __jsx(_confirmed_chart__WEBPACK_IMPORTED_MODULE_3__["default"], {
-    data: data,
-    height: 240,
+  }, casConfirmes, " cas confirm\xE9s", deces && __jsx("span", {
+    className: "jsx-514667733",
     __source: {
       fileName: _jsxFileName,
       lineNumber: 14
     },
     __self: this
+  }, " (dont ", deces, " d\xE9c\xE8s)")), __jsx(_confirmed_chart__WEBPACK_IMPORTED_MODULE_3__["default"], {
+    data: data,
+    height: 240,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 17
+    },
+    __self: this
   }), __jsx(styled_jsx_style__WEBPACK_IMPORTED_MODULE_0___default.a, {
     id: "514667733",
     __self: this
-  }, ".sumup-container.jsx-514667733{font-size:larger;}.title.jsx-514667733{font-weight:bold;}\n/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9Vc2Vycy9qZXJvbWUvb3BlbmNvdmlkMTktZnIvZGFzaGJvYXJkL2NvbXBvbmVudHMvcmVhY3QtbWFwLWdsL3N1bXVwLmpzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQWVrQixBQUcwQixBQUlBLGlCQUhuQixBQUlBIiwiZmlsZSI6Ii9Vc2Vycy9qZXJvbWUvb3BlbmNvdmlkMTktZnIvZGFzaGJvYXJkL2NvbXBvbmVudHMvcmVhY3QtbWFwLWdsL3N1bXVwLmpzIiwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0IFJlYWN0IGZyb20gJ3JlYWN0J1xuaW1wb3J0IFByb3BUeXBlcyBmcm9tICdwcm9wLXR5cGVzJ1xuXG5pbXBvcnQgQ29uZmlybWVkQ2hhcnQgZnJvbSAnLi4vY29uZmlybWVkLWNoYXJ0J1xuXG5jb25zdCBSZWdpb25TdW11cCA9ICh7bm9tLCBjYXNDb25maXJtZXMsIGhpc3Rvcnl9KSA9PiB7XG4gIGNvbnN0IGRhdGEgPSBKU09OLnBhcnNlKGhpc3RvcnkpLmZpbHRlcihyID0+IHIuc291cmNlLm5vbSA9PT0gJ1NhbnTDqSBwdWJsaXF1ZSBGcmFuY2UnKVxuXG4gIHJldHVybiAoXG4gICAgPGRpdiBjbGFzc05hbWU9J3N1bXVwLWNvbnRhaW5lcic+XG4gICAgICA8ZGl2IGNsYXNzTmFtZT0ndGl0bGUnPntub219PC9kaXY+XG4gICAgICA8ZGl2PntjYXNDb25maXJtZXN9IGNhcyBjb25maXJtw6lzPC9kaXY+XG5cbiAgICAgIDxDb25maXJtZWRDaGFydCBkYXRhPXtkYXRhfSBoZWlnaHQ9ezI0MH0gLz5cblxuICAgICAgPHN0eWxlIGpzeD57YFxuICAgICAgLnN1bXVwLWNvbnRhaW5lciB7XG4gICAgICAgIGZvbnQtc2l6ZTogbGFyZ2VyO1xuICAgICAgfVxuXG4gICAgICAudGl0bGUge1xuICAgICAgICBmb250LXdlaWdodDogYm9sZDtcbiAgICAgIH1cbiAgICBgfTwvc3R5bGU+XG4gICAgPC9kaXY+XG4gIClcbn1cblxuUmVnaW9uU3VtdXAucHJvcFR5cGVzID0ge1xuICBub206IFByb3BUeXBlcy5zdHJpbmcuaXNSZXF1aXJlZCxcbiAgY2FzQ29uZmlybWVzOiBQcm9wVHlwZXMubnVtYmVyLmlzUmVxdWlyZWQsXG4gIGhpc3Rvcnk6IFByb3BUeXBlcy5zdHJpbmcuaXNSZXF1aXJlZFxufVxuXG5leHBvcnQgZGVmYXVsdCBSZWdpb25TdW11cFxuIl19 */\n/*@ sourceURL=/Users/jerome/opencovid19-fr/dashboard/components/react-map-gl/sumup.js */"));
+  }, ".sumup-container.jsx-514667733{font-size:larger;}.title.jsx-514667733{font-weight:bold;}\n/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9Vc2Vycy9qZXJvbWUvb3BlbmNvdmlkMTktZnIvZGFzaGJvYXJkL2NvbXBvbmVudHMvcmVhY3QtbWFwLWdsL3N1bXVwLmpzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQWtCa0IsQUFHMEIsQUFJQSxpQkFIbkIsQUFJQSIsImZpbGUiOiIvVXNlcnMvamVyb21lL29wZW5jb3ZpZDE5LWZyL2Rhc2hib2FyZC9jb21wb25lbnRzL3JlYWN0LW1hcC1nbC9zdW11cC5qcyIsInNvdXJjZXNDb250ZW50IjpbImltcG9ydCBSZWFjdCBmcm9tICdyZWFjdCdcbmltcG9ydCBQcm9wVHlwZXMgZnJvbSAncHJvcC10eXBlcydcblxuaW1wb3J0IENvbmZpcm1lZENoYXJ0IGZyb20gJy4uL2NvbmZpcm1lZC1jaGFydCdcblxuY29uc3QgUmVnaW9uU3VtdXAgPSAoe25vbSwgY2FzQ29uZmlybWVzLCBkZWNlcywgaGlzdG9yeX0pID0+IHtcbiAgY29uc3QgZGF0YSA9IEpTT04ucGFyc2UoaGlzdG9yeSkuZmlsdGVyKHIgPT4gci5zb3VyY2Uubm9tID09PSAnU2FudMOpIHB1YmxpcXVlIEZyYW5jZScpXG5cbiAgcmV0dXJuIChcbiAgICA8ZGl2IGNsYXNzTmFtZT0nc3VtdXAtY29udGFpbmVyJz5cbiAgICAgIDxkaXYgY2xhc3NOYW1lPSd0aXRsZSc+e25vbX08L2Rpdj5cbiAgICAgIDxkaXY+XG4gICAgICAgIHtjYXNDb25maXJtZXN9IGNhcyBjb25maXJtw6lzXG4gICAgICAgIHtkZWNlcyAmJiA8c3Bhbj4gKGRvbnQge2RlY2VzfSBkw6ljw6hzKTwvc3Bhbj59XG4gICAgICA8L2Rpdj5cblxuICAgICAgPENvbmZpcm1lZENoYXJ0IGRhdGE9e2RhdGF9IGhlaWdodD17MjQwfSAvPlxuXG4gICAgICA8c3R5bGUganN4PntgXG4gICAgICAuc3VtdXAtY29udGFpbmVyIHtcbiAgICAgICAgZm9udC1zaXplOiBsYXJnZXI7XG4gICAgICB9XG5cbiAgICAgIC50aXRsZSB7XG4gICAgICAgIGZvbnQtd2VpZ2h0OiBib2xkO1xuICAgICAgfVxuICAgIGB9PC9zdHlsZT5cbiAgICA8L2Rpdj5cbiAgKVxufVxuXG5SZWdpb25TdW11cC5wcm9wVHlwZXMgPSB7XG4gIG5vbTogUHJvcFR5cGVzLnN0cmluZy5pc1JlcXVpcmVkLFxuICBjYXNDb25maXJtZXM6IFByb3BUeXBlcy5udW1iZXIuaXNSZXF1aXJlZCxcbiAgZGVjZXM6IFByb3BUeXBlcy5udW1iZXIuaXNSZXF1aXJlZCxcbiAgaGlzdG9yeTogUHJvcFR5cGVzLnN0cmluZy5pc1JlcXVpcmVkXG59XG5cbmV4cG9ydCBkZWZhdWx0IFJlZ2lvblN1bXVwXG4iXX0= */\n/*@ sourceURL=/Users/jerome/opencovid19-fr/dashboard/components/react-map-gl/sumup.js */"));
 };
 
 RegionSumup.propTypes = {
   nom: prop_types__WEBPACK_IMPORTED_MODULE_2___default.a.string.isRequired,
   casConfirmes: prop_types__WEBPACK_IMPORTED_MODULE_2___default.a.number.isRequired,
+  deces: prop_types__WEBPACK_IMPORTED_MODULE_2___default.a.number.isRequired,
   history: prop_types__WEBPACK_IMPORTED_MODULE_2___default.a.string.isRequired
 };
 /* harmony default export */ __webpack_exports__["default"] = (RegionSumup);
