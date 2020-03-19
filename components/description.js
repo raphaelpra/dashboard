@@ -3,7 +3,7 @@ import React from 'react'
 const Description = React.memo(() => (
   <div className='description'>
     <p>
-      L‘information officielle sur la progression de l’épidémie en France est très fragmentée.
+      L'information officielle sur la progression de l’épidémie en France est très fragmentée.
     </p>
     <p>
       <a href='https://www.santepubliquefrance.fr/maladies-et-traumatismes/maladies-et-infections-respiratoires/infection-a-coronavirus/articles/infection-au-nouveau-coronavirus-sars-cov-2-covid-19-france-et-monde'>Santé publique France</a> propose un point épidémiologique quotidien, qui comprend les chiffres-clés nationaux, et le nombre de cas confirmés par région.
