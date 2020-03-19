@@ -11,10 +11,10 @@ module.exports = JSON.parse("{\"REG-02\":[-61.02,14.637],\"REG-75\":[0.41,44.977
 
 /***/ }),
 
-/***/ "./components/confirmed-chart.js":
-/*!***************************************!*\
-  !*** ./components/confirmed-chart.js ***!
-  \***************************************/
+/***/ "./components/charts/confirmes-chart.js":
+/*!**********************************************!*\
+  !*** ./components/charts/confirmes-chart.js ***!
+  \**********************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -25,8 +25,210 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! prop-types */ "./node_modules/prop-types/index.js");
 /* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(prop_types__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var react_chartjs_2__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-chartjs-2 */ "./node_modules/react-chartjs-2/es/index.js");
-/* harmony import */ var _styles_colors__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../styles/colors */ "./styles/colors.js");
-var _jsxFileName = "/Users/jerome/opencovid19-fr/dashboard/components/confirmed-chart.js";
+/* harmony import */ var _styles_colors__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../styles/colors */ "./styles/colors.js");
+var _jsxFileName = "/Users/jerome/opencovid19-fr/dashboard/components/charts/confirmes-chart.js";
+var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
+
+
+
+
+var options = {
+  tooltips: {
+    mode: 'index'
+  },
+  scales: {
+    xAxes: [{
+      type: 'time',
+      time: {
+        unit: 'day',
+        displayFormats: {
+          day: 'DD/MM'
+        },
+        tooltipFormat: 'DD/MM'
+      },
+      gridLines: {
+        offsetGridLines: true
+      },
+      offset: true
+    }]
+  }
+};
+
+var formatData = function formatData(data) {
+  var datasets = [];
+
+  if (data.some(function (h) {
+    return h.casConfirmes;
+  })) {
+    datasets.push({
+      label: 'Cas confirmés',
+      data: data.map(function (h) {
+        return h.casConfirmes;
+      }),
+      backgroundColor: _styles_colors__WEBPACK_IMPORTED_MODULE_3__["default"].orange
+    });
+  }
+
+  return {
+    labels: data.map(function (h) {
+      return new Date(h.date);
+    }),
+    datasets: datasets
+  };
+};
+
+var ConfirmesChart = function ConfirmesChart(_ref) {
+  var data = _ref.data,
+      height = _ref.height;
+  return __jsx("div", {
+    style: {
+      padding: '1em'
+    },
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 47
+    },
+    __self: this
+  }, __jsx(react_chartjs_2__WEBPACK_IMPORTED_MODULE_2__["Bar"], {
+    data: formatData(data),
+    options: options,
+    height: height,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 48
+    },
+    __self: this
+  }));
+};
+
+ConfirmesChart.defaultProps = {
+  height: null
+};
+ConfirmesChart.propTypes = {
+  data: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.array.isRequired,
+  height: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.number
+};
+/* harmony default export */ __webpack_exports__["default"] = (ConfirmesChart);
+
+/***/ }),
+
+/***/ "./components/charts/deces-chart.js":
+/*!******************************************!*\
+  !*** ./components/charts/deces-chart.js ***!
+  \******************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! prop-types */ "./node_modules/prop-types/index.js");
+/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(prop_types__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var react_chartjs_2__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-chartjs-2 */ "./node_modules/react-chartjs-2/es/index.js");
+/* harmony import */ var _styles_colors__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../styles/colors */ "./styles/colors.js");
+var _jsxFileName = "/Users/jerome/opencovid19-fr/dashboard/components/charts/deces-chart.js";
+var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
+
+
+
+
+var options = {
+  tooltips: {
+    mode: 'index'
+  },
+  scales: {
+    xAxes: [{
+      type: 'time',
+      time: {
+        unit: 'day',
+        displayFormats: {
+          day: 'DD/MM'
+        },
+        tooltipFormat: 'DD/MM'
+      },
+      gridLines: {
+        offsetGridLines: true
+      },
+      offset: true
+    }]
+  }
+};
+
+var formatData = function formatData(data) {
+  var datasets = [];
+
+  if (data.some(function (h) {
+    return h.deces;
+  })) {
+    datasets.push({
+      label: 'Décès',
+      data: data.map(function (h) {
+        return h.deces;
+      }),
+      backgroundColor: _styles_colors__WEBPACK_IMPORTED_MODULE_3__["default"].red
+    });
+  }
+
+  return {
+    labels: data.map(function (h) {
+      return new Date(h.date);
+    }),
+    datasets: datasets
+  };
+};
+
+var DecesChart = function DecesChart(_ref) {
+  var data = _ref.data,
+      height = _ref.height;
+  return __jsx("div", {
+    style: {
+      padding: '1em'
+    },
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 47
+    },
+    __self: this
+  }, __jsx(react_chartjs_2__WEBPACK_IMPORTED_MODULE_2__["Bar"], {
+    data: formatData(data),
+    options: options,
+    height: height,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 48
+    },
+    __self: this
+  }));
+};
+
+DecesChart.defaultProps = {
+  height: null
+};
+DecesChart.propTypes = {
+  data: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.array.isRequired,
+  height: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.number
+};
+/* harmony default export */ __webpack_exports__["default"] = (DecesChart);
+
+/***/ }),
+
+/***/ "./components/charts/mixed-chart.js":
+/*!******************************************!*\
+  !*** ./components/charts/mixed-chart.js ***!
+  \******************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! prop-types */ "./node_modules/prop-types/index.js");
+/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(prop_types__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var react_chartjs_2__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-chartjs-2 */ "./node_modules/react-chartjs-2/es/index.js");
+/* harmony import */ var _styles_colors__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../styles/colors */ "./styles/colors.js");
+var _jsxFileName = "/Users/jerome/opencovid19-fr/dashboard/components/charts/mixed-chart.js";
 var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
 
 
@@ -93,7 +295,7 @@ var formatData = function formatData(data) {
   };
 };
 
-var ConfirmedChart = function ConfirmedChart(_ref) {
+var MixedChart = function MixedChart(_ref) {
   var data = _ref.data,
       height = _ref.height;
   return __jsx("div", {
@@ -117,14 +319,14 @@ var ConfirmedChart = function ConfirmedChart(_ref) {
   }));
 };
 
-ConfirmedChart.defaultProps = {
+MixedChart.defaultProps = {
   height: null
 };
-ConfirmedChart.propTypes = {
+MixedChart.propTypes = {
   data: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.array.isRequired,
   height: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.number
 };
-/* harmony default export */ __webpack_exports__["default"] = (ConfirmedChart);
+/* harmony default export */ __webpack_exports__["default"] = (MixedChart);
 
 /***/ }),
 
@@ -210,14 +412,14 @@ var Counters = function Counters(_ref) {
       deces = _ref2.deces;
 
   return __jsx("div", {
-    className: "jsx-3348446089" + " " + 'stats',
+    className: "jsx-3378509169" + " " + 'stats',
     __source: {
       fileName: _jsxFileName,
       lineNumber: 10
     },
     __self: this
   }, __jsx("div", {
-    className: "jsx-3348446089" + " " + 'counters',
+    className: "jsx-3378509169" + " " + 'counters',
     __source: {
       fileName: _jsxFileName,
       lineNumber: 11
@@ -242,9 +444,9 @@ var Counters = function Counters(_ref) {
     },
     __self: this
   })), __jsx(styled_jsx_style__WEBPACK_IMPORTED_MODULE_0___default.a, {
-    id: "3348446089",
+    id: "3378509169",
     __self: this
-  }, ".stats.jsx-3348446089{-webkit-flex:1;-ms-flex:1;flex:1;padding:1em;}.counters.jsx-3348446089{display:grid;grid-template-columns:1fr 1fr;}\n/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9Vc2Vycy9qZXJvbWUvb3BlbmNvdmlkMTktZnIvZGFzaGJvYXJkL2NvbXBvbmVudHMvY291bnRlcnMuanMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBY2tCLEFBR2tCLEFBS00sYUFDaUIsb0JBTGxCLFVBTWQsRUFMQSIsImZpbGUiOiIvVXNlcnMvamVyb21lL29wZW5jb3ZpZDE5LWZyL2Rhc2hib2FyZC9jb21wb25lbnRzL2NvdW50ZXJzLmpzIiwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0IFJlYWN0IGZyb20gJ3JlYWN0J1xuaW1wb3J0IFByb3BUeXBlcyBmcm9tICdwcm9wLXR5cGVzJ1xuXG5pbXBvcnQgQ291bnRlciBmcm9tICcuL2NvdW50ZXInXG5cbmNvbnN0IENvdW50ZXJzID0gKHtyZXBvcnR9KSA9PiB7XG4gIGNvbnN0IHtjYXNDb25maXJtZXMsIGRlY2VzfSA9IHJlcG9ydCB8fCB7fVxuXG4gIHJldHVybiAoXG4gICAgPGRpdiBjbGFzc05hbWU9J3N0YXRzJz5cbiAgICAgIDxkaXYgY2xhc3NOYW1lPSdjb3VudGVycyc+XG4gICAgICAgIDxDb3VudGVyIHZhbHVlPXtjYXNDb25maXJtZXMgfHwgJz8nfSBsYWJlbD0nY2FzIGNvbmZpcm3DqXMnIGNvbG9yPSdvcmFuZ2UnIC8+XG4gICAgICAgIDxDb3VudGVyIHZhbHVlPXtkZWNlcyB8fCAnPyd9IGxhYmVsPSdkw6ljw6hzJyBjb2xvcj0ncmVkJyAvPlxuICAgICAgPC9kaXY+XG4gICAgICA8c3R5bGUganN4PntgXG4gICAgICAgIC5zdGF0cyB7XG4gICAgICAgICAgZmxleDogMTtcbiAgICAgICAgICBwYWRkaW5nOiAxZW07XG4gICAgICAgIH1cblxuICAgICAgICAuY291bnRlcnMge1xuICAgICAgICAgIGRpc3BsYXk6IGdyaWQ7XG4gICAgICAgICAgZ3JpZC10ZW1wbGF0ZS1jb2x1bW5zOiAxZnIgMWZyO1xuICAgICAgICB9XG4gICAgICBgfTwvc3R5bGU+XG4gICAgPC9kaXY+XG4gIClcbn1cblxuQ291bnRlcnMuZGVmYXVsdFByb3BzID0ge1xuICByZXBvcnQ6IHt9XG59XG5cbkNvdW50ZXJzLnByb3BUeXBlcyA9IHtcbiAgcmVwb3J0OiBQcm9wVHlwZXMub2JqZWN0XG59XG5cbmV4cG9ydCBkZWZhdWx0IENvdW50ZXJzXG4iXX0= */\n/*@ sourceURL=/Users/jerome/opencovid19-fr/dashboard/components/counters.js */"));
+  }, ".counters.jsx-3378509169{display:grid;grid-template-columns:1fr 1fr;}\n/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9Vc2Vycy9qZXJvbWUvb3BlbmNvdmlkMTktZnIvZGFzaGJvYXJkL2NvbXBvbmVudHMvY291bnRlcnMuanMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBY2tCLEFBR3dCLGFBQ2lCLDhCQUNoQyIsImZpbGUiOiIvVXNlcnMvamVyb21lL29wZW5jb3ZpZDE5LWZyL2Rhc2hib2FyZC9jb21wb25lbnRzL2NvdW50ZXJzLmpzIiwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0IFJlYWN0IGZyb20gJ3JlYWN0J1xuaW1wb3J0IFByb3BUeXBlcyBmcm9tICdwcm9wLXR5cGVzJ1xuXG5pbXBvcnQgQ291bnRlciBmcm9tICcuL2NvdW50ZXInXG5cbmNvbnN0IENvdW50ZXJzID0gKHtyZXBvcnR9KSA9PiB7XG4gIGNvbnN0IHtjYXNDb25maXJtZXMsIGRlY2VzfSA9IHJlcG9ydCB8fCB7fVxuXG4gIHJldHVybiAoXG4gICAgPGRpdiBjbGFzc05hbWU9J3N0YXRzJz5cbiAgICAgIDxkaXYgY2xhc3NOYW1lPSdjb3VudGVycyc+XG4gICAgICAgIDxDb3VudGVyIHZhbHVlPXtjYXNDb25maXJtZXMgfHwgJz8nfSBsYWJlbD0nY2FzIGNvbmZpcm3DqXMnIGNvbG9yPSdvcmFuZ2UnIC8+XG4gICAgICAgIDxDb3VudGVyIHZhbHVlPXtkZWNlcyB8fCAnPyd9IGxhYmVsPSdkw6ljw6hzJyBjb2xvcj0ncmVkJyAvPlxuICAgICAgPC9kaXY+XG4gICAgICA8c3R5bGUganN4PntgXG4gICAgICAgIC5jb3VudGVycyB7XG4gICAgICAgICAgZGlzcGxheTogZ3JpZDtcbiAgICAgICAgICBncmlkLXRlbXBsYXRlLWNvbHVtbnM6IDFmciAxZnI7XG4gICAgICAgIH1cbiAgICAgIGB9PC9zdHlsZT5cbiAgICA8L2Rpdj5cbiAgKVxufVxuXG5Db3VudGVycy5kZWZhdWx0UHJvcHMgPSB7XG4gIHJlcG9ydDoge31cbn1cblxuQ291bnRlcnMucHJvcFR5cGVzID0ge1xuICByZXBvcnQ6IFByb3BUeXBlcy5vYmplY3Rcbn1cblxuZXhwb3J0IGRlZmF1bHQgQ291bnRlcnNcbiJdfQ== */\n/*@ sourceURL=/Users/jerome/opencovid19-fr/dashboard/components/counters.js */"));
 };
 
 Counters.defaultProps = {
@@ -348,99 +550,6 @@ var DateNav = function DateNav() {
 
 /***/ }),
 
-/***/ "./components/description.js":
-/*!***********************************!*\
-  !*** ./components/description.js ***!
-  \***********************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var styled_jsx_style__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! styled-jsx/style */ "./node_modules/styled-jsx/style.js");
-/* harmony import */ var styled_jsx_style__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(styled_jsx_style__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
-var _jsxFileName = "/Users/jerome/opencovid19-fr/dashboard/components/description.js";
-
-var __jsx = react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement;
-
-var Description = react__WEBPACK_IMPORTED_MODULE_1___default.a.memo(function () {
-  return __jsx("div", {
-    className: "jsx-3567181602" + " " + 'description',
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 4
-    },
-    __self: this
-  }, __jsx("p", {
-    className: "jsx-3567181602",
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 5
-    },
-    __self: this
-  }, "L\u2018information officielle sur la progression de l\u2019\xE9pid\xE9mie en France est tr\xE8s fragment\xE9e."), __jsx("p", {
-    className: "jsx-3567181602",
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 8
-    },
-    __self: this
-  }, __jsx("a", {
-    href: "https://www.santepubliquefrance.fr/maladies-et-traumatismes/maladies-et-infections-respiratoires/infection-a-coronavirus/articles/infection-au-nouveau-coronavirus-sars-cov-2-covid-19-france-et-monde",
-    className: "jsx-3567181602",
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 9
-    },
-    __self: this
-  }, "Sant\xE9 publique France"), " propose un point \xE9pid\xE9miologique quotidien, qui comprend les chiffres-cl\xE9s nationaux, et le nombre de cas confirm\xE9s par r\xE9gion."), __jsx("p", {
-    className: "jsx-3567181602",
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 11
-    },
-    __self: this
-  }, "Les agences r\xE9gionales de sant\xE9 et les pr\xE9fectures publient de leur c\xF4t\xE9 des informations au niveau d\xE9partemental, ainsi que le nombre de personnes d\xE9c\xE9d\xE9es ou en r\xE9animation."), __jsx("p", {
-    className: "jsx-3567181602",
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 14
-    },
-    __self: this
-  }, "Cet outil contributif tente de proposer une ", __jsx("a", {
-    href: "https://www.data.gouv.fr/fr/datasets/chiffres-cles-concernant-lepidemie-de-covid19-en-france/",
-    className: "jsx-3567181602",
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 15
-    },
-    __self: this
-  }, "vision consolid\xE9e"), " des donn\xE9es officielles disponibles."), __jsx("p", {
-    className: "jsx-3567181602",
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 17
-    },
-    __self: this
-  }, "Pensez aussi \xE0 consulter la ", __jsx("a", {
-    href: "https://www.gouvernement.fr/info-coronavirus",
-    className: "jsx-3567181602",
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 17
-    },
-    __self: this
-  }, "page d\u2019information du Gouvernement"), "."), __jsx(styled_jsx_style__WEBPACK_IMPORTED_MODULE_0___default.a, {
-    id: "3567181602",
-    __self: this
-  }, ".description.jsx-3567181602{padding:1em;}.description.jsx-3567181602 p.jsx-3567181602{font-size:0.85em;}\n/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9Vc2Vycy9qZXJvbWUvb3BlbmNvdmlkMTktZnIvZGFzaGJvYXJkL2NvbXBvbmVudHMvZGVzY3JpcHRpb24uanMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBa0JnQixBQUdxQixBQUlLLFlBSG5CLEtBSUEiLCJmaWxlIjoiL1VzZXJzL2plcm9tZS9vcGVuY292aWQxOS1mci9kYXNoYm9hcmQvY29tcG9uZW50cy9kZXNjcmlwdGlvbi5qcyIsInNvdXJjZXNDb250ZW50IjpbImltcG9ydCBSZWFjdCBmcm9tICdyZWFjdCdcblxuY29uc3QgRGVzY3JpcHRpb24gPSBSZWFjdC5tZW1vKCgpID0+IChcbiAgPGRpdiBjbGFzc05hbWU9J2Rlc2NyaXB0aW9uJz5cbiAgICA8cD5cbiAgICAgIEzigJhpbmZvcm1hdGlvbiBvZmZpY2llbGxlIHN1ciBsYSBwcm9ncmVzc2lvbiBkZSBs4oCZw6lwaWTDqW1pZSBlbiBGcmFuY2UgZXN0IHRyw6hzIGZyYWdtZW50w6llLlxuICAgIDwvcD5cbiAgICA8cD5cbiAgICAgIDxhIGhyZWY9J2h0dHBzOi8vd3d3LnNhbnRlcHVibGlxdWVmcmFuY2UuZnIvbWFsYWRpZXMtZXQtdHJhdW1hdGlzbWVzL21hbGFkaWVzLWV0LWluZmVjdGlvbnMtcmVzcGlyYXRvaXJlcy9pbmZlY3Rpb24tYS1jb3JvbmF2aXJ1cy9hcnRpY2xlcy9pbmZlY3Rpb24tYXUtbm91dmVhdS1jb3JvbmF2aXJ1cy1zYXJzLWNvdi0yLWNvdmlkLTE5LWZyYW5jZS1ldC1tb25kZSc+U2FudMOpIHB1YmxpcXVlIEZyYW5jZTwvYT4gcHJvcG9zZSB1biBwb2ludCDDqXBpZMOpbWlvbG9naXF1ZSBxdW90aWRpZW4sIHF1aSBjb21wcmVuZCBsZXMgY2hpZmZyZXMtY2zDqXMgbmF0aW9uYXV4LCBldCBsZSBub21icmUgZGUgY2FzIGNvbmZpcm3DqXMgcGFyIHLDqWdpb24uXG4gICAgPC9wPlxuICAgIDxwPlxuICAgICAgTGVzIGFnZW5jZXMgcsOpZ2lvbmFsZXMgZGUgc2FudMOpIGV0IGxlcyBwcsOpZmVjdHVyZXMgcHVibGllbnQgZGUgbGV1ciBjw7R0w6kgZGVzIGluZm9ybWF0aW9ucyBhdSBuaXZlYXUgZMOpcGFydGVtZW50YWwsIGFpbnNpIHF1ZSBsZSBub21icmUgZGUgcGVyc29ubmVzIGTDqWPDqWTDqWVzIG91IGVuIHLDqWFuaW1hdGlvbi5cbiAgICA8L3A+XG4gICAgPHA+XG4gICAgICBDZXQgb3V0aWwgY29udHJpYnV0aWYgdGVudGUgZGUgcHJvcG9zZXIgdW5lIDxhIGhyZWY9J2h0dHBzOi8vd3d3LmRhdGEuZ291di5mci9mci9kYXRhc2V0cy9jaGlmZnJlcy1jbGVzLWNvbmNlcm5hbnQtbGVwaWRlbWllLWRlLWNvdmlkMTktZW4tZnJhbmNlLyc+dmlzaW9uIGNvbnNvbGlkw6llPC9hPiBkZXMgZG9ubsOpZXMgb2ZmaWNpZWxsZXMgZGlzcG9uaWJsZXMuXG4gICAgPC9wPlxuICAgIDxwPlBlbnNleiBhdXNzaSDDoCBjb25zdWx0ZXIgbGEgPGEgaHJlZj0naHR0cHM6Ly93d3cuZ291dmVybmVtZW50LmZyL2luZm8tY29yb25hdmlydXMnPnBhZ2UgZOKAmWluZm9ybWF0aW9uIGR1IEdvdXZlcm5lbWVudDwvYT4uPC9wPlxuXG4gICAgPHN0eWxlIGpzeD57YFxuICAgICAgLmRlc2NyaXB0aW9uIHtcbiAgICAgICAgcGFkZGluZzogMWVtO1xuICAgICAgfVxuXG4gICAgICAuZGVzY3JpcHRpb24gcCB7XG4gICAgICAgIGZvbnQtc2l6ZTogMC44NWVtO1xuICAgICAgfVxuICAgIGB9PC9zdHlsZT5cbiAgPC9kaXY+XG4pKVxuXG5leHBvcnQgZGVmYXVsdCBEZXNjcmlwdGlvblxuIl19 */\n/*@ sourceURL=/Users/jerome/opencovid19-fr/dashboard/components/description.js */"));
-});
-/* harmony default export */ __webpack_exports__["default"] = (Description);
-
-/***/ }),
-
 /***/ "./components/footer.js":
 /*!******************************!*\
   !*** ./components/footer.js ***!
@@ -505,6 +614,267 @@ var Footer = function Footer() {
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (Footer);
+
+/***/ }),
+
+/***/ "./components/informations.js":
+/*!************************************!*\
+  !*** ./components/informations.js ***!
+  \************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var styled_jsx_style__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! styled-jsx/style */ "./node_modules/styled-jsx/style.js");
+/* harmony import */ var styled_jsx_style__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(styled_jsx_style__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
+var _jsxFileName = "/Users/jerome/opencovid19-fr/dashboard/components/informations.js";
+
+var __jsx = react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement;
+
+var Informations = react__WEBPACK_IMPORTED_MODULE_1___default.a.memo(function () {
+  return __jsx("div", {
+    className: "jsx-1449894135" + " " + 'informations',
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 4
+    },
+    __self: this
+  }, __jsx("h3", {
+    className: "jsx-1449894135",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 5
+    },
+    __self: this
+  }, "Informations"), __jsx("p", {
+    className: "jsx-1449894135",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 6
+    },
+    __self: this
+  }, "L\u2018information officielle sur la progression de l\u2019\xE9pid\xE9mie en France est tr\xE8s fragment\xE9e."), __jsx("p", {
+    className: "jsx-1449894135",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 9
+    },
+    __self: this
+  }, __jsx("a", {
+    href: "https://www.santepubliquefrance.fr/maladies-et-traumatismes/maladies-et-infections-respiratoires/infection-a-coronavirus/articles/infection-au-nouveau-coronavirus-sars-cov-2-covid-19-france-et-monde",
+    className: "jsx-1449894135",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 10
+    },
+    __self: this
+  }, "Sant\xE9 publique France"), " propose un point \xE9pid\xE9miologique quotidien, qui comprend les chiffres-cl\xE9s nationaux, et le nombre de cas confirm\xE9s par r\xE9gion."), __jsx("p", {
+    className: "jsx-1449894135",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 12
+    },
+    __self: this
+  }, "Les agences r\xE9gionales de sant\xE9 et les pr\xE9fectures publient de leur c\xF4t\xE9 des informations au niveau d\xE9partemental, ainsi que le nombre de personnes d\xE9c\xE9d\xE9es ou en r\xE9animation."), __jsx("p", {
+    className: "jsx-1449894135",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 15
+    },
+    __self: this
+  }, "Cet outil contributif tente de proposer une ", __jsx("a", {
+    href: "https://www.data.gouv.fr/fr/datasets/chiffres-cles-concernant-lepidemie-de-covid19-en-france/",
+    className: "jsx-1449894135",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 16
+    },
+    __self: this
+  }, "vision consolid\xE9e"), " des donn\xE9es officielles disponibles."), __jsx("p", {
+    className: "jsx-1449894135",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 18
+    },
+    __self: this
+  }, "Pensez aussi \xE0 consulter la ", __jsx("a", {
+    href: "https://www.gouvernement.fr/info-coronavirus",
+    className: "jsx-1449894135",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 18
+    },
+    __self: this
+  }, "page d\u2019information du Gouvernement"), "."), __jsx(styled_jsx_style__WEBPACK_IMPORTED_MODULE_0___default.a, {
+    id: "1449894135",
+    __self: this
+  }, ".informations.jsx-1449894135{padding:1em;}.informations.jsx-1449894135 p.jsx-1449894135{font-size:0.85em;}\n/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9Vc2Vycy9qZXJvbWUvb3BlbmNvdmlkMTktZnIvZGFzaGJvYXJkL2NvbXBvbmVudHMvaW5mb3JtYXRpb25zLmpzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQW1CZ0IsQUFHcUIsQUFJSyxZQUhuQixLQUlBIiwiZmlsZSI6Ii9Vc2Vycy9qZXJvbWUvb3BlbmNvdmlkMTktZnIvZGFzaGJvYXJkL2NvbXBvbmVudHMvaW5mb3JtYXRpb25zLmpzIiwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0IFJlYWN0IGZyb20gJ3JlYWN0J1xuXG5jb25zdCBJbmZvcm1hdGlvbnMgPSBSZWFjdC5tZW1vKCgpID0+IChcbiAgPGRpdiBjbGFzc05hbWU9J2luZm9ybWF0aW9ucyc+XG4gICAgPGgzPkluZm9ybWF0aW9uczwvaDM+XG4gICAgPHA+XG4gICAgICBM4oCYaW5mb3JtYXRpb24gb2ZmaWNpZWxsZSBzdXIgbGEgcHJvZ3Jlc3Npb24gZGUgbOKAmcOpcGlkw6ltaWUgZW4gRnJhbmNlIGVzdCB0csOocyBmcmFnbWVudMOpZS5cbiAgICA8L3A+XG4gICAgPHA+XG4gICAgICA8YSBocmVmPSdodHRwczovL3d3dy5zYW50ZXB1YmxpcXVlZnJhbmNlLmZyL21hbGFkaWVzLWV0LXRyYXVtYXRpc21lcy9tYWxhZGllcy1ldC1pbmZlY3Rpb25zLXJlc3BpcmF0b2lyZXMvaW5mZWN0aW9uLWEtY29yb25hdmlydXMvYXJ0aWNsZXMvaW5mZWN0aW9uLWF1LW5vdXZlYXUtY29yb25hdmlydXMtc2Fycy1jb3YtMi1jb3ZpZC0xOS1mcmFuY2UtZXQtbW9uZGUnPlNhbnTDqSBwdWJsaXF1ZSBGcmFuY2U8L2E+IHByb3Bvc2UgdW4gcG9pbnQgw6lwaWTDqW1pb2xvZ2lxdWUgcXVvdGlkaWVuLCBxdWkgY29tcHJlbmQgbGVzIGNoaWZmcmVzLWNsw6lzIG5hdGlvbmF1eCwgZXQgbGUgbm9tYnJlIGRlIGNhcyBjb25maXJtw6lzIHBhciByw6lnaW9uLlxuICAgIDwvcD5cbiAgICA8cD5cbiAgICAgIExlcyBhZ2VuY2VzIHLDqWdpb25hbGVzIGRlIHNhbnTDqSBldCBsZXMgcHLDqWZlY3R1cmVzIHB1YmxpZW50IGRlIGxldXIgY8O0dMOpIGRlcyBpbmZvcm1hdGlvbnMgYXUgbml2ZWF1IGTDqXBhcnRlbWVudGFsLCBhaW5zaSBxdWUgbGUgbm9tYnJlIGRlIHBlcnNvbm5lcyBkw6ljw6lkw6llcyBvdSBlbiByw6lhbmltYXRpb24uXG4gICAgPC9wPlxuICAgIDxwPlxuICAgICAgQ2V0IG91dGlsIGNvbnRyaWJ1dGlmIHRlbnRlIGRlIHByb3Bvc2VyIHVuZSA8YSBocmVmPSdodHRwczovL3d3dy5kYXRhLmdvdXYuZnIvZnIvZGF0YXNldHMvY2hpZmZyZXMtY2xlcy1jb25jZXJuYW50LWxlcGlkZW1pZS1kZS1jb3ZpZDE5LWVuLWZyYW5jZS8nPnZpc2lvbiBjb25zb2xpZMOpZTwvYT4gZGVzIGRvbm7DqWVzIG9mZmljaWVsbGVzIGRpc3BvbmlibGVzLlxuICAgIDwvcD5cbiAgICA8cD5QZW5zZXogYXVzc2kgw6AgY29uc3VsdGVyIGxhIDxhIGhyZWY9J2h0dHBzOi8vd3d3LmdvdXZlcm5lbWVudC5mci9pbmZvLWNvcm9uYXZpcnVzJz5wYWdlIGTigJlpbmZvcm1hdGlvbiBkdSBHb3V2ZXJuZW1lbnQ8L2E+LjwvcD5cblxuICAgIDxzdHlsZSBqc3g+e2BcbiAgICAgIC5pbmZvcm1hdGlvbnMge1xuICAgICAgICBwYWRkaW5nOiAxZW07XG4gICAgICB9XG5cbiAgICAgIC5pbmZvcm1hdGlvbnMgcCB7XG4gICAgICAgIGZvbnQtc2l6ZTogMC44NWVtO1xuICAgICAgfVxuICAgIGB9PC9zdHlsZT5cbiAgPC9kaXY+XG4pKVxuXG5leHBvcnQgZGVmYXVsdCBJbmZvcm1hdGlvbnNcbiJdfQ== */\n/*@ sourceURL=/Users/jerome/opencovid19-fr/dashboard/components/informations.js */"));
+});
+/* harmony default export */ __webpack_exports__["default"] = (Informations);
+
+/***/ }),
+
+/***/ "./components/map-selector.js":
+/*!************************************!*\
+  !*** ./components/map-selector.js ***!
+  \************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var lodash_uniq__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! lodash/uniq */ "./node_modules/lodash/uniq.js");
+/* harmony import */ var lodash_uniq__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(lodash_uniq__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var lodash_indexOf__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! lodash/indexOf */ "./node_modules/lodash/indexOf.js");
+/* harmony import */ var lodash_indexOf__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(lodash_indexOf__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var styled_jsx_style__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! styled-jsx/style */ "./node_modules/styled-jsx/style.js");
+/* harmony import */ var styled_jsx_style__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(styled_jsx_style__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! prop-types */ "./node_modules/prop-types/index.js");
+/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(prop_types__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var react_feather__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react-feather */ "./node_modules/react-feather/dist/index.js");
+/* harmony import */ var _styles_colors__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../styles/colors */ "./styles/colors.js");
+/* harmony import */ var _pages__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../pages */ "./pages/index.js");
+
+
+var _jsxFileName = "/Users/jerome/opencovid19-fr/dashboard/components/map-selector.js";
+
+var __jsx = react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement;
+
+
+
+
+
+
+var MapSelector = function MapSelector(_ref) {
+  var mapIdx = _ref.mapIdx,
+      selectMap = _ref.selectMap;
+
+  var _useContext = Object(react__WEBPACK_IMPORTED_MODULE_3__["useContext"])(_pages__WEBPACK_IMPORTED_MODULE_7__["AppContext"]),
+      maps = _useContext.maps;
+
+  var selectedMap = maps[mapIdx];
+
+  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_3__["useState"])(false),
+      isOpen = _useState[0],
+      setIsOpen = _useState[1];
+
+  var handleMap = Object(react__WEBPACK_IMPORTED_MODULE_3__["useCallback"])(function (map) {
+    selectMap(map);
+    setIsOpen(false);
+  }, [selectMap]);
+
+  var categories = lodash_uniq__WEBPACK_IMPORTED_MODULE_0___default()(maps.map(function (map) {
+    return map.category;
+  }));
+
+  return __jsx("div", {
+    className: styled_jsx_style__WEBPACK_IMPORTED_MODULE_2___default.a.dynamic([["3670400078", [_styles_colors__WEBPACK_IMPORTED_MODULE_6__["default"].lightGrey]]]) + " " + 'switch',
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 24
+    },
+    __self: this
+  }, __jsx("div", {
+    onClick: function onClick() {
+      return setIsOpen(!isOpen);
+    },
+    className: styled_jsx_style__WEBPACK_IMPORTED_MODULE_2___default.a.dynamic([["3670400078", [_styles_colors__WEBPACK_IMPORTED_MODULE_6__["default"].lightGrey]]]) + " " + 'header',
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 25
+    },
+    __self: this
+  }, __jsx("span", {
+    className: styled_jsx_style__WEBPACK_IMPORTED_MODULE_2___default.a.dynamic([["3670400078", [_styles_colors__WEBPACK_IMPORTED_MODULE_6__["default"].lightGrey]]]),
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 26
+    },
+    __self: this
+  }, selectedMap.name, " - maille ", selectedMap.category), " ", isOpen ? __jsx(react_feather__WEBPACK_IMPORTED_MODULE_5__["ChevronDown"], {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 26
+    },
+    __self: this
+  }) : __jsx(react_feather__WEBPACK_IMPORTED_MODULE_5__["ChevronUp"], {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 26
+    },
+    __self: this
+  })), isOpen && __jsx("div", {
+    className: styled_jsx_style__WEBPACK_IMPORTED_MODULE_2___default.a.dynamic([["3670400078", [_styles_colors__WEBPACK_IMPORTED_MODULE_6__["default"].lightGrey]]]) + " " + 'menu',
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 29
+    },
+    __self: this
+  }, categories.map(function (cat) {
+    return __jsx("div", {
+      key: cat,
+      className: styled_jsx_style__WEBPACK_IMPORTED_MODULE_2___default.a.dynamic([["3670400078", [_styles_colors__WEBPACK_IMPORTED_MODULE_6__["default"].lightGrey]]]) + " " + 'sub-cat',
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 31
+      },
+      __self: this
+    }, __jsx("div", {
+      className: styled_jsx_style__WEBPACK_IMPORTED_MODULE_2___default.a.dynamic([["3670400078", [_styles_colors__WEBPACK_IMPORTED_MODULE_6__["default"].lightGrey]]]) + " " + 'sub-title',
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 32
+      },
+      __self: this
+    }, cat), maps.filter(function (_ref2) {
+      var category = _ref2.category;
+      return category === cat;
+    }).map(function (map) {
+      var index = lodash_indexOf__WEBPACK_IMPORTED_MODULE_1___default()(maps, map);
+
+      return __jsx("div", {
+        key: map.name,
+        onClick: function onClick() {
+          return handleMap(index);
+        },
+        className: styled_jsx_style__WEBPACK_IMPORTED_MODULE_2___default.a.dynamic([["3670400078", [_styles_colors__WEBPACK_IMPORTED_MODULE_6__["default"].lightGrey]]]) + " " + "menu-item ".concat(index === mapIdx ? 'selected' : ''),
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 36
+        },
+        __self: this
+      }, __jsx("span", {
+        className: styled_jsx_style__WEBPACK_IMPORTED_MODULE_2___default.a.dynamic([["3670400078", [_styles_colors__WEBPACK_IMPORTED_MODULE_6__["default"].lightGrey]]]),
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 41
+        },
+        __self: this
+      }, map.name), " ", index === mapIdx && __jsx(react_feather__WEBPACK_IMPORTED_MODULE_5__["Check"], {
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 41
+        },
+        __self: this
+      }));
+    }));
+  })), __jsx(styled_jsx_style__WEBPACK_IMPORTED_MODULE_2___default.a, {
+    id: "3670400078",
+    dynamic: [_styles_colors__WEBPACK_IMPORTED_MODULE_6__["default"].lightGrey],
+    __self: this
+  }, ".switch.__jsx-style-dynamic-selector{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-flex-direction:column;-ms-flex-direction:column;flex-direction:column;background-color:#000000aa;color:#fff;border-radius:4px;}.header.__jsx-style-dynamic-selector{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-box-pack:justify;-webkit-justify-content:space-between;-ms-flex-pack:justify;justify-content:space-between;-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;padding:0.5em;}.switch.__jsx-style-dynamic-selector:hover{cursor:pointer;}.menu.__jsx-style-dynamic-selector{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-flex-direction:column;-ms-flex-direction:column;flex-direction:column;}.menu-item.__jsx-style-dynamic-selector{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;padding:0.2em 0.5em;}.menu-item.__jsx-style-dynamic-selector:hover{background-color:".concat(_styles_colors__WEBPACK_IMPORTED_MODULE_6__["default"].lightGrey, ";color:#000;}.menu-item.selected.__jsx-style-dynamic-selector:hover{background-color:none;cursor:initial;}.sub-cat.__jsx-style-dynamic-selector{padding-bottom:0.2em;}.sub-title.__jsx-style-dynamic-selector{font-size:larger;text-transform:capitalize;padding:0.5em 0.4em;background-color:#00000066;}span.__jsx-style-dynamic-selector{margin-right:0.4em;}\n/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9Vc2Vycy9qZXJvbWUvb3BlbmNvdmlkMTktZnIvZGFzaGJvYXJkL2NvbXBvbmVudHMvbWFwLXNlbGVjdG9yLmpzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQWlEa0IsQUFHd0IsQUFRQSxBQU9FLEFBSUYsQUFLQSxBQU1pQyxBQUt4QixBQUtELEFBSUosQUFPRSxlQW5DckIsRUE2QjRCLEVBTzVCLEVBWEEsQ0FMaUIsZUFDakIsTUFTc0IsR0FmVCxXQUNiLE1BZTZCLFdBOUNMLEFBUVEsQUFXUixBQUtILGdCQXVCckIsOERBOUM2QixBQW1CN0IsZUFLc0IsWUF2QlQsUUF3QmIsRUFqQnFCLENBTkQsa0JBQ3BCLDBFQU1nQixjQUNoQiIsImZpbGUiOiIvVXNlcnMvamVyb21lL29wZW5jb3ZpZDE5LWZyL2Rhc2hib2FyZC9jb21wb25lbnRzL21hcC1zZWxlY3Rvci5qcyIsInNvdXJjZXNDb250ZW50IjpbImltcG9ydCBSZWFjdCwge3VzZVN0YXRlLCB1c2VDYWxsYmFjaywgdXNlQ29udGV4dH0gZnJvbSAncmVhY3QnXG5pbXBvcnQgUHJvcFR5cGVzIGZyb20gJ3Byb3AtdHlwZXMnXG5pbXBvcnQge2luZGV4T2YsIHVuaXF9IGZyb20gJ2xvZGFzaCdcbmltcG9ydCB7Q2hldnJvbkRvd24sIENoZXZyb25VcCwgQ2hlY2t9IGZyb20gJ3JlYWN0LWZlYXRoZXInXG5cbmltcG9ydCBjb2xvcnMgZnJvbSAnLi4vc3R5bGVzL2NvbG9ycydcblxuaW1wb3J0IHtBcHBDb250ZXh0fSBmcm9tICcuLi9wYWdlcydcblxuY29uc3QgTWFwU2VsZWN0b3IgPSAoe21hcElkeCwgc2VsZWN0TWFwfSkgPT4ge1xuICBjb25zdCB7bWFwc30gPSB1c2VDb250ZXh0KEFwcENvbnRleHQpXG4gIGNvbnN0IHNlbGVjdGVkTWFwID0gbWFwc1ttYXBJZHhdXG5cbiAgY29uc3QgW2lzT3Blbiwgc2V0SXNPcGVuXSA9IHVzZVN0YXRlKGZhbHNlKVxuXG4gIGNvbnN0IGhhbmRsZU1hcCA9IHVzZUNhbGxiYWNrKG1hcCA9PiB7XG4gICAgc2VsZWN0TWFwKG1hcClcbiAgICBzZXRJc09wZW4oZmFsc2UpXG4gIH0sIFtzZWxlY3RNYXBdKVxuXG4gIGNvbnN0IGNhdGVnb3JpZXMgPSB1bmlxKG1hcHMubWFwKG1hcCA9PiBtYXAuY2F0ZWdvcnkpKVxuXG4gIHJldHVybiAoXG4gICAgPGRpdiBjbGFzc05hbWU9J3N3aXRjaCc+XG4gICAgICA8ZGl2IGNsYXNzTmFtZT0naGVhZGVyJyBvbkNsaWNrPXsoKSA9PiBzZXRJc09wZW4oIWlzT3Blbil9PlxuICAgICAgICA8c3Bhbj57c2VsZWN0ZWRNYXAubmFtZX0gLSBtYWlsbGUge3NlbGVjdGVkTWFwLmNhdGVnb3J5fTwvc3Bhbj4ge2lzT3BlbiA/IDxDaGV2cm9uRG93biAvPiA6IDxDaGV2cm9uVXAgLz59XG4gICAgICA8L2Rpdj5cbiAgICAgIHtpc09wZW4gJiYgKFxuICAgICAgICA8ZGl2IGNsYXNzTmFtZT0nbWVudSc+XG4gICAgICAgICAge2NhdGVnb3JpZXMubWFwKGNhdCA9PiAoXG4gICAgICAgICAgICA8ZGl2IGtleT17Y2F0fSBjbGFzc05hbWU9J3N1Yi1jYXQnPlxuICAgICAgICAgICAgICA8ZGl2IGNsYXNzTmFtZT0nc3ViLXRpdGxlJz57Y2F0fTwvZGl2PlxuICAgICAgICAgICAgICB7bWFwcy5maWx0ZXIoKHtjYXRlZ29yeX0pID0+IGNhdGVnb3J5ID09PSBjYXQpLm1hcChtYXAgPT4ge1xuICAgICAgICAgICAgICAgIGNvbnN0IGluZGV4ID0gaW5kZXhPZihtYXBzLCBtYXApXG4gICAgICAgICAgICAgICAgcmV0dXJuIChcbiAgICAgICAgICAgICAgICAgIDxkaXZcbiAgICAgICAgICAgICAgICAgICAga2V5PXttYXAubmFtZX1cbiAgICAgICAgICAgICAgICAgICAgY2xhc3NOYW1lPXtgbWVudS1pdGVtICR7aW5kZXggPT09IG1hcElkeCA/ICdzZWxlY3RlZCcgOiAnJ31gfVxuICAgICAgICAgICAgICAgICAgICBvbkNsaWNrPXsoKSA9PiBoYW5kbGVNYXAoaW5kZXgpfVxuICAgICAgICAgICAgICAgICAgPlxuICAgICAgICAgICAgICAgICAgICA8c3Bhbj57bWFwLm5hbWV9PC9zcGFuPiB7aW5kZXggPT09IG1hcElkeCAmJiA8Q2hlY2sgLz59XG4gICAgICAgICAgICAgICAgICA8L2Rpdj5cbiAgICAgICAgICAgICAgICApXG4gICAgICAgICAgICAgIH0pfVxuICAgICAgICAgICAgPC9kaXY+XG4gICAgICAgICAgKSl9XG4gICAgICAgIDwvZGl2PlxuICAgICAgKX1cblxuICAgICAgPHN0eWxlIGpzeD57YFxuICAgICAgICAuc3dpdGNoIHtcbiAgICAgICAgICBkaXNwbGF5OiBmbGV4O1xuICAgICAgICAgIGZsZXgtZGlyZWN0aW9uOiBjb2x1bW47XG4gICAgICAgICAgYmFja2dyb3VuZC1jb2xvcjogIzAwMDAwMGFhO1xuICAgICAgICAgIGNvbG9yOiAjZmZmO1xuICAgICAgICAgIGJvcmRlci1yYWRpdXM6IDRweDtcbiAgICAgICAgfVxuXG4gICAgICAgIC5oZWFkZXIge1xuICAgICAgICAgIGRpc3BsYXk6IGZsZXg7XG4gICAgICAgICAganVzdGlmeS1jb250ZW50OiBzcGFjZS1iZXR3ZWVuO1xuICAgICAgICAgIGFsaWduLWl0ZW1zOiBjZW50ZXI7XG4gICAgICAgICAgcGFkZGluZzogMC41ZW07XG4gICAgICAgIH1cblxuICAgICAgICAuc3dpdGNoOmhvdmVyIHtcbiAgICAgICAgICBjdXJzb3I6IHBvaW50ZXI7XG4gICAgICAgIH1cblxuICAgICAgICAubWVudSB7XG4gICAgICAgICAgZGlzcGxheTogZmxleDtcbiAgICAgICAgICBmbGV4LWRpcmVjdGlvbjogY29sdW1uO1xuICAgICAgICB9XG5cbiAgICAgICAgLm1lbnUtaXRlbSB7XG4gICAgICAgICAgZGlzcGxheTogZmxleDtcbiAgICAgICAgICBhbGlnbi1pdGVtczogY2VudGVyO1xuICAgICAgICAgIHBhZGRpbmc6IDAuMmVtIDAuNWVtO1xuICAgICAgICB9XG5cbiAgICAgICAgLm1lbnUtaXRlbTpob3ZlciB7XG4gICAgICAgICAgYmFja2dyb3VuZC1jb2xvcjogJHtjb2xvcnMubGlnaHRHcmV5fTtcbiAgICAgICAgICBjb2xvcjogIzAwMDtcbiAgICAgICAgfVxuXG4gICAgICAgIC5tZW51LWl0ZW0uc2VsZWN0ZWQ6aG92ZXIge1xuICAgICAgICAgIGJhY2tncm91bmQtY29sb3I6IG5vbmU7XG4gICAgICAgICAgY3Vyc29yOiBpbml0aWFsO1xuICAgICAgICB9XG5cbiAgICAgICAgLnN1Yi1jYXQge1xuICAgICAgICAgIHBhZGRpbmctYm90dG9tOiAwLjJlbTtcbiAgICAgICAgfVxuXG4gICAgICAgIC5zdWItdGl0bGUge1xuICAgICAgICAgIGZvbnQtc2l6ZTogbGFyZ2VyO1xuICAgICAgICAgIHRleHQtdHJhbnNmb3JtOiBjYXBpdGFsaXplO1xuICAgICAgICAgIHBhZGRpbmc6IDAuNWVtIDAuNGVtO1xuICAgICAgICAgIGJhY2tncm91bmQtY29sb3I6ICMwMDAwMDA2NjtcbiAgICAgICAgfVxuXG4gICAgICAgIHNwYW4ge1xuICAgICAgICAgIG1hcmdpbi1yaWdodDogMC40ZW07XG4gICAgICAgIH1cbiAgICAgICAgYH08L3N0eWxlPlxuICAgIDwvZGl2PlxuICApXG59XG5cbk1hcFNlbGVjdG9yLnByb3BUeXBlcyA9IHtcbiAgbWFwSWR4OiBQcm9wVHlwZXMubnVtYmVyLmlzUmVxdWlyZWQsXG4gIHNlbGVjdE1hcDogUHJvcFR5cGVzLmZ1bmMuaXNSZXF1aXJlZFxufVxuXG5leHBvcnQgZGVmYXVsdCBNYXBTZWxlY3RvclxuIl19 */\n/*@ sourceURL=/Users/jerome/opencovid19-fr/dashboard/components/map-selector.js */")));
+};
+
+MapSelector.propTypes = {
+  mapIdx: prop_types__WEBPACK_IMPORTED_MODULE_4___default.a.number.isRequired,
+  selectMap: prop_types__WEBPACK_IMPORTED_MODULE_4___default.a.func.isRequired
+};
+/* harmony default export */ __webpack_exports__["default"] = (MapSelector);
 
 /***/ }),
 
@@ -726,41 +1096,102 @@ Meta.defaultProps = {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _pages__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../pages */ "./pages/index.js");
-/* harmony import */ var _counters__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./counters */ "./components/counters.js");
-/* harmony import */ var _confirmed_chart__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./confirmed-chart */ "./components/confirmed-chart.js");
+/* harmony import */ var styled_jsx_style__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! styled-jsx/style */ "./node_modules/styled-jsx/style.js");
+/* harmony import */ var styled_jsx_style__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(styled_jsx_style__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _styles_colors__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../styles/colors */ "./styles/colors.js");
+/* harmony import */ var _pages__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../pages */ "./pages/index.js");
+/* harmony import */ var _counters__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./counters */ "./components/counters.js");
+/* harmony import */ var _charts_mixed_chart__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./charts/mixed-chart */ "./components/charts/mixed-chart.js");
+/* harmony import */ var _charts_confirmes_chart__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./charts/confirmes-chart */ "./components/charts/confirmes-chart.js");
+/* harmony import */ var _charts_deces_chart__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./charts/deces-chart */ "./components/charts/deces-chart.js");
 var _jsxFileName = "/Users/jerome/opencovid19-fr/dashboard/components/national-statistics.js";
-var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
+
+var __jsx = react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement;
 
 
 
 
+
+
+
+var charts = {
+  mixed: {
+    name: 'Cas confirmés & décès',
+    chart: _charts_mixed_chart__WEBPACK_IMPORTED_MODULE_5__["default"]
+  },
+  confirmed: {
+    name: 'Cas confirmés',
+    chart: _charts_confirmes_chart__WEBPACK_IMPORTED_MODULE_6__["default"]
+  },
+  deces: {
+    name: 'Décès',
+    chart: _charts_deces_chart__WEBPACK_IMPORTED_MODULE_7__["default"]
+  }
+};
 
 var NationalStatistics = function NationalStatistics() {
-  var _useContext = Object(react__WEBPACK_IMPORTED_MODULE_0__["useContext"])(_pages__WEBPACK_IMPORTED_MODULE_1__["AppContext"]),
+  var _useContext = Object(react__WEBPACK_IMPORTED_MODULE_1__["useContext"])(_pages__WEBPACK_IMPORTED_MODULE_3__["AppContext"]),
       date = _useContext.date,
-      franceReport = _useContext.franceReport;
+      franceReport = _useContext.franceReport,
+      isMobileDevice = _useContext.isMobileDevice;
 
-  return __jsx(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, __jsx(_counters__WEBPACK_IMPORTED_MODULE_2__["default"], {
+  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])('mixed'),
+      selectedChart = _useState[0],
+      setSelectedChart = _useState[1];
+
+  var Chart = charts[selectedChart].chart;
+  return __jsx(react__WEBPACK_IMPORTED_MODULE_1___default.a.Fragment, null, __jsx(_counters__WEBPACK_IMPORTED_MODULE_4__["default"], {
     report: franceReport,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 13
+      lineNumber: 35
     },
     __self: this
-  }), franceReport && franceReport.history && __jsx(_confirmed_chart__WEBPACK_IMPORTED_MODULE_3__["default"], {
+  }), franceReport && franceReport.history && __jsx("div", {
+    className: styled_jsx_style__WEBPACK_IMPORTED_MODULE_0___default.a.dynamic([["223606565", [_styles_colors__WEBPACK_IMPORTED_MODULE_2__["default"].lightGrey, _styles_colors__WEBPACK_IMPORTED_MODULE_2__["default"].darkerGrey, _styles_colors__WEBPACK_IMPORTED_MODULE_2__["default"].darkGrey]]]),
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 38
+    },
+    __self: this
+  }, __jsx(Chart, {
     data: franceReport.history.filter(function (r) {
       return date >= r.date;
     }),
-    height: 300,
+    height: isMobileDevice ? 280 : 300,
+    className: styled_jsx_style__WEBPACK_IMPORTED_MODULE_0___default.a.dynamic([["223606565", [_styles_colors__WEBPACK_IMPORTED_MODULE_2__["default"].lightGrey, _styles_colors__WEBPACK_IMPORTED_MODULE_2__["default"].darkerGrey, _styles_colors__WEBPACK_IMPORTED_MODULE_2__["default"].darkGrey]]]),
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 16
+      lineNumber: 39
     },
     __self: this
-  }));
+  }), __jsx("div", {
+    className: styled_jsx_style__WEBPACK_IMPORTED_MODULE_0___default.a.dynamic([["223606565", [_styles_colors__WEBPACK_IMPORTED_MODULE_2__["default"].lightGrey, _styles_colors__WEBPACK_IMPORTED_MODULE_2__["default"].darkerGrey, _styles_colors__WEBPACK_IMPORTED_MODULE_2__["default"].darkGrey]]]) + " " + 'charts-list',
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 40
+    },
+    __self: this
+  }, Object.keys(charts).map(function (chart) {
+    return __jsx("div", {
+      key: chart,
+      onClick: function onClick() {
+        return setSelectedChart(chart);
+      },
+      className: styled_jsx_style__WEBPACK_IMPORTED_MODULE_0___default.a.dynamic([["223606565", [_styles_colors__WEBPACK_IMPORTED_MODULE_2__["default"].lightGrey, _styles_colors__WEBPACK_IMPORTED_MODULE_2__["default"].darkerGrey, _styles_colors__WEBPACK_IMPORTED_MODULE_2__["default"].darkGrey]]]) + " " + "chart-name ".concat(chart === selectedChart ? 'selected' : ''),
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 42
+      },
+      __self: this
+    }, charts[chart].name);
+  }))), __jsx(styled_jsx_style__WEBPACK_IMPORTED_MODULE_0___default.a, {
+    id: "223606565",
+    dynamic: [_styles_colors__WEBPACK_IMPORTED_MODULE_2__["default"].lightGrey, _styles_colors__WEBPACK_IMPORTED_MODULE_2__["default"].darkerGrey, _styles_colors__WEBPACK_IMPORTED_MODULE_2__["default"].darkGrey],
+    __self: this
+  }, ".charts-list.__jsx-style-dynamic-selector{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-box-pack:space-around;-webkit-justify-content:space-around;-ms-flex-pack:space-around;justify-content:space-around;-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;}.chart-name.__jsx-style-dynamic-selector{background-color:".concat(_styles_colors__WEBPACK_IMPORTED_MODULE_2__["default"].lightGrey, ";color:#fff;border-radius:4px;padding:0.2em 0.4em;}.chart-name.__jsx-style-dynamic-selector:hover{cursor:pointer;background-color:").concat(_styles_colors__WEBPACK_IMPORTED_MODULE_2__["default"].darkerGrey, ";}.chart-name.selected.__jsx-style-dynamic-selector{background-color:").concat(_styles_colors__WEBPACK_IMPORTED_MODULE_2__["default"].darkGrey, ";}\n/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9Vc2Vycy9qZXJvbWUvb3BlbmNvdmlkMTktZnIvZGFzaGJvYXJkL2NvbXBvbmVudHMvbmF0aW9uYWwtc3RhdGlzdGljcy5qcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFxRGtCLEFBR3dCLEFBTWlDLEFBTy9CLEFBSytCLGVBSkEsK0JBUG5DLEFBWWIsV0FYb0IsSUFPcEIsYUFkK0IsQ0FRVCxvQkFDdEIsc0dBUnFCLDZGQUNyQiIsImZpbGUiOiIvVXNlcnMvamVyb21lL29wZW5jb3ZpZDE5LWZyL2Rhc2hib2FyZC9jb21wb25lbnRzL25hdGlvbmFsLXN0YXRpc3RpY3MuanMiLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgUmVhY3QsIHt1c2VDb250ZXh0LCB1c2VTdGF0ZX0gZnJvbSAncmVhY3QnXG5cbmltcG9ydCBjb2xvcnMgZnJvbSAnLi4vc3R5bGVzL2NvbG9ycydcblxuaW1wb3J0IHtBcHBDb250ZXh0fSBmcm9tICcuLi9wYWdlcydcblxuaW1wb3J0IENvdW50ZXJzIGZyb20gJy4vY291bnRlcnMnXG5pbXBvcnQgTWl4ZWRDaGFydCBmcm9tICcuL2NoYXJ0cy9taXhlZC1jaGFydCdcbmltcG9ydCBDb25maXJtZXNDaGFydCBmcm9tICcuL2NoYXJ0cy9jb25maXJtZXMtY2hhcnQnXG5pbXBvcnQgRGVjZXNDaGFydCBmcm9tICcuL2NoYXJ0cy9kZWNlcy1jaGFydCdcblxuY29uc3QgY2hhcnRzID0ge1xuICBtaXhlZDoge1xuICAgIG5hbWU6ICdDYXMgY29uZmlybcOpcyAmIGTDqWPDqHMnLFxuICAgIGNoYXJ0OiBNaXhlZENoYXJ0XG4gIH0sXG4gIGNvbmZpcm1lZDoge1xuICAgIG5hbWU6ICdDYXMgY29uZmlybcOpcycsXG4gICAgY2hhcnQ6IENvbmZpcm1lc0NoYXJ0XG4gIH0sXG4gIGRlY2VzOiB7XG4gICAgbmFtZTogJ0TDqWPDqHMnLFxuICAgIGNoYXJ0OiBEZWNlc0NoYXJ0XG4gIH1cbn1cblxuY29uc3QgTmF0aW9uYWxTdGF0aXN0aWNzID0gKCkgPT4ge1xuICBjb25zdCB7ZGF0ZSwgZnJhbmNlUmVwb3J0LCBpc01vYmlsZURldmljZX0gPSB1c2VDb250ZXh0KEFwcENvbnRleHQpXG5cbiAgY29uc3QgW3NlbGVjdGVkQ2hhcnQsIHNldFNlbGVjdGVkQ2hhcnRdID0gdXNlU3RhdGUoJ21peGVkJylcbiAgY29uc3QgQ2hhcnQgPSBjaGFydHNbc2VsZWN0ZWRDaGFydF0uY2hhcnRcblxuICByZXR1cm4gKFxuICAgIDw+XG4gICAgICA8Q291bnRlcnMgcmVwb3J0PXtmcmFuY2VSZXBvcnR9IC8+XG5cbiAgICAgIHtmcmFuY2VSZXBvcnQgJiYgZnJhbmNlUmVwb3J0Lmhpc3RvcnkgJiYgKFxuICAgICAgICA8ZGl2PlxuICAgICAgICAgIDxDaGFydCBkYXRhPXtmcmFuY2VSZXBvcnQuaGlzdG9yeS5maWx0ZXIociA9PiBkYXRlID49IHIuZGF0ZSl9IGhlaWdodD17aXNNb2JpbGVEZXZpY2UgPyAyODAgOiAzMDB9IC8+XG4gICAgICAgICAgPGRpdiBjbGFzc05hbWU9J2NoYXJ0cy1saXN0Jz5cbiAgICAgICAgICAgIHtPYmplY3Qua2V5cyhjaGFydHMpLm1hcChjaGFydCA9PiAoXG4gICAgICAgICAgICAgIDxkaXZcbiAgICAgICAgICAgICAgICBrZXk9e2NoYXJ0fVxuICAgICAgICAgICAgICAgIGNsYXNzTmFtZT17YGNoYXJ0LW5hbWUgJHtjaGFydCA9PT0gc2VsZWN0ZWRDaGFydCA/ICdzZWxlY3RlZCcgOiAnJ31gfVxuICAgICAgICAgICAgICAgIG9uQ2xpY2s9eygpID0+IHNldFNlbGVjdGVkQ2hhcnQoY2hhcnQpfVxuICAgICAgICAgICAgICA+XG4gICAgICAgICAgICAgICAge2NoYXJ0c1tjaGFydF0ubmFtZX1cbiAgICAgICAgICAgICAgPC9kaXY+XG4gICAgICAgICAgICApKX1cbiAgICAgICAgICA8L2Rpdj5cbiAgICAgICAgPC9kaXY+XG4gICAgICApfVxuXG4gICAgICA8c3R5bGUganN4PntgXG4gICAgICAgIC5jaGFydHMtbGlzdCB7XG4gICAgICAgICAgZGlzcGxheTogZmxleDtcbiAgICAgICAgICBqdXN0aWZ5LWNvbnRlbnQ6IHNwYWNlLWFyb3VuZDtcbiAgICAgICAgICBhbGlnbi1pdGVtczogY2VudGVyO1xuICAgICAgICB9XG5cbiAgICAgICAgLmNoYXJ0LW5hbWUge1xuICAgICAgICAgIGJhY2tncm91bmQtY29sb3I6ICR7Y29sb3JzLmxpZ2h0R3JleX07XG4gICAgICAgICAgY29sb3I6ICNmZmY7XG4gICAgICAgICAgYm9yZGVyLXJhZGl1czogNHB4O1xuICAgICAgICAgIHBhZGRpbmc6IDAuMmVtIDAuNGVtO1xuICAgICAgICB9XG5cbiAgICAgICAgLmNoYXJ0LW5hbWU6aG92ZXIge1xuICAgICAgICAgIGN1cnNvcjogcG9pbnRlcjtcbiAgICAgICAgICBiYWNrZ3JvdW5kLWNvbG9yOiAke2NvbG9ycy5kYXJrZXJHcmV5fTtcbiAgICAgICAgfVxuXG4gICAgICAgIC5jaGFydC1uYW1lLnNlbGVjdGVkIHtcbiAgICAgICAgICBiYWNrZ3JvdW5kLWNvbG9yOiAke2NvbG9ycy5kYXJrR3JleX07XG4gICAgICAgIH1cbiAgICAgICAgYH08L3N0eWxlPlxuICAgIDwvPlxuICApXG59XG5cbmV4cG9ydCBkZWZhdWx0IE5hdGlvbmFsU3RhdGlzdGljc1xuIl19 */\n/*@ sourceURL=/Users/jerome/opencovid19-fr/dashboard/components/national-statistics.js */")));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (NationalStatistics);
@@ -785,7 +1216,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_map_gl__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-map-gl */ "./node_modules/react-map-gl/dist/esm/index.js");
 /* harmony import */ var _pages__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../pages */ "./pages/index.js");
 /* harmony import */ var _sumup__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./sumup */ "./components/react-map-gl/sumup.js");
-/* harmony import */ var _layers__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./layers */ "./components/react-map-gl/layers.js");
+/* harmony import */ var _map_selector__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../map-selector */ "./components/map-selector.js");
 
 
 var _jsxFileName = "/Users/jerome/opencovid19-fr/dashboard/components/react-map-gl/index.js";
@@ -801,18 +1232,19 @@ var settings = {
 };
 
 var Map = function Map() {
-  var _useContext = Object(react__WEBPACK_IMPORTED_MODULE_3__["useContext"])(_pages__WEBPACK_IMPORTED_MODULE_5__["AppContext"]),
-      viewport = _useContext.viewport,
-      regionsReport = _useContext.regionsReport,
-      setViewport = _useContext.setViewport;
+  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_3__["useState"])(0),
+      selectedMapIdx = _useState[0],
+      setSelectedMapIdx = _useState[1];
 
-  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_3__["useState"])(),
-      map = _useState[0],
-      setMap = _useState[1];
+  var app = Object(react__WEBPACK_IMPORTED_MODULE_3__["useContext"])(_pages__WEBPACK_IMPORTED_MODULE_5__["AppContext"]);
 
-  var _useState2 = Object(react__WEBPACK_IMPORTED_MODULE_3__["useState"])(null),
-      hovered = _useState2[0],
-      setHovered = _useState2[1];
+  var _useState2 = Object(react__WEBPACK_IMPORTED_MODULE_3__["useState"])(),
+      map = _useState2[0],
+      setMap = _useState2[1];
+
+  var _useState3 = Object(react__WEBPACK_IMPORTED_MODULE_3__["useState"])(null),
+      hovered = _useState3[0],
+      setHovered = _useState3[1];
 
   var mapRef = Object(react__WEBPACK_IMPORTED_MODULE_3__["useCallback"])(function (ref) {
     if (ref) {
@@ -842,50 +1274,65 @@ var Map = function Map() {
   };
 
   return __jsx("div", {
-    className: "jsx-1501121386" + " " + 'map-container',
+    className: styled_jsx_style__WEBPACK_IMPORTED_MODULE_2___default.a.dynamic([["4278340552", [app.isMobileDevice ? 'calc(100% - 1em)' : 'none']]]) + " " + 'map-container',
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 44
+      lineNumber: 46
     },
     __self: this
   }, __jsx(react_map_gl__WEBPACK_IMPORTED_MODULE_4__["default"], Object(_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__["default"])({
     ReuseMaps: true,
     ref: mapRef
-  }, viewport, {
+  }, app.viewport, {
     width: "100%",
     height: "100%",
     mapStyle: "https://openmaptiles.geo.data.gouv.fr/styles/osm-bright/style.json"
   }, settings, {
-    interactiveLayerIds: [_layers__WEBPACK_IMPORTED_MODULE_7__["regionLayer"].id],
-    onViewportChange: setViewport,
+    interactiveLayerIds: app.maps[selectedMapIdx].layers.map(function (layer) {
+      return layer.id;
+    }),
+    onViewportChange: app.setViewport,
     onHover: onHover,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 45
+      lineNumber: 47
     },
     __self: this
-  }), __jsx(react_map_gl__WEBPACK_IMPORTED_MODULE_4__["Source"], {
-    type: "geojson",
-    id: "regions",
-    data: regionsReport,
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 58
-    },
-    __self: this
-  }, __jsx(react_map_gl__WEBPACK_IMPORTED_MODULE_4__["Layer"], Object(_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__["default"])({}, _layers__WEBPACK_IMPORTED_MODULE_7__["regionLayer"], {
+  }), __jsx("div", {
+    className: styled_jsx_style__WEBPACK_IMPORTED_MODULE_2___default.a.dynamic([["4278340552", [app.isMobileDevice ? 'calc(100% - 1em)' : 'none']]]) + " " + 'map-switch',
     __source: {
       fileName: _jsxFileName,
       lineNumber: 59
     },
     __self: this
-  })), __jsx(react_map_gl__WEBPACK_IMPORTED_MODULE_4__["Layer"], Object(_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__["default"])({}, _layers__WEBPACK_IMPORTED_MODULE_7__["regionCountLayer"], {
+  }, __jsx(_map_selector__WEBPACK_IMPORTED_MODULE_7__["default"], {
+    mapIdx: selectedMapIdx,
+    selectMap: setSelectedMapIdx,
     __source: {
       fileName: _jsxFileName,
       lineNumber: 60
     },
     __self: this
-  }))), hovered && __jsx(react_map_gl__WEBPACK_IMPORTED_MODULE_4__["Popup"], {
+  })), __jsx(react_map_gl__WEBPACK_IMPORTED_MODULE_4__["Source"], {
+    type: "geojson",
+    id: "cas-confirmes",
+    data: app.maps[selectedMapIdx].data,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 63
+    },
+    __self: this
+  }, app.maps[selectedMapIdx].layers.map(function (layer) {
+    return __jsx(react_map_gl__WEBPACK_IMPORTED_MODULE_4__["Layer"], Object(_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__["default"])({
+      key: layer.id
+    }, layer, {
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 69
+      },
+      __self: this
+    }));
+  })), hovered && __jsx(react_map_gl__WEBPACK_IMPORTED_MODULE_4__["Popup"], {
     longitude: hovered.longitude,
     latitude: hovered.latitude,
     closeButton: false,
@@ -893,23 +1340,25 @@ var Map = function Map() {
     onClose: function onClose() {
       return setHovered(null);
     },
-    anchor: "top",
-    offsetTop: 20,
+    anchor: "bottom-left",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 64
+      lineNumber: 74
     },
     __self: this
-  }, __jsx(_sumup__WEBPACK_IMPORTED_MODULE_6__["default"], Object(_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__["default"])({}, hovered.feature.properties, {
+  }, __jsx(_sumup__WEBPACK_IMPORTED_MODULE_6__["default"], Object(_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__["default"])({
+    data: JSON.parse(hovered.feature.properties.history)
+  }, hovered.feature.properties, {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 73
+      lineNumber: 82
     },
     __self: this
   })))), __jsx(styled_jsx_style__WEBPACK_IMPORTED_MODULE_2___default.a, {
-    id: "1501121386",
+    id: "4278340552",
+    dynamic: [app.isMobileDevice ? 'calc(100% - 1em)' : 'none'],
     __self: this
-  }, ".map-container.jsx-1501121386{position:relative;width:100%;height:100%;}\n/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9Vc2Vycy9qZXJvbWUvb3BlbmNvdmlkMTktZnIvZGFzaGJvYXJkL2NvbXBvbmVudHMvcmVhY3QtbWFwLWdsL2luZGV4LmpzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQTRFa0IsQUFHNkIsa0JBQ1AsV0FDQyxZQUNkIiwiZmlsZSI6Ii9Vc2Vycy9qZXJvbWUvb3BlbmNvdmlkMTktZnIvZGFzaGJvYXJkL2NvbXBvbmVudHMvcmVhY3QtbWFwLWdsL2luZGV4LmpzIiwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0IFJlYWN0LCB7dXNlU3RhdGUsIHVzZUNhbGxiYWNrLCB1c2VDb250ZXh0fSBmcm9tICdyZWFjdCdcbmltcG9ydCBSZWFjdE1hcEdMLCB7U291cmNlLCBMYXllciwgUG9wdXB9IGZyb20gJ3JlYWN0LW1hcC1nbCdcblxuaW1wb3J0IHtBcHBDb250ZXh0fSBmcm9tICcuLi8uLi9wYWdlcydcblxuaW1wb3J0IFN1bVVwIGZyb20gJy4vc3VtdXAnXG5cbmltcG9ydCB7cmVnaW9uTGF5ZXIsIHJlZ2lvbkNvdW50TGF5ZXJ9IGZyb20gJy4vbGF5ZXJzJ1xuXG5jb25zdCBzZXR0aW5ncyA9IHtcbiAgbWF4Wm9vbTogMTZcbn1cblxuY29uc3QgTWFwID0gKCkgPT4ge1xuICBjb25zdCB7dmlld3BvcnQsIHJlZ2lvbnNSZXBvcnQsIHNldFZpZXdwb3J0fSA9IHVzZUNvbnRleHQoQXBwQ29udGV4dClcblxuICBjb25zdCBbbWFwLCBzZXRNYXBdID0gdXNlU3RhdGUoKVxuICBjb25zdCBbaG92ZXJlZCwgc2V0SG92ZXJlZF0gPSB1c2VTdGF0ZShudWxsKVxuXG4gIGNvbnN0IG1hcFJlZiA9IHVzZUNhbGxiYWNrKHJlZiA9PiB7XG4gICAgaWYgKHJlZikge1xuICAgICAgc2V0TWFwKHJlZi5nZXRNYXAoKSlcbiAgICB9XG4gIH0sIFtdKVxuXG4gIGNvbnN0IG9uSG92ZXIgPSBldmVudCA9PiB7XG4gICAgZXZlbnQuc3RvcFByb3BhZ2F0aW9uKClcbiAgICBjb25zdCBmZWF0dXJlID0gZXZlbnQuZmVhdHVyZXMgJiYgZXZlbnQuZmVhdHVyZXNbMF1cbiAgICBjb25zdCBbbG9uZ2l0dWRlLCBsYXRpdHVkZV0gPSBldmVudC5sbmdMYXRcbiAgICBsZXQgaG92ZXJJbmZvXG5cbiAgICBpZiAoZmVhdHVyZSkge1xuICAgICAgaG92ZXJJbmZvID0ge1xuICAgICAgICBsb25naXR1ZGUsXG4gICAgICAgIGxhdGl0dWRlLFxuICAgICAgICBmZWF0dXJlXG4gICAgICB9XG4gICAgfVxuXG4gICAgc2V0SG92ZXJlZChob3ZlckluZm8pXG4gIH1cblxuICByZXR1cm4gKFxuICAgIDxkaXYgY2xhc3NOYW1lPSdtYXAtY29udGFpbmVyJz5cbiAgICAgIDxSZWFjdE1hcEdMXG4gICAgICAgIFJldXNlTWFwc1xuICAgICAgICByZWY9e21hcFJlZn1cbiAgICAgICAgey4uLnZpZXdwb3J0fVxuICAgICAgICB3aWR0aD0nMTAwJSdcbiAgICAgICAgaGVpZ2h0PScxMDAlJ1xuICAgICAgICBtYXBTdHlsZT0naHR0cHM6Ly9vcGVubWFwdGlsZXMuZ2VvLmRhdGEuZ291di5mci9zdHlsZXMvb3NtLWJyaWdodC9zdHlsZS5qc29uJ1xuICAgICAgICB7Li4uc2V0dGluZ3N9XG4gICAgICAgIGludGVyYWN0aXZlTGF5ZXJJZHM9e1tyZWdpb25MYXllci5pZF19XG4gICAgICAgIG9uVmlld3BvcnRDaGFuZ2U9e3NldFZpZXdwb3J0fVxuICAgICAgICBvbkhvdmVyPXtvbkhvdmVyfVxuICAgICAgPlxuXG4gICAgICAgIDxTb3VyY2UgdHlwZT0nZ2VvanNvbicgaWQ9J3JlZ2lvbnMnIGRhdGE9e3JlZ2lvbnNSZXBvcnR9PlxuICAgICAgICAgIDxMYXllciB7Li4ucmVnaW9uTGF5ZXJ9IC8+XG4gICAgICAgICAgPExheWVyIHsuLi5yZWdpb25Db3VudExheWVyfSAvPlxuICAgICAgICA8L1NvdXJjZT5cblxuICAgICAgICB7aG92ZXJlZCAmJiAoXG4gICAgICAgICAgPFBvcHVwXG4gICAgICAgICAgICBsb25naXR1ZGU9e2hvdmVyZWQubG9uZ2l0dWRlfVxuICAgICAgICAgICAgbGF0aXR1ZGU9e2hvdmVyZWQubGF0aXR1ZGV9XG4gICAgICAgICAgICBjbG9zZUJ1dHRvbj17ZmFsc2V9XG4gICAgICAgICAgICBjbG9zZU9uQ2xpY2s9e2ZhbHNlfVxuICAgICAgICAgICAgb25DbG9zZT17KCkgPT4gc2V0SG92ZXJlZChudWxsKX1cbiAgICAgICAgICAgIGFuY2hvcj0ndG9wJ1xuICAgICAgICAgICAgb2Zmc2V0VG9wPXsyMH1cbiAgICAgICAgICA+XG4gICAgICAgICAgICA8U3VtVXAgey4uLmhvdmVyZWQuZmVhdHVyZS5wcm9wZXJ0aWVzfSAvPlxuICAgICAgICAgIDwvUG9wdXA+XG4gICAgICAgICl9XG4gICAgICA8L1JlYWN0TWFwR0w+XG4gICAgICA8c3R5bGUganN4PntgXG4gICAgICAgIC5tYXAtY29udGFpbmVyIHtcbiAgICAgICAgICBwb3NpdGlvbjogcmVsYXRpdmU7XG4gICAgICAgICAgd2lkdGg6IDEwMCU7XG4gICAgICAgICAgaGVpZ2h0OiAxMDAlO1xuICAgICAgICB9XG4gICAgICBgfTwvc3R5bGU+XG4gICAgPC9kaXY+XG4gIClcbn1cblxuZXhwb3J0IGRlZmF1bHQgTWFwXG4iXX0= */\n/*@ sourceURL=/Users/jerome/opencovid19-fr/dashboard/components/react-map-gl/index.js */"));
+  }, ".map-container.__jsx-style-dynamic-selector{position:relative;width:100%;height:100%;}.map-switch.__jsx-style-dynamic-selector{position:absolute;margin:0.5em;width:".concat(app.isMobileDevice ? 'calc(100% - 1em)' : 'none', ";}\n/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9Vc2Vycy9qZXJvbWUvb3BlbmNvdmlkMTktZnIvZGFzaGJvYXJkL2NvbXBvbmVudHMvcmVhY3QtbWFwLWdsL2luZGV4LmpzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQXFGa0IsQUFHNkIsQUFNQSxrQkFMUCxBQU1FLFdBTEQsRUFNdUIsVUFMckMseUJBTUEiLCJmaWxlIjoiL1VzZXJzL2plcm9tZS9vcGVuY292aWQxOS1mci9kYXNoYm9hcmQvY29tcG9uZW50cy9yZWFjdC1tYXAtZ2wvaW5kZXguanMiLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgUmVhY3QsIHt1c2VTdGF0ZSwgdXNlQ2FsbGJhY2ssIHVzZUNvbnRleHR9IGZyb20gJ3JlYWN0J1xuaW1wb3J0IFJlYWN0TWFwR0wsIHtTb3VyY2UsIExheWVyLCBQb3B1cH0gZnJvbSAncmVhY3QtbWFwLWdsJ1xuXG5pbXBvcnQge0FwcENvbnRleHR9IGZyb20gJy4uLy4uL3BhZ2VzJ1xuXG5pbXBvcnQgU3VtVXAgZnJvbSAnLi9zdW11cCdcblxuaW1wb3J0IE1hcFNlbGVjdG9yIGZyb20gJy4uL21hcC1zZWxlY3RvcidcblxuY29uc3Qgc2V0dGluZ3MgPSB7XG4gIG1heFpvb206IDE2XG59XG5cbmNvbnN0IE1hcCA9ICgpID0+IHtcbiAgY29uc3QgW3NlbGVjdGVkTWFwSWR4LCBzZXRTZWxlY3RlZE1hcElkeF0gPSB1c2VTdGF0ZSgwKVxuXG4gIGNvbnN0IGFwcCA9IHVzZUNvbnRleHQoQXBwQ29udGV4dClcblxuICBjb25zdCBbbWFwLCBzZXRNYXBdID0gdXNlU3RhdGUoKVxuICBjb25zdCBbaG92ZXJlZCwgc2V0SG92ZXJlZF0gPSB1c2VTdGF0ZShudWxsKVxuXG4gIGNvbnN0IG1hcFJlZiA9IHVzZUNhbGxiYWNrKHJlZiA9PiB7XG4gICAgaWYgKHJlZikge1xuICAgICAgc2V0TWFwKHJlZi5nZXRNYXAoKSlcbiAgICB9XG4gIH0sIFtdKVxuXG4gIGNvbnN0IG9uSG92ZXIgPSBldmVudCA9PiB7XG4gICAgZXZlbnQuc3RvcFByb3BhZ2F0aW9uKClcbiAgICBjb25zdCBmZWF0dXJlID0gZXZlbnQuZmVhdHVyZXMgJiYgZXZlbnQuZmVhdHVyZXNbMF1cbiAgICBjb25zdCBbbG9uZ2l0dWRlLCBsYXRpdHVkZV0gPSBldmVudC5sbmdMYXRcbiAgICBsZXQgaG92ZXJJbmZvXG5cbiAgICBpZiAoZmVhdHVyZSkge1xuICAgICAgaG92ZXJJbmZvID0ge1xuICAgICAgICBsb25naXR1ZGUsXG4gICAgICAgIGxhdGl0dWRlLFxuICAgICAgICBmZWF0dXJlXG4gICAgICB9XG4gICAgfVxuXG4gICAgc2V0SG92ZXJlZChob3ZlckluZm8pXG4gIH1cblxuICByZXR1cm4gKFxuICAgIDxkaXYgY2xhc3NOYW1lPSdtYXAtY29udGFpbmVyJz5cbiAgICAgIDxSZWFjdE1hcEdMXG4gICAgICAgIFJldXNlTWFwc1xuICAgICAgICByZWY9e21hcFJlZn1cbiAgICAgICAgey4uLmFwcC52aWV3cG9ydH1cbiAgICAgICAgd2lkdGg9JzEwMCUnXG4gICAgICAgIGhlaWdodD0nMTAwJSdcbiAgICAgICAgbWFwU3R5bGU9J2h0dHBzOi8vb3Blbm1hcHRpbGVzLmdlby5kYXRhLmdvdXYuZnIvc3R5bGVzL29zbS1icmlnaHQvc3R5bGUuanNvbidcbiAgICAgICAgey4uLnNldHRpbmdzfVxuICAgICAgICBpbnRlcmFjdGl2ZUxheWVySWRzPXthcHAubWFwc1tzZWxlY3RlZE1hcElkeF0ubGF5ZXJzLm1hcChsYXllciA9PiBsYXllci5pZCl9XG4gICAgICAgIG9uVmlld3BvcnRDaGFuZ2U9e2FwcC5zZXRWaWV3cG9ydH1cbiAgICAgICAgb25Ib3Zlcj17b25Ib3Zlcn1cbiAgICAgID5cbiAgICAgICAgPGRpdiBjbGFzc05hbWU9J21hcC1zd2l0Y2gnPlxuICAgICAgICAgIDxNYXBTZWxlY3RvciBtYXBJZHg9e3NlbGVjdGVkTWFwSWR4fSBzZWxlY3RNYXA9e3NldFNlbGVjdGVkTWFwSWR4fSAvPlxuICAgICAgICA8L2Rpdj5cblxuICAgICAgICA8U291cmNlXG4gICAgICAgICAgdHlwZT0nZ2VvanNvbidcbiAgICAgICAgICBpZD0nY2FzLWNvbmZpcm1lcydcbiAgICAgICAgICBkYXRhPXthcHAubWFwc1tzZWxlY3RlZE1hcElkeF0uZGF0YX1cbiAgICAgICAgPlxuICAgICAgICAgIHthcHAubWFwc1tzZWxlY3RlZE1hcElkeF0ubGF5ZXJzLm1hcChsYXllciA9PiAoXG4gICAgICAgICAgICA8TGF5ZXIga2V5PXtsYXllci5pZH0gey4uLmxheWVyfSAvPlxuICAgICAgICAgICkpfVxuICAgICAgICA8L1NvdXJjZT5cblxuICAgICAgICB7aG92ZXJlZCAmJiAoXG4gICAgICAgICAgPFBvcHVwXG4gICAgICAgICAgICBsb25naXR1ZGU9e2hvdmVyZWQubG9uZ2l0dWRlfVxuICAgICAgICAgICAgbGF0aXR1ZGU9e2hvdmVyZWQubGF0aXR1ZGV9XG4gICAgICAgICAgICBjbG9zZUJ1dHRvbj17ZmFsc2V9XG4gICAgICAgICAgICBjbG9zZU9uQ2xpY2s9e2ZhbHNlfVxuICAgICAgICAgICAgb25DbG9zZT17KCkgPT4gc2V0SG92ZXJlZChudWxsKX1cbiAgICAgICAgICAgIGFuY2hvcj0nYm90dG9tLWxlZnQnXG4gICAgICAgICAgPlxuICAgICAgICAgICAgPFN1bVVwIGRhdGE9e0pTT04ucGFyc2UoaG92ZXJlZC5mZWF0dXJlLnByb3BlcnRpZXMuaGlzdG9yeSl9IHsuLi5ob3ZlcmVkLmZlYXR1cmUucHJvcGVydGllc30gLz5cbiAgICAgICAgICA8L1BvcHVwPlxuICAgICAgICApfVxuICAgICAgPC9SZWFjdE1hcEdMPlxuICAgICAgPHN0eWxlIGpzeD57YFxuICAgICAgICAubWFwLWNvbnRhaW5lciB7XG4gICAgICAgICAgcG9zaXRpb246IHJlbGF0aXZlO1xuICAgICAgICAgIHdpZHRoOiAxMDAlO1xuICAgICAgICAgIGhlaWdodDogMTAwJTtcbiAgICAgICAgfVxuXG4gICAgICAgIC5tYXAtc3dpdGNoIHtcbiAgICAgICAgICBwb3NpdGlvbjogYWJzb2x1dGU7XG4gICAgICAgICAgbWFyZ2luOiAwLjVlbTtcbiAgICAgICAgICB3aWR0aDogJHthcHAuaXNNb2JpbGVEZXZpY2UgPyAnY2FsYygxMDAlIC0gMWVtKScgOiAnbm9uZSd9O1xuICAgICAgICB9XG4gICAgICBgfTwvc3R5bGU+XG4gICAgPC9kaXY+XG4gIClcbn1cblxuZXhwb3J0IGRlZmF1bHQgTWFwXG4iXX0= */\n/*@ sourceURL=/Users/jerome/opencovid19-fr/dashboard/components/react-map-gl/index.js */")));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (Map);
@@ -920,33 +1369,56 @@ var Map = function Map() {
 /*!*******************************************!*\
   !*** ./components/react-map-gl/layers.js ***!
   \*******************************************/
-/*! exports provided: regionLayer, regionCountLayer */
+/*! exports provided: casConfirmesLayer, casConfirmesCountLayer, decesLayer, decesCountLayer */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "regionLayer", function() { return regionLayer; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "regionCountLayer", function() { return regionCountLayer; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "casConfirmesLayer", function() { return casConfirmesLayer; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "casConfirmesCountLayer", function() { return casConfirmesCountLayer; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "decesLayer", function() { return decesLayer; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "decesCountLayer", function() { return decesCountLayer; });
 /* harmony import */ var _styles_colors__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../styles/colors */ "./styles/colors.js");
 
-var regionLayer = {
-  id: 'region',
+var casConfirmesLayer = {
+  id: 'cas-confirmes',
   type: 'circle',
-  source: 'regions',
+  source: 'cas-confirmes',
   filter: ['>', 'casConfirmes', 0],
   paint: {
     'circle-opacity': 0.6,
     'circle-color': _styles_colors__WEBPACK_IMPORTED_MODULE_0__["default"].orange,
-    'circle-radius': ['interpolate', ['linear'], ['sqrt', ['number', ['get', 'casConfirmes']]], 0, 10, 60, 80]
+    'circle-radius': ['interpolate', ['linear'], ['sqrt', ['number', ['get', 'casConfirmes']]], 0, 10, 100, 80]
   }
 };
-var regionCountLayer = {
-  id: 'region-count',
+var casConfirmesCountLayer = {
+  id: 'cas-confirmes-count',
   type: 'symbol',
-  source: 'regions',
+  source: 'cas-confirmes',
   filter: ['>', 'casConfirmes', 0],
   layout: {
     'text-field': '{casConfirmes}',
+    'text-size': 16
+  }
+};
+var decesLayer = {
+  id: 'deces',
+  type: 'circle',
+  source: 'deces',
+  filter: ['>', 'deces', 0],
+  paint: {
+    'circle-opacity': 0.6,
+    'circle-color': _styles_colors__WEBPACK_IMPORTED_MODULE_0__["default"].red,
+    'circle-radius': ['interpolate', ['linear'], ['sqrt', ['number', ['get', 'deces']]], 0, 10, 30, 80]
+  }
+};
+var decesCountLayer = {
+  id: 'deces-count',
+  type: 'symbol',
+  source: 'deces',
+  filter: ['>', 'deces', 0],
+  layout: {
+    'text-field': '{deces}',
     'text-size': 16
   }
 };
@@ -968,7 +1440,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! prop-types */ "./node_modules/prop-types/index.js");
 /* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(prop_types__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _confirmed_chart__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../confirmed-chart */ "./components/confirmed-chart.js");
+/* harmony import */ var _charts_mixed_chart__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../charts/mixed-chart */ "./components/charts/mixed-chart.js");
 var _jsxFileName = "/Users/jerome/opencovid19-fr/dashboard/components/react-map-gl/sumup.js";
 
 var __jsx = react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement;
@@ -976,63 +1448,63 @@ var __jsx = react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement;
 
 
 
-var RegionSumup = function RegionSumup(_ref) {
+var Sumup = function Sumup(_ref) {
   var nom = _ref.nom,
       casConfirmes = _ref.casConfirmes,
       deces = _ref.deces,
-      history = _ref.history;
-  var data = JSON.parse(history).filter(function (r) {
-    return r.source.nom === 'Santé publique France';
-  });
+      data = _ref.data;
   return __jsx("div", {
     className: "jsx-514667733" + " " + 'sumup-container',
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 10
+      lineNumber: 8
     },
     __self: this
   }, __jsx("div", {
     className: "jsx-514667733" + " " + 'title',
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 11
+      lineNumber: 9
     },
     __self: this
   }, nom), __jsx("div", {
     className: "jsx-514667733",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 12
+      lineNumber: 10
     },
     __self: this
   }, casConfirmes, " cas confirm\xE9s", deces && deces > 0 ? __jsx("span", {
     className: "jsx-514667733",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 14
+      lineNumber: 12
     },
     __self: this
-  }, " (dont ", deces, " d\xE9c\xE8s)") : null), __jsx(_confirmed_chart__WEBPACK_IMPORTED_MODULE_3__["default"], {
+  }, " (dont ", deces, " d\xE9c\xE8s)") : null), __jsx(_charts_mixed_chart__WEBPACK_IMPORTED_MODULE_3__["default"], {
     data: data,
     height: 240,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 17
+      lineNumber: 15
     },
     __self: this
   }), __jsx(styled_jsx_style__WEBPACK_IMPORTED_MODULE_0___default.a, {
     id: "514667733",
     __self: this
-  }, ".sumup-container.jsx-514667733{font-size:larger;}.title.jsx-514667733{font-weight:bold;}\n/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9Vc2Vycy9qZXJvbWUvb3BlbmNvdmlkMTktZnIvZGFzaGJvYXJkL2NvbXBvbmVudHMvcmVhY3QtbWFwLWdsL3N1bXVwLmpzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQWtCa0IsQUFHMEIsQUFJQSxpQkFIbkIsQUFJQSIsImZpbGUiOiIvVXNlcnMvamVyb21lL29wZW5jb3ZpZDE5LWZyL2Rhc2hib2FyZC9jb21wb25lbnRzL3JlYWN0LW1hcC1nbC9zdW11cC5qcyIsInNvdXJjZXNDb250ZW50IjpbImltcG9ydCBSZWFjdCBmcm9tICdyZWFjdCdcbmltcG9ydCBQcm9wVHlwZXMgZnJvbSAncHJvcC10eXBlcydcblxuaW1wb3J0IENvbmZpcm1lZENoYXJ0IGZyb20gJy4uL2NvbmZpcm1lZC1jaGFydCdcblxuY29uc3QgUmVnaW9uU3VtdXAgPSAoe25vbSwgY2FzQ29uZmlybWVzLCBkZWNlcywgaGlzdG9yeX0pID0+IHtcbiAgY29uc3QgZGF0YSA9IEpTT04ucGFyc2UoaGlzdG9yeSkuZmlsdGVyKHIgPT4gci5zb3VyY2Uubm9tID09PSAnU2FudMOpIHB1YmxpcXVlIEZyYW5jZScpXG5cbiAgcmV0dXJuIChcbiAgICA8ZGl2IGNsYXNzTmFtZT0nc3VtdXAtY29udGFpbmVyJz5cbiAgICAgIDxkaXYgY2xhc3NOYW1lPSd0aXRsZSc+e25vbX08L2Rpdj5cbiAgICAgIDxkaXY+XG4gICAgICAgIHtjYXNDb25maXJtZXN9IGNhcyBjb25maXJtw6lzXG4gICAgICAgIHtkZWNlcyAmJiBkZWNlcyA+IDAgPyA8c3Bhbj4gKGRvbnQge2RlY2VzfSBkw6ljw6hzKTwvc3Bhbj4gOiBudWxsfVxuICAgICAgPC9kaXY+XG5cbiAgICAgIDxDb25maXJtZWRDaGFydCBkYXRhPXtkYXRhfSBoZWlnaHQ9ezI0MH0gLz5cblxuICAgICAgPHN0eWxlIGpzeD57YFxuICAgICAgLnN1bXVwLWNvbnRhaW5lciB7XG4gICAgICAgIGZvbnQtc2l6ZTogbGFyZ2VyO1xuICAgICAgfVxuXG4gICAgICAudGl0bGUge1xuICAgICAgICBmb250LXdlaWdodDogYm9sZDtcbiAgICAgIH1cbiAgICBgfTwvc3R5bGU+XG4gICAgPC9kaXY+XG4gIClcbn1cblxuUmVnaW9uU3VtdXAucHJvcFR5cGVzID0ge1xuICBub206IFByb3BUeXBlcy5zdHJpbmcuaXNSZXF1aXJlZCxcbiAgY2FzQ29uZmlybWVzOiBQcm9wVHlwZXMubnVtYmVyLmlzUmVxdWlyZWQsXG4gIGRlY2VzOiBQcm9wVHlwZXMubnVtYmVyLmlzUmVxdWlyZWQsXG4gIGhpc3Rvcnk6IFByb3BUeXBlcy5zdHJpbmcuaXNSZXF1aXJlZFxufVxuXG5leHBvcnQgZGVmYXVsdCBSZWdpb25TdW11cFxuIl19 */\n/*@ sourceURL=/Users/jerome/opencovid19-fr/dashboard/components/react-map-gl/sumup.js */"));
+  }, ".sumup-container.jsx-514667733{font-size:larger;}.title.jsx-514667733{font-weight:bold;}\n/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9Vc2Vycy9qZXJvbWUvb3BlbmNvdmlkMTktZnIvZGFzaGJvYXJkL2NvbXBvbmVudHMvcmVhY3QtbWFwLWdsL3N1bXVwLmpzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQWdCa0IsQUFHMEIsQUFJQSxpQkFIbkIsQUFJQSIsImZpbGUiOiIvVXNlcnMvamVyb21lL29wZW5jb3ZpZDE5LWZyL2Rhc2hib2FyZC9jb21wb25lbnRzL3JlYWN0LW1hcC1nbC9zdW11cC5qcyIsInNvdXJjZXNDb250ZW50IjpbImltcG9ydCBSZWFjdCBmcm9tICdyZWFjdCdcbmltcG9ydCBQcm9wVHlwZXMgZnJvbSAncHJvcC10eXBlcydcblxuaW1wb3J0IE1peGVkQ2hhcnQgZnJvbSAnLi4vY2hhcnRzL21peGVkLWNoYXJ0J1xuXG5jb25zdCBTdW11cCA9ICh7bm9tLCBjYXNDb25maXJtZXMsIGRlY2VzLCBkYXRhfSkgPT4ge1xuICByZXR1cm4gKFxuICAgIDxkaXYgY2xhc3NOYW1lPSdzdW11cC1jb250YWluZXInPlxuICAgICAgPGRpdiBjbGFzc05hbWU9J3RpdGxlJz57bm9tfTwvZGl2PlxuICAgICAgPGRpdj5cbiAgICAgICAge2Nhc0NvbmZpcm1lc30gY2FzIGNvbmZpcm3DqXNcbiAgICAgICAge2RlY2VzICYmIGRlY2VzID4gMCA/IDxzcGFuPiAoZG9udCB7ZGVjZXN9IGTDqWPDqHMpPC9zcGFuPiA6IG51bGx9XG4gICAgICA8L2Rpdj5cblxuICAgICAgPE1peGVkQ2hhcnQgZGF0YT17ZGF0YX0gaGVpZ2h0PXsyNDB9IC8+XG5cbiAgICAgIDxzdHlsZSBqc3g+e2BcbiAgICAgIC5zdW11cC1jb250YWluZXIge1xuICAgICAgICBmb250LXNpemU6IGxhcmdlcjtcbiAgICAgIH1cblxuICAgICAgLnRpdGxlIHtcbiAgICAgICAgZm9udC13ZWlnaHQ6IGJvbGQ7XG4gICAgICB9XG4gICAgYH08L3N0eWxlPlxuICAgIDwvZGl2PlxuICApXG59XG5cblN1bXVwLmRlZmF1bHRQcm9wcyA9IHtcbiAgZGVjZXM6IG51bGxcbn1cblxuU3VtdXAucHJvcFR5cGVzID0ge1xuICBub206IFByb3BUeXBlcy5zdHJpbmcuaXNSZXF1aXJlZCxcbiAgY2FzQ29uZmlybWVzOiBQcm9wVHlwZXMubnVtYmVyLmlzUmVxdWlyZWQsXG4gIGRlY2VzOiBQcm9wVHlwZXMubnVtYmVyLFxuICBkYXRhOiBQcm9wVHlwZXMuYXJyYXkuaXNSZXF1aXJlZFxufVxuXG5leHBvcnQgZGVmYXVsdCBTdW11cFxuIl19 */\n/*@ sourceURL=/Users/jerome/opencovid19-fr/dashboard/components/react-map-gl/sumup.js */"));
 };
 
-RegionSumup.propTypes = {
+Sumup.defaultProps = {
+  deces: null
+};
+Sumup.propTypes = {
   nom: prop_types__WEBPACK_IMPORTED_MODULE_2___default.a.string.isRequired,
   casConfirmes: prop_types__WEBPACK_IMPORTED_MODULE_2___default.a.number.isRequired,
-  deces: prop_types__WEBPACK_IMPORTED_MODULE_2___default.a.number.isRequired,
-  history: prop_types__WEBPACK_IMPORTED_MODULE_2___default.a.string.isRequired
+  deces: prop_types__WEBPACK_IMPORTED_MODULE_2___default.a.number,
+  data: prop_types__WEBPACK_IMPORTED_MODULE_2___default.a.array.isRequired
 };
-/* harmony default export */ __webpack_exports__["default"] = (RegionSumup);
+/* harmony default export */ __webpack_exports__["default"] = (Sumup);
 
 /***/ }),
 
@@ -1199,7 +1671,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_scrollable__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../components/scrollable */ "./components/scrollable.js");
 /* harmony import */ var _components_react_map_gl__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../components/react-map-gl */ "./components/react-map-gl/index.js");
 /* harmony import */ var _components_national_statistics__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../components/national-statistics */ "./components/national-statistics.js");
-/* harmony import */ var _components_description__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../components/description */ "./components/description.js");
+/* harmony import */ var _components_informations__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../components/informations */ "./components/informations.js");
 /* harmony import */ var _components_footer__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../components/footer */ "./components/footer.js");
 var _jsxFileName = "/Users/jerome/opencovid19-fr/dashboard/layouts/mobile.js";
 
@@ -1234,8 +1706,8 @@ var VIEWS = {
       __self: this
     });
   },
-  description: function description() {
-    return __jsx(_components_description__WEBPACK_IMPORTED_MODULE_10__["default"], {
+  informations: function informations() {
+    return __jsx(_components_informations__WEBPACK_IMPORTED_MODULE_10__["default"], {
       __source: {
         fileName: _jsxFileName,
         lineNumber: 19
@@ -1279,9 +1751,9 @@ var MobilePage = function MobilePage() {
     __self: this
   }, __jsx("div", {
     onClick: function onClick() {
-      return setSelectedView('description');
+      return setSelectedView('informations');
     },
-    className: styled_jsx_style__WEBPACK_IMPORTED_MODULE_0___default.a.dynamic([["3291159651", [_styles_colors__WEBPACK_IMPORTED_MODULE_3__["default"].blue, _styles_theme__WEBPACK_IMPORTED_MODULE_4__["default"].mobileDisplay]]]) + " " + "".concat(selectedView === 'description' ? 'selected' : ''),
+    className: styled_jsx_style__WEBPACK_IMPORTED_MODULE_0___default.a.dynamic([["3291159651", [_styles_colors__WEBPACK_IMPORTED_MODULE_3__["default"].blue, _styles_theme__WEBPACK_IMPORTED_MODULE_4__["default"].mobileDisplay]]]) + " " + "".concat(selectedView === 'informations' ? 'selected' : ''),
     __source: {
       fileName: _jsxFileName,
       lineNumber: 35
@@ -1335,7 +1807,7 @@ var MobilePage = function MobilePage() {
     id: "3291159651",
     dynamic: [_styles_colors__WEBPACK_IMPORTED_MODULE_3__["default"].blue, _styles_theme__WEBPACK_IMPORTED_MODULE_4__["default"].mobileDisplay],
     __self: this
-  }, ".mobile-page-container.__jsx-style-dynamic-selector{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-flex-direction:column;-ms-flex-direction:column;flex-direction:column;-webkit-flex:1;-ms-flex:1;flex:1;}.view-selector.__jsx-style-dynamic-selector{display:none;}.view-selector.__jsx-style-dynamic-selector>div.__jsx-style-dynamic-selector{padding:0.5em;margin:auto;}.view-selector.__jsx-style-dynamic-selector>div.selected.__jsx-style-dynamic-selector{border-top:2px solid ".concat(_styles_colors__WEBPACK_IMPORTED_MODULE_3__["default"].blue, ";}@media (max-width:").concat(_styles_theme__WEBPACK_IMPORTED_MODULE_4__["default"].mobileDisplay, "){.view-selector.__jsx-style-dynamic-selector{display:grid;grid-template-columns:1fr 1fr 1fr;-webkit-box-pack:center;-webkit-justify-content:center;-ms-flex-pack:center;justify-content:center;-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;background-color:#fff;}}\n/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9Vc2Vycy9qZXJvbWUvb3BlbmNvdmlkMTktZnIvZGFzaGJvYXJkL2xheW91dHMvbW9iaWxlLmpzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQStDa0IsQUFHd0IsQUFNQSxBQUlDLEFBS29DLEFBS25DLGFBYmpCLEFBY3NDLENBVnhCLFlBQ2QscUJBVTJCLEdBTjNCLHdCQWZ3Qix3RUFzQkQsTUFyQmQsaUNBQ1Qsc0RBcUIwQixzQkFDeEIiLCJmaWxlIjoiL1VzZXJzL2plcm9tZS9vcGVuY292aWQxOS1mci9kYXNoYm9hcmQvbGF5b3V0cy9tb2JpbGUuanMiLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgUmVhY3QsIHt1c2VTdGF0ZSwgdXNlQ29udGV4dH0gZnJvbSAncmVhY3QnXG5pbXBvcnQge0ZpbGVUZXh0LCBNYXAsIEJhckNoYXJ0fSBmcm9tICdyZWFjdC1mZWF0aGVyJ1xuXG5pbXBvcnQgY29sb3JzIGZyb20gJy4uL3N0eWxlcy9jb2xvcnMnXG5pbXBvcnQgdGhlbWUgZnJvbSAnLi4vc3R5bGVzL3RoZW1lJ1xuXG5pbXBvcnQge0FwcENvbnRleHR9IGZyb20gJy4uL3BhZ2VzJ1xuXG5pbXBvcnQgRGF0ZU5hdiBmcm9tICcuLi9jb21wb25lbnRzL2RhdGUtbmF2J1xuaW1wb3J0IFNjcm9sbGFibGUgZnJvbSAnLi4vY29tcG9uZW50cy9zY3JvbGxhYmxlJ1xuaW1wb3J0IFJlYWN0TWFwR2wgZnJvbSAnLi4vY29tcG9uZW50cy9yZWFjdC1tYXAtZ2wnXG5pbXBvcnQgTmF0aW9uYWxTdGF0aXN0aWNzIGZyb20gJy4uL2NvbXBvbmVudHMvbmF0aW9uYWwtc3RhdGlzdGljcydcbmltcG9ydCBEZXNjcmlwdGlvbiBmcm9tICcuLi9jb21wb25lbnRzL2Rlc2NyaXB0aW9uJ1xuaW1wb3J0IEZvb3RlciBmcm9tICcuLi9jb21wb25lbnRzL2Zvb3RlcidcblxuY29uc3QgVklFV1MgPSB7XG4gIG1hcDogKCkgPT4gPFJlYWN0TWFwR2wgLz4sXG4gIHN0YXRzOiAoKSA9PiA8TmF0aW9uYWxTdGF0aXN0aWNzIC8+LFxuICBkZXNjcmlwdGlvbjogKCkgPT4gPERlc2NyaXB0aW9uIC8+XG59XG5cbmNvbnN0IE1vYmlsZVBhZ2UgPSAoKSA9PiB7XG4gIGNvbnN0IFtzZWxlY3RlZFZpZXcsIHNldFNlbGVjdGVkVmlld10gPSB1c2VTdGF0ZSgnbWFwJylcblxuICBjb25zdCBhcHAgPSB1c2VDb250ZXh0KEFwcENvbnRleHQpXG5cbiAgcmV0dXJuIChcbiAgICA8ZGl2IGNsYXNzTmFtZT0nbW9iaWxlLXBhZ2UtY29udGFpbmVyJz5cbiAgICAgIDxEYXRlTmF2IC8+XG4gICAgICA8U2Nyb2xsYWJsZT5cbiAgICAgICAge1ZJRVdTW3NlbGVjdGVkVmlld10oYXBwKX1cbiAgICAgIDwvU2Nyb2xsYWJsZT5cblxuICAgICAgPGRpdiBjbGFzc05hbWU9J3ZpZXctc2VsZWN0b3InPlxuICAgICAgICA8ZGl2IGNsYXNzTmFtZT17YCR7c2VsZWN0ZWRWaWV3ID09PSAnZGVzY3JpcHRpb24nID8gJ3NlbGVjdGVkJyA6ICcnfWB9IG9uQ2xpY2s9eygpID0+IHNldFNlbGVjdGVkVmlldygnZGVzY3JpcHRpb24nKX0+XG4gICAgICAgICAgPEZpbGVUZXh0IC8+XG4gICAgICAgIDwvZGl2PlxuICAgICAgICA8ZGl2IGNsYXNzTmFtZT17YCR7c2VsZWN0ZWRWaWV3ID09PSAnbWFwJyA/ICdzZWxlY3RlZCcgOiAnJ31gfSBvbkNsaWNrPXsoKSA9PiBzZXRTZWxlY3RlZFZpZXcoJ21hcCcpfT5cbiAgICAgICAgICA8TWFwIC8+XG4gICAgICAgIDwvZGl2PlxuICAgICAgICA8ZGl2IGNsYXNzTmFtZT17YCR7c2VsZWN0ZWRWaWV3ID09PSAnc3RhdHMnID8gJ3NlbGVjdGVkJyA6ICcnfWB9IG9uQ2xpY2s9eygpID0+IHNldFNlbGVjdGVkVmlldygnc3RhdHMnKX0+XG4gICAgICAgICAgPEJhckNoYXJ0IC8+XG4gICAgICAgIDwvZGl2PlxuICAgICAgPC9kaXY+XG5cbiAgICAgIDxGb290ZXIgLz5cblxuICAgICAgPHN0eWxlIGpzeD57YFxuICAgICAgICAubW9iaWxlLXBhZ2UtY29udGFpbmVyIHtcbiAgICAgICAgICBkaXNwbGF5OiBmbGV4O1xuICAgICAgICAgIGZsZXgtZGlyZWN0aW9uOiBjb2x1bW47XG4gICAgICAgICAgZmxleDogMTtcbiAgICAgICAgfVxuXG4gICAgICAgIC52aWV3LXNlbGVjdG9yIHtcbiAgICAgICAgICBkaXNwbGF5OiBub25lO1xuICAgICAgICB9XG5cbiAgICAgICAgLnZpZXctc2VsZWN0b3IgPiBkaXYge1xuICAgICAgICAgIHBhZGRpbmc6IDAuNWVtO1xuICAgICAgICAgIG1hcmdpbjogYXV0bztcbiAgICAgICAgfVxuXG4gICAgICAgIC52aWV3LXNlbGVjdG9yID4gZGl2LnNlbGVjdGVkIHtcbiAgICAgICAgICBib3JkZXItdG9wOiAycHggc29saWQgJHtjb2xvcnMuYmx1ZX07XG4gICAgICAgIH1cblxuICAgICAgICBAbWVkaWEgKG1heC13aWR0aDogJHt0aGVtZS5tb2JpbGVEaXNwbGF5fSkge1xuICAgICAgICAgIC52aWV3LXNlbGVjdG9yIHtcbiAgICAgICAgICAgIGRpc3BsYXk6IGdyaWQ7XG4gICAgICAgICAgICBncmlkLXRlbXBsYXRlLWNvbHVtbnM6IDFmciAxZnIgMWZyO1xuICAgICAgICAgICAganVzdGlmeS1jb250ZW50OiBjZW50ZXI7XG4gICAgICAgICAgICBhbGlnbi1pdGVtczogY2VudGVyO1xuICAgICAgICAgICAgYmFja2dyb3VuZC1jb2xvcjogI2ZmZjtcbiAgICAgICAgICB9XG4gICAgICAgIH1cbiAgICAgIGB9PC9zdHlsZT5cbiAgICA8L2Rpdj5cbiAgKVxufVxuXG5leHBvcnQgZGVmYXVsdCBNb2JpbGVQYWdlXG4iXX0= */\n/*@ sourceURL=/Users/jerome/opencovid19-fr/dashboard/layouts/mobile.js */")));
+  }, ".mobile-page-container.__jsx-style-dynamic-selector{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-flex-direction:column;-ms-flex-direction:column;flex-direction:column;-webkit-flex:1;-ms-flex:1;flex:1;}.view-selector.__jsx-style-dynamic-selector{display:none;}.view-selector.__jsx-style-dynamic-selector>div.__jsx-style-dynamic-selector{padding:0.5em;margin:auto;}.view-selector.__jsx-style-dynamic-selector>div.selected.__jsx-style-dynamic-selector{border-top:2px solid ".concat(_styles_colors__WEBPACK_IMPORTED_MODULE_3__["default"].blue, ";}@media (max-width:").concat(_styles_theme__WEBPACK_IMPORTED_MODULE_4__["default"].mobileDisplay, "){.view-selector.__jsx-style-dynamic-selector{display:grid;grid-template-columns:1fr 1fr 1fr;-webkit-box-pack:center;-webkit-justify-content:center;-ms-flex-pack:center;justify-content:center;-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;background-color:#fff;}}\n/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9Vc2Vycy9qZXJvbWUvb3BlbmNvdmlkMTktZnIvZGFzaGJvYXJkL2xheW91dHMvbW9iaWxlLmpzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQStDa0IsQUFHd0IsQUFNQSxBQUlDLEFBS29DLEFBS25DLGFBYmpCLEFBY3NDLENBVnhCLFlBQ2QscUJBVTJCLEdBTjNCLHdCQWZ3Qix3RUFzQkQsTUFyQmQsaUNBQ1Qsc0RBcUIwQixzQkFDeEIiLCJmaWxlIjoiL1VzZXJzL2plcm9tZS9vcGVuY292aWQxOS1mci9kYXNoYm9hcmQvbGF5b3V0cy9tb2JpbGUuanMiLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgUmVhY3QsIHt1c2VTdGF0ZSwgdXNlQ29udGV4dH0gZnJvbSAncmVhY3QnXG5pbXBvcnQge0ZpbGVUZXh0LCBNYXAsIEJhckNoYXJ0fSBmcm9tICdyZWFjdC1mZWF0aGVyJ1xuXG5pbXBvcnQgY29sb3JzIGZyb20gJy4uL3N0eWxlcy9jb2xvcnMnXG5pbXBvcnQgdGhlbWUgZnJvbSAnLi4vc3R5bGVzL3RoZW1lJ1xuXG5pbXBvcnQge0FwcENvbnRleHR9IGZyb20gJy4uL3BhZ2VzJ1xuXG5pbXBvcnQgRGF0ZU5hdiBmcm9tICcuLi9jb21wb25lbnRzL2RhdGUtbmF2J1xuaW1wb3J0IFNjcm9sbGFibGUgZnJvbSAnLi4vY29tcG9uZW50cy9zY3JvbGxhYmxlJ1xuaW1wb3J0IFJlYWN0TWFwR2wgZnJvbSAnLi4vY29tcG9uZW50cy9yZWFjdC1tYXAtZ2wnXG5pbXBvcnQgTmF0aW9uYWxTdGF0aXN0aWNzIGZyb20gJy4uL2NvbXBvbmVudHMvbmF0aW9uYWwtc3RhdGlzdGljcydcbmltcG9ydCBJbmZvcm1hdGlvbnMgZnJvbSAnLi4vY29tcG9uZW50cy9pbmZvcm1hdGlvbnMnXG5pbXBvcnQgRm9vdGVyIGZyb20gJy4uL2NvbXBvbmVudHMvZm9vdGVyJ1xuXG5jb25zdCBWSUVXUyA9IHtcbiAgbWFwOiAoKSA9PiA8UmVhY3RNYXBHbCAvPixcbiAgc3RhdHM6ICgpID0+IDxOYXRpb25hbFN0YXRpc3RpY3MgLz4sXG4gIGluZm9ybWF0aW9uczogKCkgPT4gPEluZm9ybWF0aW9ucyAvPlxufVxuXG5jb25zdCBNb2JpbGVQYWdlID0gKCkgPT4ge1xuICBjb25zdCBbc2VsZWN0ZWRWaWV3LCBzZXRTZWxlY3RlZFZpZXddID0gdXNlU3RhdGUoJ21hcCcpXG5cbiAgY29uc3QgYXBwID0gdXNlQ29udGV4dChBcHBDb250ZXh0KVxuXG4gIHJldHVybiAoXG4gICAgPGRpdiBjbGFzc05hbWU9J21vYmlsZS1wYWdlLWNvbnRhaW5lcic+XG4gICAgICA8RGF0ZU5hdiAvPlxuICAgICAgPFNjcm9sbGFibGU+XG4gICAgICAgIHtWSUVXU1tzZWxlY3RlZFZpZXddKGFwcCl9XG4gICAgICA8L1Njcm9sbGFibGU+XG5cbiAgICAgIDxkaXYgY2xhc3NOYW1lPSd2aWV3LXNlbGVjdG9yJz5cbiAgICAgICAgPGRpdiBjbGFzc05hbWU9e2Ake3NlbGVjdGVkVmlldyA9PT0gJ2luZm9ybWF0aW9ucycgPyAnc2VsZWN0ZWQnIDogJyd9YH0gb25DbGljaz17KCkgPT4gc2V0U2VsZWN0ZWRWaWV3KCdpbmZvcm1hdGlvbnMnKX0+XG4gICAgICAgICAgPEZpbGVUZXh0IC8+XG4gICAgICAgIDwvZGl2PlxuICAgICAgICA8ZGl2IGNsYXNzTmFtZT17YCR7c2VsZWN0ZWRWaWV3ID09PSAnbWFwJyA/ICdzZWxlY3RlZCcgOiAnJ31gfSBvbkNsaWNrPXsoKSA9PiBzZXRTZWxlY3RlZFZpZXcoJ21hcCcpfT5cbiAgICAgICAgICA8TWFwIC8+XG4gICAgICAgIDwvZGl2PlxuICAgICAgICA8ZGl2IGNsYXNzTmFtZT17YCR7c2VsZWN0ZWRWaWV3ID09PSAnc3RhdHMnID8gJ3NlbGVjdGVkJyA6ICcnfWB9IG9uQ2xpY2s9eygpID0+IHNldFNlbGVjdGVkVmlldygnc3RhdHMnKX0+XG4gICAgICAgICAgPEJhckNoYXJ0IC8+XG4gICAgICAgIDwvZGl2PlxuICAgICAgPC9kaXY+XG5cbiAgICAgIDxGb290ZXIgLz5cblxuICAgICAgPHN0eWxlIGpzeD57YFxuICAgICAgICAubW9iaWxlLXBhZ2UtY29udGFpbmVyIHtcbiAgICAgICAgICBkaXNwbGF5OiBmbGV4O1xuICAgICAgICAgIGZsZXgtZGlyZWN0aW9uOiBjb2x1bW47XG4gICAgICAgICAgZmxleDogMTtcbiAgICAgICAgfVxuXG4gICAgICAgIC52aWV3LXNlbGVjdG9yIHtcbiAgICAgICAgICBkaXNwbGF5OiBub25lO1xuICAgICAgICB9XG5cbiAgICAgICAgLnZpZXctc2VsZWN0b3IgPiBkaXYge1xuICAgICAgICAgIHBhZGRpbmc6IDAuNWVtO1xuICAgICAgICAgIG1hcmdpbjogYXV0bztcbiAgICAgICAgfVxuXG4gICAgICAgIC52aWV3LXNlbGVjdG9yID4gZGl2LnNlbGVjdGVkIHtcbiAgICAgICAgICBib3JkZXItdG9wOiAycHggc29saWQgJHtjb2xvcnMuYmx1ZX07XG4gICAgICAgIH1cblxuICAgICAgICBAbWVkaWEgKG1heC13aWR0aDogJHt0aGVtZS5tb2JpbGVEaXNwbGF5fSkge1xuICAgICAgICAgIC52aWV3LXNlbGVjdG9yIHtcbiAgICAgICAgICAgIGRpc3BsYXk6IGdyaWQ7XG4gICAgICAgICAgICBncmlkLXRlbXBsYXRlLWNvbHVtbnM6IDFmciAxZnIgMWZyO1xuICAgICAgICAgICAganVzdGlmeS1jb250ZW50OiBjZW50ZXI7XG4gICAgICAgICAgICBhbGlnbi1pdGVtczogY2VudGVyO1xuICAgICAgICAgICAgYmFja2dyb3VuZC1jb2xvcjogI2ZmZjtcbiAgICAgICAgICB9XG4gICAgICAgIH1cbiAgICAgIGB9PC9zdHlsZT5cbiAgICA8L2Rpdj5cbiAgKVxufVxuXG5leHBvcnQgZGVmYXVsdCBNb2JpbGVQYWdlXG4iXX0= */\n/*@ sourceURL=/Users/jerome/opencovid19-fr/dashboard/layouts/mobile.js */")));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (MobilePage);
@@ -1359,7 +1831,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_scrollable__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../components/scrollable */ "./components/scrollable.js");
 /* harmony import */ var _components_react_map_gl__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../components/react-map-gl */ "./components/react-map-gl/index.js");
 /* harmony import */ var _components_national_statistics__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../components/national-statistics */ "./components/national-statistics.js");
-/* harmony import */ var _components_description__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../components/description */ "./components/description.js");
+/* harmony import */ var _components_informations__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../components/informations */ "./components/informations.js");
 /* harmony import */ var _components_footer__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../components/footer */ "./components/footer.js");
 /* harmony import */ var _styles_colors__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../styles/colors */ "./styles/colors.js");
 var _jsxFileName = "/Users/jerome/opencovid19-fr/dashboard/layouts/screen.js";
@@ -1400,7 +1872,7 @@ var ScreenPage = function ScreenPage() {
       lineNumber: 18
     },
     __self: this
-  }), __jsx(_components_description__WEBPACK_IMPORTED_MODULE_6__["default"], {
+  }), __jsx(_components_informations__WEBPACK_IMPORTED_MODULE_6__["default"], {
     __source: {
       fileName: _jsxFileName,
       lineNumber: 19
@@ -1429,7 +1901,7 @@ var ScreenPage = function ScreenPage() {
     id: "1075152791",
     dynamic: [_styles_colors__WEBPACK_IMPORTED_MODULE_8__["default"].lightGrey],
     __self: this
-  }, ".menu.__jsx-style-dynamic-selector{z-index:1;display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-flex-direction:column;-ms-flex-direction:column;flex-direction:column;max-width:400px;box-shadow:0 1px 4px ".concat(_styles_colors__WEBPACK_IMPORTED_MODULE_8__["default"].lightGrey, ";}.map.__jsx-style-dynamic-selector{-webkit-flex:1;-ms-flex:1;flex:1;height:100%;}\n/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9Vc2Vycy9qZXJvbWUvb3BlbmNvdmlkMTktZnIvZGFzaGJvYXJkL2xheW91dHMvc2NyZWVuLmpzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQTRCZ0IsQUFHbUIsQUFRSCxVQVBNLHVCQVFELFlBQ2QsdUNBUndCLDhFQUNOLGdCQUNrQyxrREFDcEQiLCJmaWxlIjoiL1VzZXJzL2plcm9tZS9vcGVuY292aWQxOS1mci9kYXNoYm9hcmQvbGF5b3V0cy9zY3JlZW4uanMiLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgUmVhY3QgZnJvbSAncmVhY3QnXG5cbmltcG9ydCBEYXRlTmF2IGZyb20gJy4uL2NvbXBvbmVudHMvZGF0ZS1uYXYnXG5pbXBvcnQgU2Nyb2xsYWJsZSBmcm9tICcuLi9jb21wb25lbnRzL3Njcm9sbGFibGUnXG5pbXBvcnQgUmVhY3RNYXBHbCBmcm9tICcuLi9jb21wb25lbnRzL3JlYWN0LW1hcC1nbCdcbmltcG9ydCBOYXRpb25hbFN0YXRpc3RpY3MgZnJvbSAnLi4vY29tcG9uZW50cy9uYXRpb25hbC1zdGF0aXN0aWNzJ1xuaW1wb3J0IERlc2NyaXB0aW9uIGZyb20gJy4uL2NvbXBvbmVudHMvZGVzY3JpcHRpb24nXG5pbXBvcnQgRm9vdGVyIGZyb20gJy4uL2NvbXBvbmVudHMvZm9vdGVyJ1xuXG5pbXBvcnQgY29sb3JzIGZyb20gJy4uL3N0eWxlcy9jb2xvcnMnXG5cbmNvbnN0IFNjcmVlblBhZ2UgPSAoKSA9PiAoXG4gIDw+XG4gICAgPGRpdiBjbGFzc05hbWU9J21lbnUnPlxuICAgICAgPERhdGVOYXYgLz5cbiAgICAgIDxTY3JvbGxhYmxlPlxuICAgICAgICA8PlxuICAgICAgICAgIDxOYXRpb25hbFN0YXRpc3RpY3MgLz5cbiAgICAgICAgICA8RGVzY3JpcHRpb24gLz5cbiAgICAgICAgPC8+XG4gICAgICA8L1Njcm9sbGFibGU+XG4gICAgICA8Rm9vdGVyIC8+XG4gICAgPC9kaXY+XG5cbiAgICA8ZGl2IGNsYXNzTmFtZT0nbWFwJz5cbiAgICAgIDxSZWFjdE1hcEdsIC8+XG4gICAgPC9kaXY+XG5cbiAgICA8c3R5bGUganN4PntgXG4gICAgICAubWVudSB7XG4gICAgICAgIHotaW5kZXg6IDE7XG4gICAgICAgIGRpc3BsYXk6IGZsZXg7XG4gICAgICAgIGZsZXgtZGlyZWN0aW9uOiBjb2x1bW47XG4gICAgICAgIG1heC13aWR0aDogNDAwcHg7XG4gICAgICAgIGJveC1zaGFkb3c6IDAgMXB4IDRweCAke2NvbG9ycy5saWdodEdyZXl9O1xuICAgICAgfVxuXG4gICAgICAubWFwIHtcbiAgICAgICAgZmxleDogMTtcbiAgICAgICAgaGVpZ2h0OiAxMDAlO1xuICAgICAgfVxuICAgIGB9PC9zdHlsZT5cbiAgPC8+XG4pXG5cbmV4cG9ydCBkZWZhdWx0IFNjcmVlblBhZ2VcbiJdfQ== */\n/*@ sourceURL=/Users/jerome/opencovid19-fr/dashboard/layouts/screen.js */")));
+  }, ".menu.__jsx-style-dynamic-selector{z-index:1;display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-flex-direction:column;-ms-flex-direction:column;flex-direction:column;max-width:400px;box-shadow:0 1px 4px ".concat(_styles_colors__WEBPACK_IMPORTED_MODULE_8__["default"].lightGrey, ";}.map.__jsx-style-dynamic-selector{-webkit-flex:1;-ms-flex:1;flex:1;height:100%;}\n/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9Vc2Vycy9qZXJvbWUvb3BlbmNvdmlkMTktZnIvZGFzaGJvYXJkL2xheW91dHMvc2NyZWVuLmpzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQTRCZ0IsQUFHbUIsQUFRSCxVQVBNLHVCQVFELFlBQ2QsdUNBUndCLDhFQUNOLGdCQUNrQyxrREFDcEQiLCJmaWxlIjoiL1VzZXJzL2plcm9tZS9vcGVuY292aWQxOS1mci9kYXNoYm9hcmQvbGF5b3V0cy9zY3JlZW4uanMiLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgUmVhY3QgZnJvbSAncmVhY3QnXG5cbmltcG9ydCBEYXRlTmF2IGZyb20gJy4uL2NvbXBvbmVudHMvZGF0ZS1uYXYnXG5pbXBvcnQgU2Nyb2xsYWJsZSBmcm9tICcuLi9jb21wb25lbnRzL3Njcm9sbGFibGUnXG5pbXBvcnQgUmVhY3RNYXBHbCBmcm9tICcuLi9jb21wb25lbnRzL3JlYWN0LW1hcC1nbCdcbmltcG9ydCBOYXRpb25hbFN0YXRpc3RpY3MgZnJvbSAnLi4vY29tcG9uZW50cy9uYXRpb25hbC1zdGF0aXN0aWNzJ1xuaW1wb3J0IEluZm9ybWF0aW9ucyBmcm9tICcuLi9jb21wb25lbnRzL2luZm9ybWF0aW9ucydcbmltcG9ydCBGb290ZXIgZnJvbSAnLi4vY29tcG9uZW50cy9mb290ZXInXG5cbmltcG9ydCBjb2xvcnMgZnJvbSAnLi4vc3R5bGVzL2NvbG9ycydcblxuY29uc3QgU2NyZWVuUGFnZSA9ICgpID0+IChcbiAgPD5cbiAgICA8ZGl2IGNsYXNzTmFtZT0nbWVudSc+XG4gICAgICA8RGF0ZU5hdiAvPlxuICAgICAgPFNjcm9sbGFibGU+XG4gICAgICAgIDw+XG4gICAgICAgICAgPE5hdGlvbmFsU3RhdGlzdGljcyAvPlxuICAgICAgICAgIDxJbmZvcm1hdGlvbnMgLz5cbiAgICAgICAgPC8+XG4gICAgICA8L1Njcm9sbGFibGU+XG4gICAgICA8Rm9vdGVyIC8+XG4gICAgPC9kaXY+XG5cbiAgICA8ZGl2IGNsYXNzTmFtZT0nbWFwJz5cbiAgICAgIDxSZWFjdE1hcEdsIC8+XG4gICAgPC9kaXY+XG5cbiAgICA8c3R5bGUganN4PntgXG4gICAgICAubWVudSB7XG4gICAgICAgIHotaW5kZXg6IDE7XG4gICAgICAgIGRpc3BsYXk6IGZsZXg7XG4gICAgICAgIGZsZXgtZGlyZWN0aW9uOiBjb2x1bW47XG4gICAgICAgIG1heC13aWR0aDogNDAwcHg7XG4gICAgICAgIGJveC1zaGFkb3c6IDAgMXB4IDRweCAke2NvbG9ycy5saWdodEdyZXl9O1xuICAgICAgfVxuXG4gICAgICAubWFwIHtcbiAgICAgICAgZmxleDogMTtcbiAgICAgICAgaGVpZ2h0OiAxMDAlO1xuICAgICAgfVxuICAgIGB9PC9zdHlsZT5cbiAgPC8+XG4pXG5cbmV4cG9ydCBkZWZhdWx0IFNjcmVlblBhZ2VcbiJdfQ== */\n/*@ sourceURL=/Users/jerome/opencovid19-fr/dashboard/layouts/screen.js */")));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (ScreenPage);
@@ -1449,11 +1921,29 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getData", function() { return getData; });
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var isomorphic_unfetch__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! isomorphic-unfetch */ "./node_modules/next/dist/build/polyfills/fetch/index.js");
-/* harmony import */ var isomorphic_unfetch__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(isomorphic_unfetch__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var lodash_pick__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! lodash/pick */ "./node_modules/lodash/pick.js");
+/* harmony import */ var lodash_pick__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(lodash_pick__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var lodash_defaults__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! lodash/defaults */ "./node_modules/lodash/defaults.js");
+/* harmony import */ var lodash_defaults__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(lodash_defaults__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var lodash_sortBy__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! lodash/sortBy */ "./node_modules/lodash/sortBy.js");
+/* harmony import */ var lodash_sortBy__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(lodash_sortBy__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var lodash_groupBy__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! lodash/groupBy */ "./node_modules/lodash/groupBy.js");
+/* harmony import */ var lodash_groupBy__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(lodash_groupBy__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var isomorphic_unfetch__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! isomorphic-unfetch */ "./node_modules/next/dist/build/polyfills/fetch/index.js");
+/* harmony import */ var isomorphic_unfetch__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(isomorphic_unfetch__WEBPACK_IMPORTED_MODULE_5__);
+
+
+
+
 
  // eslint-disable-line import/no-unassigned-import
 
+var SOURCE_PRIORITIES = {
+  'sante-publique-france': 1,
+  'agences-regionales-sante': 2,
+  prefectures: 3,
+  'lperez-historical-data': 4
+};
 function fetchJson(url) {
   var response;
   return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.async(function fetchJson$(_context) {
@@ -1480,14 +1970,37 @@ function fetchJson(url) {
     }
   }, null, null, null, Promise);
 }
+
+function consolidate(records) {
+  var territoriesGroups = lodash_groupBy__WEBPACK_IMPORTED_MODULE_4___default()(records, function (r) {
+    return "".concat(r.date, "-").concat(r.code);
+  });
+
+  return Object.keys(territoriesGroups).map(function (id) {
+    return lodash_pick__WEBPACK_IMPORTED_MODULE_1___default()(lodash_sortBy__WEBPACK_IMPORTED_MODULE_3___default()(territoriesGroups[id], function (r) {
+      return SOURCE_PRIORITIES[r.sourceType];
+    }).reduce(function (acc, row) {
+      lodash_defaults__WEBPACK_IMPORTED_MODULE_2___default()(acc, row);
+
+      return acc;
+    }, {}), ['casConfirmes', 'deces', 'reanimation', 'date', 'code', 'nom']);
+  });
+}
+
 var getData = function getData() {
+  var records;
   return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.async(function getData$(_context2) {
     while (1) {
       switch (_context2.prev = _context2.next) {
         case 0:
-          return _context2.abrupt("return", fetchJson('https://raw.githubusercontent.com/opencovid19-fr/data/master/dist/chiffres-cles.json'));
+          _context2.next = 2;
+          return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.awrap(fetchJson('https://raw.githubusercontent.com/opencovid19-fr/data/master/dist/chiffres-cles.json'));
 
-        case 1:
+        case 2:
+          records = _context2.sent;
+          return _context2.abrupt("return", consolidate(records));
+
+        case 4:
         case "end":
           return _context2.stop();
       }
@@ -26282,6 +26795,38 @@ module.exports = WeakMap;
 
 /***/ }),
 
+/***/ "./node_modules/lodash/_apply.js":
+/*!***************************************!*\
+  !*** ./node_modules/lodash/_apply.js ***!
+  \***************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+/**
+ * A faster alternative to `Function#apply`, this function invokes `func`
+ * with the `this` binding of `thisArg` and the arguments of `args`.
+ *
+ * @private
+ * @param {Function} func The function to invoke.
+ * @param {*} thisArg The `this` binding of `func`.
+ * @param {Array} args The arguments to invoke `func` with.
+ * @returns {*} Returns the result of `func`.
+ */
+function apply(func, thisArg, args) {
+  switch (args.length) {
+    case 0: return func.call(thisArg);
+    case 1: return func.call(thisArg, args[0]);
+    case 2: return func.call(thisArg, args[0], args[1]);
+    case 3: return func.call(thisArg, args[0], args[1], args[2]);
+  }
+  return func.apply(thisArg, args);
+}
+
+module.exports = apply;
+
+
+/***/ }),
+
 /***/ "./node_modules/lodash/_arrayAggregator.js":
 /*!*************************************************!*\
   !*** ./node_modules/lodash/_arrayAggregator.js ***!
@@ -26569,6 +27114,45 @@ module.exports = arraySome;
 
 /***/ }),
 
+/***/ "./node_modules/lodash/_assignValue.js":
+/*!*********************************************!*\
+  !*** ./node_modules/lodash/_assignValue.js ***!
+  \*********************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+var baseAssignValue = __webpack_require__(/*! ./_baseAssignValue */ "./node_modules/lodash/_baseAssignValue.js"),
+    eq = __webpack_require__(/*! ./eq */ "./node_modules/lodash/eq.js");
+
+/** Used for built-in method references. */
+var objectProto = Object.prototype;
+
+/** Used to check objects for own properties. */
+var hasOwnProperty = objectProto.hasOwnProperty;
+
+/**
+ * Assigns `value` to `key` of `object` if the existing value is not equivalent
+ * using [`SameValueZero`](http://ecma-international.org/ecma-262/7.0/#sec-samevaluezero)
+ * for equality comparisons.
+ *
+ * @private
+ * @param {Object} object The object to modify.
+ * @param {string} key The key of the property to assign.
+ * @param {*} value The value to assign.
+ */
+function assignValue(object, key, value) {
+  var objValue = object[key];
+  if (!(hasOwnProperty.call(object, key) && eq(objValue, value)) ||
+      (value === undefined && !(key in object))) {
+    baseAssignValue(object, key, value);
+  }
+}
+
+module.exports = assignValue;
+
+
+/***/ }),
+
 /***/ "./node_modules/lodash/_assocIndexOf.js":
 /*!**********************************************!*\
   !*** ./node_modules/lodash/_assocIndexOf.js ***!
@@ -26725,6 +27309,55 @@ function baseFindIndex(array, predicate, fromIndex, fromRight) {
 }
 
 module.exports = baseFindIndex;
+
+
+/***/ }),
+
+/***/ "./node_modules/lodash/_baseFlatten.js":
+/*!*********************************************!*\
+  !*** ./node_modules/lodash/_baseFlatten.js ***!
+  \*********************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+var arrayPush = __webpack_require__(/*! ./_arrayPush */ "./node_modules/lodash/_arrayPush.js"),
+    isFlattenable = __webpack_require__(/*! ./_isFlattenable */ "./node_modules/lodash/_isFlattenable.js");
+
+/**
+ * The base implementation of `_.flatten` with support for restricting flattening.
+ *
+ * @private
+ * @param {Array} array The array to flatten.
+ * @param {number} depth The maximum recursion depth.
+ * @param {boolean} [predicate=isFlattenable] The function invoked per iteration.
+ * @param {boolean} [isStrict] Restrict to values that pass `predicate` checks.
+ * @param {Array} [result=[]] The initial result value.
+ * @returns {Array} Returns the new flattened array.
+ */
+function baseFlatten(array, depth, predicate, isStrict, result) {
+  var index = -1,
+      length = array.length;
+
+  predicate || (predicate = isFlattenable);
+  result || (result = []);
+
+  while (++index < length) {
+    var value = array[index];
+    if (depth > 0 && predicate(value)) {
+      if (depth > 1) {
+        // Recursively flatten arrays (susceptible to call stack limits).
+        baseFlatten(value, depth - 1, predicate, isStrict, result);
+      } else {
+        arrayPush(result, value);
+      }
+    } else if (!isStrict) {
+      result[result.length] = value;
+    }
+  }
+  return result;
+}
+
+module.exports = baseFlatten;
 
 
 /***/ }),
@@ -27413,6 +28046,83 @@ module.exports = baseKeys;
 
 /***/ }),
 
+/***/ "./node_modules/lodash/_baseKeysIn.js":
+/*!********************************************!*\
+  !*** ./node_modules/lodash/_baseKeysIn.js ***!
+  \********************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+var isObject = __webpack_require__(/*! ./isObject */ "./node_modules/lodash/isObject.js"),
+    isPrototype = __webpack_require__(/*! ./_isPrototype */ "./node_modules/lodash/_isPrototype.js"),
+    nativeKeysIn = __webpack_require__(/*! ./_nativeKeysIn */ "./node_modules/lodash/_nativeKeysIn.js");
+
+/** Used for built-in method references. */
+var objectProto = Object.prototype;
+
+/** Used to check objects for own properties. */
+var hasOwnProperty = objectProto.hasOwnProperty;
+
+/**
+ * The base implementation of `_.keysIn` which doesn't treat sparse arrays as dense.
+ *
+ * @private
+ * @param {Object} object The object to query.
+ * @returns {Array} Returns the array of property names.
+ */
+function baseKeysIn(object) {
+  if (!isObject(object)) {
+    return nativeKeysIn(object);
+  }
+  var isProto = isPrototype(object),
+      result = [];
+
+  for (var key in object) {
+    if (!(key == 'constructor' && (isProto || !hasOwnProperty.call(object, key)))) {
+      result.push(key);
+    }
+  }
+  return result;
+}
+
+module.exports = baseKeysIn;
+
+
+/***/ }),
+
+/***/ "./node_modules/lodash/_baseMap.js":
+/*!*****************************************!*\
+  !*** ./node_modules/lodash/_baseMap.js ***!
+  \*****************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+var baseEach = __webpack_require__(/*! ./_baseEach */ "./node_modules/lodash/_baseEach.js"),
+    isArrayLike = __webpack_require__(/*! ./isArrayLike */ "./node_modules/lodash/isArrayLike.js");
+
+/**
+ * The base implementation of `_.map` without support for iteratee shorthands.
+ *
+ * @private
+ * @param {Array|Object} collection The collection to iterate over.
+ * @param {Function} iteratee The function invoked per iteration.
+ * @returns {Array} Returns the new mapped array.
+ */
+function baseMap(collection, iteratee) {
+  var index = -1,
+      result = isArrayLike(collection) ? Array(collection.length) : [];
+
+  baseEach(collection, function(value, key, collection) {
+    result[++index] = iteratee(value, key, collection);
+  });
+  return result;
+}
+
+module.exports = baseMap;
+
+
+/***/ }),
+
 /***/ "./node_modules/lodash/_baseMatches.js":
 /*!*********************************************!*\
   !*** ./node_modules/lodash/_baseMatches.js ***!
@@ -27490,6 +28200,122 @@ module.exports = baseMatchesProperty;
 
 /***/ }),
 
+/***/ "./node_modules/lodash/_baseOrderBy.js":
+/*!*********************************************!*\
+  !*** ./node_modules/lodash/_baseOrderBy.js ***!
+  \*********************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+var arrayMap = __webpack_require__(/*! ./_arrayMap */ "./node_modules/lodash/_arrayMap.js"),
+    baseIteratee = __webpack_require__(/*! ./_baseIteratee */ "./node_modules/lodash/_baseIteratee.js"),
+    baseMap = __webpack_require__(/*! ./_baseMap */ "./node_modules/lodash/_baseMap.js"),
+    baseSortBy = __webpack_require__(/*! ./_baseSortBy */ "./node_modules/lodash/_baseSortBy.js"),
+    baseUnary = __webpack_require__(/*! ./_baseUnary */ "./node_modules/lodash/_baseUnary.js"),
+    compareMultiple = __webpack_require__(/*! ./_compareMultiple */ "./node_modules/lodash/_compareMultiple.js"),
+    identity = __webpack_require__(/*! ./identity */ "./node_modules/lodash/identity.js");
+
+/**
+ * The base implementation of `_.orderBy` without param guards.
+ *
+ * @private
+ * @param {Array|Object} collection The collection to iterate over.
+ * @param {Function[]|Object[]|string[]} iteratees The iteratees to sort by.
+ * @param {string[]} orders The sort orders of `iteratees`.
+ * @returns {Array} Returns the new sorted array.
+ */
+function baseOrderBy(collection, iteratees, orders) {
+  var index = -1;
+  iteratees = arrayMap(iteratees.length ? iteratees : [identity], baseUnary(baseIteratee));
+
+  var result = baseMap(collection, function(value, key, collection) {
+    var criteria = arrayMap(iteratees, function(iteratee) {
+      return iteratee(value);
+    });
+    return { 'criteria': criteria, 'index': ++index, 'value': value };
+  });
+
+  return baseSortBy(result, function(object, other) {
+    return compareMultiple(object, other, orders);
+  });
+}
+
+module.exports = baseOrderBy;
+
+
+/***/ }),
+
+/***/ "./node_modules/lodash/_basePick.js":
+/*!******************************************!*\
+  !*** ./node_modules/lodash/_basePick.js ***!
+  \******************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+var basePickBy = __webpack_require__(/*! ./_basePickBy */ "./node_modules/lodash/_basePickBy.js"),
+    hasIn = __webpack_require__(/*! ./hasIn */ "./node_modules/lodash/hasIn.js");
+
+/**
+ * The base implementation of `_.pick` without support for individual
+ * property identifiers.
+ *
+ * @private
+ * @param {Object} object The source object.
+ * @param {string[]} paths The property paths to pick.
+ * @returns {Object} Returns the new object.
+ */
+function basePick(object, paths) {
+  return basePickBy(object, paths, function(value, path) {
+    return hasIn(object, path);
+  });
+}
+
+module.exports = basePick;
+
+
+/***/ }),
+
+/***/ "./node_modules/lodash/_basePickBy.js":
+/*!********************************************!*\
+  !*** ./node_modules/lodash/_basePickBy.js ***!
+  \********************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+var baseGet = __webpack_require__(/*! ./_baseGet */ "./node_modules/lodash/_baseGet.js"),
+    baseSet = __webpack_require__(/*! ./_baseSet */ "./node_modules/lodash/_baseSet.js"),
+    castPath = __webpack_require__(/*! ./_castPath */ "./node_modules/lodash/_castPath.js");
+
+/**
+ * The base implementation of  `_.pickBy` without support for iteratee shorthands.
+ *
+ * @private
+ * @param {Object} object The source object.
+ * @param {string[]} paths The property paths to pick.
+ * @param {Function} predicate The function invoked per property.
+ * @returns {Object} Returns the new object.
+ */
+function basePickBy(object, paths, predicate) {
+  var index = -1,
+      length = paths.length,
+      result = {};
+
+  while (++index < length) {
+    var path = paths[index],
+        value = baseGet(object, path);
+
+    if (predicate(value, path)) {
+      baseSet(result, castPath(path, object), value);
+    }
+  }
+  return result;
+}
+
+module.exports = basePickBy;
+
+
+/***/ }),
+
 /***/ "./node_modules/lodash/_baseProperty.js":
 /*!**********************************************!*\
   !*** ./node_modules/lodash/_baseProperty.js ***!
@@ -27538,6 +28364,157 @@ function basePropertyDeep(path) {
 }
 
 module.exports = basePropertyDeep;
+
+
+/***/ }),
+
+/***/ "./node_modules/lodash/_baseRest.js":
+/*!******************************************!*\
+  !*** ./node_modules/lodash/_baseRest.js ***!
+  \******************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+var identity = __webpack_require__(/*! ./identity */ "./node_modules/lodash/identity.js"),
+    overRest = __webpack_require__(/*! ./_overRest */ "./node_modules/lodash/_overRest.js"),
+    setToString = __webpack_require__(/*! ./_setToString */ "./node_modules/lodash/_setToString.js");
+
+/**
+ * The base implementation of `_.rest` which doesn't validate or coerce arguments.
+ *
+ * @private
+ * @param {Function} func The function to apply a rest parameter to.
+ * @param {number} [start=func.length-1] The start position of the rest parameter.
+ * @returns {Function} Returns the new function.
+ */
+function baseRest(func, start) {
+  return setToString(overRest(func, start, identity), func + '');
+}
+
+module.exports = baseRest;
+
+
+/***/ }),
+
+/***/ "./node_modules/lodash/_baseSet.js":
+/*!*****************************************!*\
+  !*** ./node_modules/lodash/_baseSet.js ***!
+  \*****************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+var assignValue = __webpack_require__(/*! ./_assignValue */ "./node_modules/lodash/_assignValue.js"),
+    castPath = __webpack_require__(/*! ./_castPath */ "./node_modules/lodash/_castPath.js"),
+    isIndex = __webpack_require__(/*! ./_isIndex */ "./node_modules/lodash/_isIndex.js"),
+    isObject = __webpack_require__(/*! ./isObject */ "./node_modules/lodash/isObject.js"),
+    toKey = __webpack_require__(/*! ./_toKey */ "./node_modules/lodash/_toKey.js");
+
+/**
+ * The base implementation of `_.set`.
+ *
+ * @private
+ * @param {Object} object The object to modify.
+ * @param {Array|string} path The path of the property to set.
+ * @param {*} value The value to set.
+ * @param {Function} [customizer] The function to customize path creation.
+ * @returns {Object} Returns `object`.
+ */
+function baseSet(object, path, value, customizer) {
+  if (!isObject(object)) {
+    return object;
+  }
+  path = castPath(path, object);
+
+  var index = -1,
+      length = path.length,
+      lastIndex = length - 1,
+      nested = object;
+
+  while (nested != null && ++index < length) {
+    var key = toKey(path[index]),
+        newValue = value;
+
+    if (index != lastIndex) {
+      var objValue = nested[key];
+      newValue = customizer ? customizer(objValue, key, nested) : undefined;
+      if (newValue === undefined) {
+        newValue = isObject(objValue)
+          ? objValue
+          : (isIndex(path[index + 1]) ? [] : {});
+      }
+    }
+    assignValue(nested, key, newValue);
+    nested = nested[key];
+  }
+  return object;
+}
+
+module.exports = baseSet;
+
+
+/***/ }),
+
+/***/ "./node_modules/lodash/_baseSetToString.js":
+/*!*************************************************!*\
+  !*** ./node_modules/lodash/_baseSetToString.js ***!
+  \*************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+var constant = __webpack_require__(/*! ./constant */ "./node_modules/lodash/constant.js"),
+    defineProperty = __webpack_require__(/*! ./_defineProperty */ "./node_modules/lodash/_defineProperty.js"),
+    identity = __webpack_require__(/*! ./identity */ "./node_modules/lodash/identity.js");
+
+/**
+ * The base implementation of `setToString` without support for hot loop shorting.
+ *
+ * @private
+ * @param {Function} func The function to modify.
+ * @param {Function} string The `toString` result.
+ * @returns {Function} Returns `func`.
+ */
+var baseSetToString = !defineProperty ? identity : function(func, string) {
+  return defineProperty(func, 'toString', {
+    'configurable': true,
+    'enumerable': false,
+    'value': constant(string),
+    'writable': true
+  });
+};
+
+module.exports = baseSetToString;
+
+
+/***/ }),
+
+/***/ "./node_modules/lodash/_baseSortBy.js":
+/*!********************************************!*\
+  !*** ./node_modules/lodash/_baseSortBy.js ***!
+  \********************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+/**
+ * The base implementation of `_.sortBy` which uses `comparer` to define the
+ * sort order of `array` and replaces criteria objects with their corresponding
+ * values.
+ *
+ * @private
+ * @param {Array} array The array to sort.
+ * @param {Function} comparer The function to define sort order.
+ * @returns {Array} Returns `array`.
+ */
+function baseSortBy(array, comparer) {
+  var length = array.length;
+
+  array.sort(comparer);
+  while (length--) {
+    array[length] = array[length].value;
+  }
+  return array;
+}
+
+module.exports = baseSortBy;
 
 
 /***/ }),
@@ -27781,6 +28758,113 @@ function castPath(value, object) {
 }
 
 module.exports = castPath;
+
+
+/***/ }),
+
+/***/ "./node_modules/lodash/_compareAscending.js":
+/*!**************************************************!*\
+  !*** ./node_modules/lodash/_compareAscending.js ***!
+  \**************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+var isSymbol = __webpack_require__(/*! ./isSymbol */ "./node_modules/lodash/isSymbol.js");
+
+/**
+ * Compares values to sort them in ascending order.
+ *
+ * @private
+ * @param {*} value The value to compare.
+ * @param {*} other The other value to compare.
+ * @returns {number} Returns the sort order indicator for `value`.
+ */
+function compareAscending(value, other) {
+  if (value !== other) {
+    var valIsDefined = value !== undefined,
+        valIsNull = value === null,
+        valIsReflexive = value === value,
+        valIsSymbol = isSymbol(value);
+
+    var othIsDefined = other !== undefined,
+        othIsNull = other === null,
+        othIsReflexive = other === other,
+        othIsSymbol = isSymbol(other);
+
+    if ((!othIsNull && !othIsSymbol && !valIsSymbol && value > other) ||
+        (valIsSymbol && othIsDefined && othIsReflexive && !othIsNull && !othIsSymbol) ||
+        (valIsNull && othIsDefined && othIsReflexive) ||
+        (!valIsDefined && othIsReflexive) ||
+        !valIsReflexive) {
+      return 1;
+    }
+    if ((!valIsNull && !valIsSymbol && !othIsSymbol && value < other) ||
+        (othIsSymbol && valIsDefined && valIsReflexive && !valIsNull && !valIsSymbol) ||
+        (othIsNull && valIsDefined && valIsReflexive) ||
+        (!othIsDefined && valIsReflexive) ||
+        !othIsReflexive) {
+      return -1;
+    }
+  }
+  return 0;
+}
+
+module.exports = compareAscending;
+
+
+/***/ }),
+
+/***/ "./node_modules/lodash/_compareMultiple.js":
+/*!*************************************************!*\
+  !*** ./node_modules/lodash/_compareMultiple.js ***!
+  \*************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+var compareAscending = __webpack_require__(/*! ./_compareAscending */ "./node_modules/lodash/_compareAscending.js");
+
+/**
+ * Used by `_.orderBy` to compare multiple properties of a value to another
+ * and stable sort them.
+ *
+ * If `orders` is unspecified, all values are sorted in ascending order. Otherwise,
+ * specify an order of "desc" for descending or "asc" for ascending sort order
+ * of corresponding values.
+ *
+ * @private
+ * @param {Object} object The object to compare.
+ * @param {Object} other The other object to compare.
+ * @param {boolean[]|string[]} orders The order to sort by for each property.
+ * @returns {number} Returns the sort order indicator for `object`.
+ */
+function compareMultiple(object, other, orders) {
+  var index = -1,
+      objCriteria = object.criteria,
+      othCriteria = other.criteria,
+      length = objCriteria.length,
+      ordersLength = orders.length;
+
+  while (++index < length) {
+    var result = compareAscending(objCriteria[index], othCriteria[index]);
+    if (result) {
+      if (index >= ordersLength) {
+        return result;
+      }
+      var order = orders[index];
+      return result * (order == 'desc' ? -1 : 1);
+    }
+  }
+  // Fixes an `Array#sort` bug in the JS engine embedded in Adobe applications
+  // that causes it, under certain circumstances, to provide the same value for
+  // `object` and `other`. See https://github.com/jashkenas/underscore/pull/1247
+  // for more details.
+  //
+  // This also ensures a stable sort in V8 and other engines.
+  // See https://bugs.chromium.org/p/v8/issues/detail?id=90 for more details.
+  return object.index - other.index;
+}
+
+module.exports = compareMultiple;
 
 
 /***/ }),
@@ -28280,6 +29364,33 @@ function equalObjects(object, other, bitmask, customizer, equalFunc, stack) {
 }
 
 module.exports = equalObjects;
+
+
+/***/ }),
+
+/***/ "./node_modules/lodash/_flatRest.js":
+/*!******************************************!*\
+  !*** ./node_modules/lodash/_flatRest.js ***!
+  \******************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+var flatten = __webpack_require__(/*! ./flatten */ "./node_modules/lodash/flatten.js"),
+    overRest = __webpack_require__(/*! ./_overRest */ "./node_modules/lodash/_overRest.js"),
+    setToString = __webpack_require__(/*! ./_setToString */ "./node_modules/lodash/_setToString.js");
+
+/**
+ * A specialized version of `baseRest` which flattens the rest array.
+ *
+ * @private
+ * @param {Function} func The function to apply a rest parameter to.
+ * @returns {Function} Returns the new function.
+ */
+function flatRest(func) {
+  return setToString(overRest(func, undefined, flatten), func + '');
+}
+
+module.exports = flatRest;
 
 
 /***/ }),
@@ -28823,6 +29934,37 @@ module.exports = hashSet;
 
 /***/ }),
 
+/***/ "./node_modules/lodash/_isFlattenable.js":
+/*!***********************************************!*\
+  !*** ./node_modules/lodash/_isFlattenable.js ***!
+  \***********************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+var Symbol = __webpack_require__(/*! ./_Symbol */ "./node_modules/lodash/_Symbol.js"),
+    isArguments = __webpack_require__(/*! ./isArguments */ "./node_modules/lodash/isArguments.js"),
+    isArray = __webpack_require__(/*! ./isArray */ "./node_modules/lodash/isArray.js");
+
+/** Built-in value references. */
+var spreadableSymbol = Symbol ? Symbol.isConcatSpreadable : undefined;
+
+/**
+ * Checks if `value` is a flattenable `arguments` object or array.
+ *
+ * @private
+ * @param {*} value The value to check.
+ * @returns {boolean} Returns `true` if `value` is flattenable, else `false`.
+ */
+function isFlattenable(value) {
+  return isArray(value) || isArguments(value) ||
+    !!(spreadableSymbol && value && value[spreadableSymbol]);
+}
+
+module.exports = isFlattenable;
+
+
+/***/ }),
+
 /***/ "./node_modules/lodash/_isIndex.js":
 /*!*****************************************!*\
   !*** ./node_modules/lodash/_isIndex.js ***!
@@ -28855,6 +29997,47 @@ function isIndex(value, length) {
 }
 
 module.exports = isIndex;
+
+
+/***/ }),
+
+/***/ "./node_modules/lodash/_isIterateeCall.js":
+/*!************************************************!*\
+  !*** ./node_modules/lodash/_isIterateeCall.js ***!
+  \************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+var eq = __webpack_require__(/*! ./eq */ "./node_modules/lodash/eq.js"),
+    isArrayLike = __webpack_require__(/*! ./isArrayLike */ "./node_modules/lodash/isArrayLike.js"),
+    isIndex = __webpack_require__(/*! ./_isIndex */ "./node_modules/lodash/_isIndex.js"),
+    isObject = __webpack_require__(/*! ./isObject */ "./node_modules/lodash/isObject.js");
+
+/**
+ * Checks if the given arguments are from an iteratee call.
+ *
+ * @private
+ * @param {*} value The potential iteratee value argument.
+ * @param {*} index The potential iteratee index or key argument.
+ * @param {*} object The potential iteratee object argument.
+ * @returns {boolean} Returns `true` if the arguments are from an iteratee call,
+ *  else `false`.
+ */
+function isIterateeCall(value, index, object) {
+  if (!isObject(object)) {
+    return false;
+  }
+  var type = typeof index;
+  if (type == 'number'
+        ? (isArrayLike(object) && isIndex(index, object.length))
+        : (type == 'string' && index in object)
+      ) {
+    return eq(object[index], value);
+  }
+  return false;
+}
+
+module.exports = isIterateeCall;
 
 
 /***/ }),
@@ -29454,6 +30637,37 @@ module.exports = nativeKeys;
 
 /***/ }),
 
+/***/ "./node_modules/lodash/_nativeKeysIn.js":
+/*!**********************************************!*\
+  !*** ./node_modules/lodash/_nativeKeysIn.js ***!
+  \**********************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+/**
+ * This function is like
+ * [`Object.keys`](http://ecma-international.org/ecma-262/7.0/#sec-object.keys)
+ * except that it includes inherited enumerable properties.
+ *
+ * @private
+ * @param {Object} object The object to query.
+ * @returns {Array} Returns the array of property names.
+ */
+function nativeKeysIn(object) {
+  var result = [];
+  if (object != null) {
+    for (var key in Object(object)) {
+      result.push(key);
+    }
+  }
+  return result;
+}
+
+module.exports = nativeKeysIn;
+
+
+/***/ }),
+
 /***/ "./node_modules/lodash/_nodeUtil.js":
 /*!******************************************!*\
   !*** ./node_modules/lodash/_nodeUtil.js ***!
@@ -29551,6 +30765,53 @@ function overArg(func, transform) {
 }
 
 module.exports = overArg;
+
+
+/***/ }),
+
+/***/ "./node_modules/lodash/_overRest.js":
+/*!******************************************!*\
+  !*** ./node_modules/lodash/_overRest.js ***!
+  \******************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+var apply = __webpack_require__(/*! ./_apply */ "./node_modules/lodash/_apply.js");
+
+/* Built-in method references for those with the same name as other `lodash` methods. */
+var nativeMax = Math.max;
+
+/**
+ * A specialized version of `baseRest` which transforms the rest array.
+ *
+ * @private
+ * @param {Function} func The function to apply a rest parameter to.
+ * @param {number} [start=func.length-1] The start position of the rest parameter.
+ * @param {Function} transform The rest array transform.
+ * @returns {Function} Returns the new function.
+ */
+function overRest(func, start, transform) {
+  start = nativeMax(start === undefined ? (func.length - 1) : start, 0);
+  return function() {
+    var args = arguments,
+        index = -1,
+        length = nativeMax(args.length - start, 0),
+        array = Array(length);
+
+    while (++index < length) {
+      array[index] = args[start + index];
+    }
+    index = -1;
+    var otherArgs = Array(start + 1);
+    while (++index < start) {
+      otherArgs[index] = args[index];
+    }
+    otherArgs[start] = transform(array);
+    return apply(func, this, otherArgs);
+  };
+}
+
+module.exports = overRest;
 
 
 /***/ }),
@@ -29655,6 +30916,79 @@ function setToArray(set) {
 }
 
 module.exports = setToArray;
+
+
+/***/ }),
+
+/***/ "./node_modules/lodash/_setToString.js":
+/*!*********************************************!*\
+  !*** ./node_modules/lodash/_setToString.js ***!
+  \*********************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+var baseSetToString = __webpack_require__(/*! ./_baseSetToString */ "./node_modules/lodash/_baseSetToString.js"),
+    shortOut = __webpack_require__(/*! ./_shortOut */ "./node_modules/lodash/_shortOut.js");
+
+/**
+ * Sets the `toString` method of `func` to return `string`.
+ *
+ * @private
+ * @param {Function} func The function to modify.
+ * @param {Function} string The `toString` result.
+ * @returns {Function} Returns `func`.
+ */
+var setToString = shortOut(baseSetToString);
+
+module.exports = setToString;
+
+
+/***/ }),
+
+/***/ "./node_modules/lodash/_shortOut.js":
+/*!******************************************!*\
+  !*** ./node_modules/lodash/_shortOut.js ***!
+  \******************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+/** Used to detect hot functions by number of calls within a span of milliseconds. */
+var HOT_COUNT = 800,
+    HOT_SPAN = 16;
+
+/* Built-in method references for those with the same name as other `lodash` methods. */
+var nativeNow = Date.now;
+
+/**
+ * Creates a function that'll short out and invoke `identity` instead
+ * of `func` when it's called `HOT_COUNT` or more times in `HOT_SPAN`
+ * milliseconds.
+ *
+ * @private
+ * @param {Function} func The function to restrict.
+ * @returns {Function} Returns the new shortable function.
+ */
+function shortOut(func) {
+  var count = 0,
+      lastCalled = 0;
+
+  return function() {
+    var stamp = nativeNow(),
+        remaining = HOT_SPAN - (stamp - lastCalled);
+
+    lastCalled = stamp;
+    if (remaining > 0) {
+      if (++count >= HOT_COUNT) {
+        return arguments[0];
+      }
+    } else {
+      count = 0;
+    }
+    return func.apply(undefined, arguments);
+  };
+}
+
+module.exports = shortOut;
 
 
 /***/ }),
@@ -29950,6 +31284,118 @@ module.exports = toSource;
 
 /***/ }),
 
+/***/ "./node_modules/lodash/constant.js":
+/*!*****************************************!*\
+  !*** ./node_modules/lodash/constant.js ***!
+  \*****************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+/**
+ * Creates a function that returns `value`.
+ *
+ * @static
+ * @memberOf _
+ * @since 2.4.0
+ * @category Util
+ * @param {*} value The value to return from the new function.
+ * @returns {Function} Returns the new constant function.
+ * @example
+ *
+ * var objects = _.times(2, _.constant({ 'a': 1 }));
+ *
+ * console.log(objects);
+ * // => [{ 'a': 1 }, { 'a': 1 }]
+ *
+ * console.log(objects[0] === objects[1]);
+ * // => true
+ */
+function constant(value) {
+  return function() {
+    return value;
+  };
+}
+
+module.exports = constant;
+
+
+/***/ }),
+
+/***/ "./node_modules/lodash/defaults.js":
+/*!*****************************************!*\
+  !*** ./node_modules/lodash/defaults.js ***!
+  \*****************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+var baseRest = __webpack_require__(/*! ./_baseRest */ "./node_modules/lodash/_baseRest.js"),
+    eq = __webpack_require__(/*! ./eq */ "./node_modules/lodash/eq.js"),
+    isIterateeCall = __webpack_require__(/*! ./_isIterateeCall */ "./node_modules/lodash/_isIterateeCall.js"),
+    keysIn = __webpack_require__(/*! ./keysIn */ "./node_modules/lodash/keysIn.js");
+
+/** Used for built-in method references. */
+var objectProto = Object.prototype;
+
+/** Used to check objects for own properties. */
+var hasOwnProperty = objectProto.hasOwnProperty;
+
+/**
+ * Assigns own and inherited enumerable string keyed properties of source
+ * objects to the destination object for all destination properties that
+ * resolve to `undefined`. Source objects are applied from left to right.
+ * Once a property is set, additional values of the same property are ignored.
+ *
+ * **Note:** This method mutates `object`.
+ *
+ * @static
+ * @since 0.1.0
+ * @memberOf _
+ * @category Object
+ * @param {Object} object The destination object.
+ * @param {...Object} [sources] The source objects.
+ * @returns {Object} Returns `object`.
+ * @see _.defaultsDeep
+ * @example
+ *
+ * _.defaults({ 'a': 1 }, { 'b': 2 }, { 'a': 3 });
+ * // => { 'a': 1, 'b': 2 }
+ */
+var defaults = baseRest(function(object, sources) {
+  object = Object(object);
+
+  var index = -1;
+  var length = sources.length;
+  var guard = length > 2 ? sources[2] : undefined;
+
+  if (guard && isIterateeCall(sources[0], sources[1], guard)) {
+    length = 1;
+  }
+
+  while (++index < length) {
+    var source = sources[index];
+    var props = keysIn(source);
+    var propsIndex = -1;
+    var propsLength = props.length;
+
+    while (++propsIndex < propsLength) {
+      var key = props[propsIndex];
+      var value = object[key];
+
+      if (value === undefined ||
+          (eq(value, objectProto[key]) && !hasOwnProperty.call(object, key))) {
+        object[key] = source[key];
+      }
+    }
+  }
+
+  return object;
+});
+
+module.exports = defaults;
+
+
+/***/ }),
+
 /***/ "./node_modules/lodash/eq.js":
 /*!***********************************!*\
   !*** ./node_modules/lodash/eq.js ***!
@@ -29994,6 +31440,39 @@ function eq(value, other) {
 }
 
 module.exports = eq;
+
+
+/***/ }),
+
+/***/ "./node_modules/lodash/flatten.js":
+/*!****************************************!*\
+  !*** ./node_modules/lodash/flatten.js ***!
+  \****************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+var baseFlatten = __webpack_require__(/*! ./_baseFlatten */ "./node_modules/lodash/_baseFlatten.js");
+
+/**
+ * Flattens `array` a single level deep.
+ *
+ * @static
+ * @memberOf _
+ * @since 0.1.0
+ * @category Array
+ * @param {Array} array The array to flatten.
+ * @returns {Array} Returns the new flattened array.
+ * @example
+ *
+ * _.flatten([1, [2, [3, [4]], 5]]);
+ * // => [1, 2, [3, [4]], 5]
+ */
+function flatten(array) {
+  var length = array == null ? 0 : array.length;
+  return length ? baseFlatten(array, 1) : [];
+}
+
+module.exports = flatten;
 
 
 /***/ }),
@@ -30797,6 +32276,49 @@ module.exports = keys;
 
 /***/ }),
 
+/***/ "./node_modules/lodash/keysIn.js":
+/*!***************************************!*\
+  !*** ./node_modules/lodash/keysIn.js ***!
+  \***************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+var arrayLikeKeys = __webpack_require__(/*! ./_arrayLikeKeys */ "./node_modules/lodash/_arrayLikeKeys.js"),
+    baseKeysIn = __webpack_require__(/*! ./_baseKeysIn */ "./node_modules/lodash/_baseKeysIn.js"),
+    isArrayLike = __webpack_require__(/*! ./isArrayLike */ "./node_modules/lodash/isArrayLike.js");
+
+/**
+ * Creates an array of the own and inherited enumerable property names of `object`.
+ *
+ * **Note:** Non-object values are coerced to objects.
+ *
+ * @static
+ * @memberOf _
+ * @since 3.0.0
+ * @category Object
+ * @param {Object} object The object to query.
+ * @returns {Array} Returns the array of property names.
+ * @example
+ *
+ * function Foo() {
+ *   this.a = 1;
+ *   this.b = 2;
+ * }
+ *
+ * Foo.prototype.c = 3;
+ *
+ * _.keysIn(new Foo);
+ * // => ['a', 'b', 'c'] (iteration order is not guaranteed)
+ */
+function keysIn(object) {
+  return isArrayLike(object) ? arrayLikeKeys(object, true) : baseKeysIn(object);
+}
+
+module.exports = keysIn;
+
+
+/***/ }),
+
 /***/ "./node_modules/lodash/memoize.js":
 /*!****************************************!*\
   !*** ./node_modules/lodash/memoize.js ***!
@@ -30909,6 +32431,42 @@ module.exports = noop;
 
 /***/ }),
 
+/***/ "./node_modules/lodash/pick.js":
+/*!*************************************!*\
+  !*** ./node_modules/lodash/pick.js ***!
+  \*************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+var basePick = __webpack_require__(/*! ./_basePick */ "./node_modules/lodash/_basePick.js"),
+    flatRest = __webpack_require__(/*! ./_flatRest */ "./node_modules/lodash/_flatRest.js");
+
+/**
+ * Creates an object composed of the picked `object` properties.
+ *
+ * @static
+ * @since 0.1.0
+ * @memberOf _
+ * @category Object
+ * @param {Object} object The source object.
+ * @param {...(string|string[])} [paths] The property paths to pick.
+ * @returns {Object} Returns the new object.
+ * @example
+ *
+ * var object = { 'a': 1, 'b': '2', 'c': 3 };
+ *
+ * _.pick(object, ['a', 'c']);
+ * // => { 'a': 1, 'c': 3 }
+ */
+var pick = flatRest(function(object, paths) {
+  return object == null ? {} : basePick(object, paths);
+});
+
+module.exports = pick;
+
+
+/***/ }),
+
 /***/ "./node_modules/lodash/property.js":
 /*!*****************************************!*\
   !*** ./node_modules/lodash/property.js ***!
@@ -30948,6 +32506,65 @@ function property(path) {
 }
 
 module.exports = property;
+
+
+/***/ }),
+
+/***/ "./node_modules/lodash/sortBy.js":
+/*!***************************************!*\
+  !*** ./node_modules/lodash/sortBy.js ***!
+  \***************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+var baseFlatten = __webpack_require__(/*! ./_baseFlatten */ "./node_modules/lodash/_baseFlatten.js"),
+    baseOrderBy = __webpack_require__(/*! ./_baseOrderBy */ "./node_modules/lodash/_baseOrderBy.js"),
+    baseRest = __webpack_require__(/*! ./_baseRest */ "./node_modules/lodash/_baseRest.js"),
+    isIterateeCall = __webpack_require__(/*! ./_isIterateeCall */ "./node_modules/lodash/_isIterateeCall.js");
+
+/**
+ * Creates an array of elements, sorted in ascending order by the results of
+ * running each element in a collection thru each iteratee. This method
+ * performs a stable sort, that is, it preserves the original sort order of
+ * equal elements. The iteratees are invoked with one argument: (value).
+ *
+ * @static
+ * @memberOf _
+ * @since 0.1.0
+ * @category Collection
+ * @param {Array|Object} collection The collection to iterate over.
+ * @param {...(Function|Function[])} [iteratees=[_.identity]]
+ *  The iteratees to sort by.
+ * @returns {Array} Returns the new sorted array.
+ * @example
+ *
+ * var users = [
+ *   { 'user': 'fred',   'age': 48 },
+ *   { 'user': 'barney', 'age': 36 },
+ *   { 'user': 'fred',   'age': 40 },
+ *   { 'user': 'barney', 'age': 34 }
+ * ];
+ *
+ * _.sortBy(users, [function(o) { return o.user; }]);
+ * // => objects for [['barney', 36], ['barney', 34], ['fred', 48], ['fred', 40]]
+ *
+ * _.sortBy(users, ['user', 'age']);
+ * // => objects for [['barney', 34], ['barney', 36], ['fred', 40], ['fred', 48]]
+ */
+var sortBy = baseRest(function(collection, iteratees) {
+  if (collection == null) {
+    return [];
+  }
+  var length = iteratees.length;
+  if (length > 1 && isIterateeCall(collection, iteratees[0], iteratees[1])) {
+    iteratees = [];
+  } else if (length > 2 && isIterateeCall(iteratees[0], iteratees[1], iteratees[2])) {
+    iteratees = [iteratees[0]];
+  }
+  return baseOrderBy(collection, baseFlatten(iteratees, 1), []);
+});
+
+module.exports = sortBy;
 
 
 /***/ }),
@@ -79012,8 +80629,9 @@ __webpack_require__.r(__webpack_exports__);
 var _centers_json__WEBPACK_IMPORTED_MODULE_9___namespace = /*#__PURE__*/__webpack_require__.t(/*! ../centers.json */ "./centers.json", 1);
 /* harmony import */ var _styles_theme__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../styles/theme */ "./styles/theme.js");
 /* harmony import */ var _layouts_main__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../layouts/main */ "./layouts/main.js");
-/* harmony import */ var _layouts_screen__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ../layouts/screen */ "./layouts/screen.js");
-/* harmony import */ var _layouts_mobile__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ../layouts/mobile */ "./layouts/mobile.js");
+/* harmony import */ var _components_react_map_gl_layers__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ../components/react-map-gl/layers */ "./components/react-map-gl/layers.js");
+/* harmony import */ var _layouts_screen__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ../layouts/screen */ "./layouts/screen.js");
+/* harmony import */ var _layouts_mobile__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ../layouts/mobile */ "./layouts/mobile.js");
 
 
 
@@ -79026,6 +80644,7 @@ var __jsx = react__WEBPACK_IMPORTED_MODULE_6___default.a.createElement;
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { Object(_babel_runtime_helpers_esm_defineProperty__WEBPACK_IMPORTED_MODULE_1__["default"])(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
 
 
 
@@ -79089,9 +80708,13 @@ var MainPage = function MainPage(_ref) {
       regionsReport = _useState4[0],
       setRegionsReport = _useState4[1];
 
-  var _useState5 = Object(react__WEBPACK_IMPORTED_MODULE_6__["useState"])(defaultViewport),
-      viewport = _useState5[0],
-      setViewport = _useState5[1];
+  var _useState5 = Object(react__WEBPACK_IMPORTED_MODULE_6__["useState"])({}),
+      departementsReport = _useState5[0],
+      setDepartementsReport = _useState5[1];
+
+  var _useState6 = Object(react__WEBPACK_IMPORTED_MODULE_6__["useState"])(defaultViewport),
+      viewport = _useState6[0],
+      setViewport = _useState6[1];
 
   var dateIdx = lodash_indexOf__WEBPACK_IMPORTED_MODULE_2___default()(dates, date);
 
@@ -79132,6 +80755,15 @@ var MainPage = function MainPage(_ref) {
 
     return reportToGeoJSON(byCode, date);
   }, [date, data]);
+  var getDepartementsReport = Object(react__WEBPACK_IMPORTED_MODULE_6__["useCallback"])(function () {
+    var departements = data.filter(function (item) {
+      return item.code.includes('DEP');
+    });
+
+    var byCode = lodash_groupBy__WEBPACK_IMPORTED_MODULE_4___default()(departements, 'code');
+
+    return reportToGeoJSON(byCode, date);
+  }, [date, data]);
 
   var handleResize = function handleResize() {
     var mobileWidth = _styles_theme__WEBPACK_IMPORTED_MODULE_10__["default"].mobileDisplay.split('px')[0];
@@ -79153,7 +80785,9 @@ var MainPage = function MainPage(_ref) {
     setFranceReport(franceReport);
     var regionsReport = getRegionsReport();
     setRegionsReport(regionsReport);
-  }, [date, getFranceReport, getRegionsReport]);
+    var departementsReport = getDepartementsReport();
+    setDepartementsReport(departementsReport);
+  }, [date, getFranceReport, getRegionsReport, getDepartementsReport]);
   Object(react__WEBPACK_IMPORTED_MODULE_6__["useEffect"])(function () {
     var mobileWidth = _styles_theme__WEBPACK_IMPORTED_MODULE_10__["default"].mobileDisplay.split('px')[0];
 
@@ -79166,18 +80800,43 @@ var MainPage = function MainPage(_ref) {
       window.removeEventListener('resize', handleResize);
     };
   }, []);
+  var maps = [{
+    name: 'Carte des cas confirmés',
+    category: 'régionale',
+    data: regionsReport,
+    properties: 'casConfirmes',
+    layers: [_components_react_map_gl_layers__WEBPACK_IMPORTED_MODULE_12__["casConfirmesLayer"], _components_react_map_gl_layers__WEBPACK_IMPORTED_MODULE_12__["casConfirmesCountLayer"]]
+  }, {
+    name: 'Carte des décès',
+    category: 'régionale',
+    data: regionsReport,
+    properties: 'deces',
+    layers: [_components_react_map_gl_layers__WEBPACK_IMPORTED_MODULE_12__["decesLayer"], _components_react_map_gl_layers__WEBPACK_IMPORTED_MODULE_12__["decesCountLayer"]]
+  }, {
+    name: 'Carte des cas confirmés',
+    category: 'départementale',
+    data: departementsReport,
+    properties: 'casConfirmes',
+    layers: [_components_react_map_gl_layers__WEBPACK_IMPORTED_MODULE_12__["casConfirmesLayer"], _components_react_map_gl_layers__WEBPACK_IMPORTED_MODULE_12__["casConfirmesCountLayer"]]
+  }, {
+    name: 'Carte des décès',
+    category: 'départementale',
+    data: departementsReport,
+    properties: 'deces',
+    layers: [_components_react_map_gl_layers__WEBPACK_IMPORTED_MODULE_12__["decesLayer"], _components_react_map_gl_layers__WEBPACK_IMPORTED_MODULE_12__["decesCountLayer"]]
+  }];
   return __jsx(_layouts_main__WEBPACK_IMPORTED_MODULE_11__["default"], {
     title: "Tableau de bord de suivi de l\u2019\xE9pid\xE9mie de coronavirus en France",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 120
+      lineNumber: 164
     },
     __self: this
   }, __jsx("div", {
     className: "jsx-3065482437" + " " + 'main-page-container',
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 122
+      lineNumber: 166
     },
     __self: this
   }, __jsx(AppContext.Provider, {
@@ -79185,33 +80844,35 @@ var MainPage = function MainPage(_ref) {
       date: date,
       franceReport: franceReport,
       regionsReport: regionsReport,
+      departementsReport: departementsReport,
       prev: dateIdx > 0 ? previousReport : null,
       next: dateIdx < dates.length - 1 ? nextReport : null,
       setViewport: setViewport,
+      maps: maps,
       viewport: viewport,
       isMobileDevice: isMobileDevice
     },
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 123
+      lineNumber: 167
     },
     __self: this
-  }, isMobileDevice ? __jsx(_layouts_mobile__WEBPACK_IMPORTED_MODULE_13__["default"], {
+  }, isMobileDevice ? __jsx(_layouts_mobile__WEBPACK_IMPORTED_MODULE_14__["default"], {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 135
+      lineNumber: 181
     },
     __self: this
-  }) : __jsx(_layouts_screen__WEBPACK_IMPORTED_MODULE_12__["default"], {
+  }) : __jsx(_layouts_screen__WEBPACK_IMPORTED_MODULE_13__["default"], {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 137
+      lineNumber: 183
     },
     __self: this
   })), __jsx(styled_jsx_style__WEBPACK_IMPORTED_MODULE_5___default.a, {
     id: "3065482437",
     __self: this
-  }, ".main-page-container.jsx-3065482437{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;position:absolute;width:100%;height:100%;}\n/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9Vc2Vycy9qZXJvbWUvb3BlbmNvdmlkMTktZnIvZGFzaGJvYXJkL3BhZ2VzL2luZGV4LmpzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQTRJb0IsQUFHMEIsMEVBQ0ssa0JBQ1AsV0FDQyxZQUNkIiwiZmlsZSI6Ii9Vc2Vycy9qZXJvbWUvb3BlbmNvdmlkMTktZnIvZGFzaGJvYXJkL3BhZ2VzL2luZGV4LmpzIiwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0IFJlYWN0LCB7dXNlU3RhdGUsIHVzZUNhbGxiYWNrLCB1c2VFZmZlY3R9IGZyb20gJ3JlYWN0J1xuaW1wb3J0IFByb3BUeXBlcyBmcm9tICdwcm9wLXR5cGVzJ1xuaW1wb3J0IHtncm91cEJ5LCB1bmlxLCBpbmRleE9mfSBmcm9tICdsb2Rhc2gnXG5cbmltcG9ydCB7Z2V0RGF0YX0gZnJvbSAnLi4vbGliL2FwaSdcblxuaW1wb3J0IGNlbnRlcnMgZnJvbSAnLi4vY2VudGVycy5qc29uJ1xuXG5pbXBvcnQgdGhlbWUgZnJvbSAnLi4vc3R5bGVzL3RoZW1lJ1xuXG5pbXBvcnQgUGFnZSBmcm9tICcuLi9sYXlvdXRzL21haW4nXG5cbmltcG9ydCBTY3JlZW5QYWdlIGZyb20gJy4uL2xheW91dHMvc2NyZWVuJ1xuaW1wb3J0IE1vYmlsZVBhZ2UgZnJvbSAnLi4vbGF5b3V0cy9tb2JpbGUnXG5cbmV4cG9ydCBjb25zdCBBcHBDb250ZXh0ID0gUmVhY3QuY3JlYXRlQ29udGV4dCgpXG5cbmNvbnN0IHJlcG9ydFRvR2VvSlNPTiA9IChyZXBvcnQsIGRhdGUpID0+IHtcbiAgcmV0dXJuIHtcbiAgICB0eXBlOiAnRmVhdHVyZUNvbGxlY3Rpb24nLFxuICAgIGZlYXR1cmVzOiBPYmplY3Qua2V5cyhyZXBvcnQpLmZpbHRlcihjb2RlID0+IEJvb2xlYW4oY2VudGVyc1tjb2RlXSkpLm1hcChjb2RlID0+IHtcbiAgICAgIHJldHVybiB7XG4gICAgICAgIHR5cGU6ICdGZWF0dXJlJyxcbiAgICAgICAgZ2VvbWV0cnk6IHtcbiAgICAgICAgICB0eXBlOiAnUG9pbnQnLFxuICAgICAgICAgIGNvb3JkaW5hdGVzOiBjZW50ZXJzW2NvZGVdXG4gICAgICAgIH0sXG4gICAgICAgIHByb3BlcnRpZXM6IHtcbiAgICAgICAgICAuLi5yZXBvcnRbY29kZV0uZmluZChyID0+IHIuZGF0ZSA9PT0gZGF0ZSksXG4gICAgICAgICAgaGlzdG9yeTogcmVwb3J0W2NvZGVdLmZpbHRlcihyID0+IGRhdGUgPj0gci5kYXRlKVxuICAgICAgICB9XG4gICAgICB9XG4gICAgfSkuZmlsdGVyKGkgPT4gQm9vbGVhbihpKSlcbiAgfVxufVxuXG5jb25zdCBkZWZhdWx0Vmlld3BvcnQgPSB7XG4gIGxhdGl0dWRlOiA0Ni45LFxuICBsb25naXR1ZGU6IDEuNyxcbiAgem9vbTogNVxufVxuXG5jb25zdCBNYWluUGFnZSA9ICh7ZGF0YSwgZGF0ZXN9KSA9PiB7XG4gIGNvbnN0IFtpc01vYmlsZURldmljZSwgc2V0SXNNb2JpbGVEZXZpY2VdID0gdXNlU3RhdGUoZmFsc2UpXG4gIGNvbnN0IFtkYXRlLCBzZXREYXRlXSA9IHVzZVN0YXRlKGRhdGVzW2RhdGVzLmxlbmd0aCAtIDFdKVxuICBjb25zdCBbZnJhbmNlUmVwb3J0LCBzZXRGcmFuY2VSZXBvcnRdID0gdXNlU3RhdGUoe30pXG4gIGNvbnN0IFtyZWdpb25zUmVwb3J0LCBzZXRSZWdpb25zUmVwb3J0XSA9IHVzZVN0YXRlKHt9KVxuICBjb25zdCBbdmlld3BvcnQsIHNldFZpZXdwb3J0XSA9IHVzZVN0YXRlKGRlZmF1bHRWaWV3cG9ydClcblxuICBjb25zdCBkYXRlSWR4ID0gaW5kZXhPZihkYXRlcywgZGF0ZSlcblxuICBjb25zdCBwcmV2aW91c1JlcG9ydCA9IHVzZUNhbGxiYWNrKCgpID0+IHtcbiAgICBjb25zdCBpZHggPSBpbmRleE9mKGRhdGVzLCBkYXRlKVxuICAgIGNvbnN0IHByZXZpb3VzSWR4ID0gaWR4IC0gMVxuXG4gICAgaWYgKHByZXZpb3VzSWR4ID49IDApIHtcbiAgICAgIHNldERhdGUoZGF0ZXNbcHJldmlvdXNJZHhdKVxuICAgIH1cbiAgfSwgW2RhdGVzLCBkYXRlXSlcblxuICBjb25zdCBuZXh0UmVwb3J0ID0gdXNlQ2FsbGJhY2soKCkgPT4ge1xuICAgIGNvbnN0IGlkeCA9IGluZGV4T2YoZGF0ZXMsIGRhdGUpXG4gICAgY29uc3QgbmV4dElkeCA9IGlkeCArIDFcbiAgICBpZiAobmV4dElkeCA8PSBkYXRlcy5sZW5ndGggLSAxKSB7XG4gICAgICBzZXREYXRlKGRhdGVzW25leHRJZHhdKVxuICAgIH1cbiAgfSwgW2RhdGVzLCBkYXRlXSlcblxuICBjb25zdCBnZXRGcmFuY2VSZXBvcnQgPSB1c2VDYWxsYmFjaygoKSA9PiB7XG4gICAgY29uc3QgcmVwb3J0cyA9IGRhdGEuZmlsdGVyKChpdGVtID0+IGl0ZW0ubm9tID09PSAnRnJhbmNlJykpXG4gICAgcmV0dXJuIHtcbiAgICAgIC4uLnJlcG9ydHMuZmluZChyID0+IHIuZGF0ZSA9PT0gZGF0ZSksXG4gICAgICBoaXN0b3J5OiByZXBvcnRzXG4gICAgfVxuICB9LCBbZGF0ZSwgZGF0YV0pXG5cbiAgY29uc3QgZ2V0UmVnaW9uc1JlcG9ydCA9IHVzZUNhbGxiYWNrKCgpID0+IHtcbiAgICBjb25zdCByZWdpb25zID0gZGF0YS5maWx0ZXIoKGl0ZW0gPT4gaXRlbS5jb2RlLmluY2x1ZGVzKCdSRUcnKSkpXG4gICAgY29uc3QgYnlDb2RlID0gZ3JvdXBCeShyZWdpb25zLCAnY29kZScpXG5cbiAgICByZXR1cm4gcmVwb3J0VG9HZW9KU09OKGJ5Q29kZSwgZGF0ZSlcbiAgfSwgW2RhdGUsIGRhdGFdKVxuXG4gIGNvbnN0IGhhbmRsZVJlc2l6ZSA9ICgpID0+IHtcbiAgICBjb25zdCBtb2JpbGVXaWR0aCA9IHRoZW1lLm1vYmlsZURpc3BsYXkuc3BsaXQoJ3B4JylbMF1cbiAgICBzZXRJc01vYmlsZURldmljZSh3aW5kb3cuaW5uZXJXaWR0aCA8IG1vYmlsZVdpZHRoKVxuICB9XG5cbiAgdXNlRWZmZWN0KCgpID0+IHtcbiAgICBjb25zdCB7bGF0aXR1ZGUsIGxvbmdpdHVkZX0gPSB2aWV3cG9ydFxuICAgIHNldFZpZXdwb3J0KHtcbiAgICAgIGxhdGl0dWRlLFxuICAgICAgbG9uZ2l0dWRlLFxuICAgICAgem9vbTogaXNNb2JpbGVEZXZpY2UgPyA0LjMgOiA1XG4gICAgfSlcbiAgfSwgW2lzTW9iaWxlRGV2aWNlXSkgLy8gZXNsaW50LWRpc2FibGUtbGluZSByZWFjdC1ob29rcy9leGhhdXN0aXZlLWRlcHNcblxuICB1c2VFZmZlY3QoKCkgPT4ge1xuICAgIGNvbnN0IGZyYW5jZVJlcG9ydCA9IGdldEZyYW5jZVJlcG9ydCgpXG4gICAgc2V0RnJhbmNlUmVwb3J0KGZyYW5jZVJlcG9ydClcblxuICAgIGNvbnN0IHJlZ2lvbnNSZXBvcnQgPSBnZXRSZWdpb25zUmVwb3J0KClcbiAgICBzZXRSZWdpb25zUmVwb3J0KHJlZ2lvbnNSZXBvcnQpXG4gIH0sIFtkYXRlLCBnZXRGcmFuY2VSZXBvcnQsIGdldFJlZ2lvbnNSZXBvcnRdKVxuXG4gIHVzZUVmZmVjdCgoKSA9PiB7XG4gICAgY29uc3QgbW9iaWxlV2lkdGggPSB0aGVtZS5tb2JpbGVEaXNwbGF5LnNwbGl0KCdweCcpWzBdXG4gICAgaWYgKHdpbmRvdy5pbm5lcldpZHRoIDwgbW9iaWxlV2lkdGgpIHtcbiAgICAgIHNldElzTW9iaWxlRGV2aWNlKHRydWUpXG4gICAgfVxuXG4gICAgd2luZG93LmFkZEV2ZW50TGlzdGVuZXIoJ3Jlc2l6ZScsIGhhbmRsZVJlc2l6ZSlcblxuICAgIHJldHVybiAoKSA9PiB7XG4gICAgICB3aW5kb3cucmVtb3ZlRXZlbnRMaXN0ZW5lcigncmVzaXplJywgaGFuZGxlUmVzaXplKVxuICAgIH1cbiAgfSwgW10pXG5cbiAgcmV0dXJuIChcbiAgICA8UGFnZSB0aXRsZT0nVGFibGVhdSBkZSBib3JkIGRlIHN1aXZpIGRlIGzigJnDqXBpZMOpbWllIGRlIGNvcm9uYXZpcnVzIGVuIEZyYW5jZSc+XG5cbiAgICAgIDxkaXYgY2xhc3NOYW1lPSdtYWluLXBhZ2UtY29udGFpbmVyJz5cbiAgICAgICAgPEFwcENvbnRleHQuUHJvdmlkZXIgdmFsdWU9e3tcbiAgICAgICAgICBkYXRlLFxuICAgICAgICAgIGZyYW5jZVJlcG9ydCxcbiAgICAgICAgICByZWdpb25zUmVwb3J0LFxuICAgICAgICAgIHByZXY6IGRhdGVJZHggPiAwID8gcHJldmlvdXNSZXBvcnQgOiBudWxsLFxuICAgICAgICAgIG5leHQ6IGRhdGVJZHggPCBkYXRlcy5sZW5ndGggLSAxID8gbmV4dFJlcG9ydCA6IG51bGwsXG4gICAgICAgICAgc2V0Vmlld3BvcnQsXG4gICAgICAgICAgdmlld3BvcnQsXG4gICAgICAgICAgaXNNb2JpbGVEZXZpY2VcbiAgICAgICAgfX1cbiAgICAgICAgPlxuICAgICAgICAgIHtpc01vYmlsZURldmljZSA/IChcbiAgICAgICAgICAgIDxNb2JpbGVQYWdlIC8+XG4gICAgICAgICAgKSA6IChcbiAgICAgICAgICAgIDxTY3JlZW5QYWdlIC8+XG4gICAgICAgICAgKX1cbiAgICAgICAgPC9BcHBDb250ZXh0LlByb3ZpZGVyPlxuXG4gICAgICAgIDxzdHlsZSBqc3g+e2BcbiAgICAgICAgICAubWFpbi1wYWdlLWNvbnRhaW5lciB7XG4gICAgICAgICAgICBkaXNwbGF5OiBmbGV4O1xuICAgICAgICAgICAgcG9zaXRpb246IGFic29sdXRlO1xuICAgICAgICAgICAgd2lkdGg6IDEwMCU7XG4gICAgICAgICAgICBoZWlnaHQ6IDEwMCU7XG4gICAgICAgICAgfVxuICAgICAgICBgfTwvc3R5bGU+XG4gICAgICA8L2Rpdj5cbiAgICA8L1BhZ2U+XG4gIClcbn1cblxuTWFpblBhZ2UucHJvcFR5cGVzID0ge1xuICBkYXRhOiBQcm9wVHlwZXMuYXJyYXkuaXNSZXF1aXJlZCxcbiAgZGF0ZXM6IFByb3BUeXBlcy5hcnJheS5pc1JlcXVpcmVkXG59XG5cbk1haW5QYWdlLmdldEluaXRpYWxQcm9wcyA9IGFzeW5jICgpID0+IHtcbiAgY29uc3QgZGF0YSA9IGF3YWl0IGdldERhdGEoKVxuXG4gIHJldHVybiB7XG4gICAgZGF0YSxcbiAgICBkYXRlczogdW5pcShkYXRhLmZpbHRlcihyID0+IHIuY29kZSA9PT0gJ0ZSQScpLm1hcChyID0+IHIuZGF0ZSkpLnNvcnQoKVxuICB9XG59XG5cbmV4cG9ydCBkZWZhdWx0IE1haW5QYWdlXG4iXX0= */\n/*@ sourceURL=/Users/jerome/opencovid19-fr/dashboard/pages/index.js */")));
+  }, ".main-page-container.jsx-3065482437{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;position:absolute;width:100%;height:100%;}\n/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9Vc2Vycy9qZXJvbWUvb3BlbmNvdmlkMTktZnIvZGFzaGJvYXJkL3BhZ2VzL2luZGV4LmpzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQTBMb0IsQUFHMEIsMEVBQ0ssa0JBQ1AsV0FDQyxZQUNkIiwiZmlsZSI6Ii9Vc2Vycy9qZXJvbWUvb3BlbmNvdmlkMTktZnIvZGFzaGJvYXJkL3BhZ2VzL2luZGV4LmpzIiwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0IFJlYWN0LCB7dXNlU3RhdGUsIHVzZUNhbGxiYWNrLCB1c2VFZmZlY3R9IGZyb20gJ3JlYWN0J1xuaW1wb3J0IFByb3BUeXBlcyBmcm9tICdwcm9wLXR5cGVzJ1xuaW1wb3J0IHtncm91cEJ5LCB1bmlxLCBpbmRleE9mfSBmcm9tICdsb2Rhc2gnXG5cbmltcG9ydCB7Z2V0RGF0YX0gZnJvbSAnLi4vbGliL2FwaSdcblxuaW1wb3J0IGNlbnRlcnMgZnJvbSAnLi4vY2VudGVycy5qc29uJ1xuXG5pbXBvcnQgdGhlbWUgZnJvbSAnLi4vc3R5bGVzL3RoZW1lJ1xuXG5pbXBvcnQgUGFnZSBmcm9tICcuLi9sYXlvdXRzL21haW4nXG5cbmltcG9ydCB7Y2FzQ29uZmlybWVzTGF5ZXIsIGNhc0NvbmZpcm1lc0NvdW50TGF5ZXIsIGRlY2VzTGF5ZXIsIGRlY2VzQ291bnRMYXllcn0gZnJvbSAnLi4vY29tcG9uZW50cy9yZWFjdC1tYXAtZ2wvbGF5ZXJzJ1xuXG5pbXBvcnQgU2NyZWVuUGFnZSBmcm9tICcuLi9sYXlvdXRzL3NjcmVlbidcbmltcG9ydCBNb2JpbGVQYWdlIGZyb20gJy4uL2xheW91dHMvbW9iaWxlJ1xuXG5leHBvcnQgY29uc3QgQXBwQ29udGV4dCA9IFJlYWN0LmNyZWF0ZUNvbnRleHQoKVxuXG5jb25zdCByZXBvcnRUb0dlb0pTT04gPSAocmVwb3J0LCBkYXRlKSA9PiB7XG4gIHJldHVybiB7XG4gICAgdHlwZTogJ0ZlYXR1cmVDb2xsZWN0aW9uJyxcbiAgICBmZWF0dXJlczogT2JqZWN0LmtleXMocmVwb3J0KS5maWx0ZXIoY29kZSA9PiBCb29sZWFuKGNlbnRlcnNbY29kZV0pKS5tYXAoY29kZSA9PiB7XG4gICAgICByZXR1cm4ge1xuICAgICAgICB0eXBlOiAnRmVhdHVyZScsXG4gICAgICAgIGdlb21ldHJ5OiB7XG4gICAgICAgICAgdHlwZTogJ1BvaW50JyxcbiAgICAgICAgICBjb29yZGluYXRlczogY2VudGVyc1tjb2RlXVxuICAgICAgICB9LFxuICAgICAgICBwcm9wZXJ0aWVzOiB7XG4gICAgICAgICAgLi4ucmVwb3J0W2NvZGVdLmZpbmQociA9PiByLmRhdGUgPT09IGRhdGUpLFxuICAgICAgICAgIGhpc3Rvcnk6IHJlcG9ydFtjb2RlXS5maWx0ZXIociA9PiBkYXRlID49IHIuZGF0ZSlcbiAgICAgICAgfVxuICAgICAgfVxuICAgIH0pLmZpbHRlcihpID0+IEJvb2xlYW4oaSkpXG4gIH1cbn1cblxuY29uc3QgZGVmYXVsdFZpZXdwb3J0ID0ge1xuICBsYXRpdHVkZTogNDYuOSxcbiAgbG9uZ2l0dWRlOiAxLjcsXG4gIHpvb206IDVcbn1cblxuY29uc3QgTWFpblBhZ2UgPSAoe2RhdGEsIGRhdGVzfSkgPT4ge1xuICBjb25zdCBbaXNNb2JpbGVEZXZpY2UsIHNldElzTW9iaWxlRGV2aWNlXSA9IHVzZVN0YXRlKGZhbHNlKVxuICBjb25zdCBbZGF0ZSwgc2V0RGF0ZV0gPSB1c2VTdGF0ZShkYXRlc1tkYXRlcy5sZW5ndGggLSAxXSlcbiAgY29uc3QgW2ZyYW5jZVJlcG9ydCwgc2V0RnJhbmNlUmVwb3J0XSA9IHVzZVN0YXRlKHt9KVxuICBjb25zdCBbcmVnaW9uc1JlcG9ydCwgc2V0UmVnaW9uc1JlcG9ydF0gPSB1c2VTdGF0ZSh7fSlcbiAgY29uc3QgW2RlcGFydGVtZW50c1JlcG9ydCwgc2V0RGVwYXJ0ZW1lbnRzUmVwb3J0XSA9IHVzZVN0YXRlKHt9KVxuICBjb25zdCBbdmlld3BvcnQsIHNldFZpZXdwb3J0XSA9IHVzZVN0YXRlKGRlZmF1bHRWaWV3cG9ydClcblxuICBjb25zdCBkYXRlSWR4ID0gaW5kZXhPZihkYXRlcywgZGF0ZSlcblxuICBjb25zdCBwcmV2aW91c1JlcG9ydCA9IHVzZUNhbGxiYWNrKCgpID0+IHtcbiAgICBjb25zdCBpZHggPSBpbmRleE9mKGRhdGVzLCBkYXRlKVxuICAgIGNvbnN0IHByZXZpb3VzSWR4ID0gaWR4IC0gMVxuXG4gICAgaWYgKHByZXZpb3VzSWR4ID49IDApIHtcbiAgICAgIHNldERhdGUoZGF0ZXNbcHJldmlvdXNJZHhdKVxuICAgIH1cbiAgfSwgW2RhdGVzLCBkYXRlXSlcblxuICBjb25zdCBuZXh0UmVwb3J0ID0gdXNlQ2FsbGJhY2soKCkgPT4ge1xuICAgIGNvbnN0IGlkeCA9IGluZGV4T2YoZGF0ZXMsIGRhdGUpXG4gICAgY29uc3QgbmV4dElkeCA9IGlkeCArIDFcbiAgICBpZiAobmV4dElkeCA8PSBkYXRlcy5sZW5ndGggLSAxKSB7XG4gICAgICBzZXREYXRlKGRhdGVzW25leHRJZHhdKVxuICAgIH1cbiAgfSwgW2RhdGVzLCBkYXRlXSlcblxuICBjb25zdCBnZXRGcmFuY2VSZXBvcnQgPSB1c2VDYWxsYmFjaygoKSA9PiB7XG4gICAgY29uc3QgcmVwb3J0cyA9IGRhdGEuZmlsdGVyKChpdGVtID0+IGl0ZW0ubm9tID09PSAnRnJhbmNlJykpXG4gICAgcmV0dXJuIHtcbiAgICAgIC4uLnJlcG9ydHMuZmluZChyID0+IHIuZGF0ZSA9PT0gZGF0ZSksXG4gICAgICBoaXN0b3J5OiByZXBvcnRzXG4gICAgfVxuICB9LCBbZGF0ZSwgZGF0YV0pXG5cbiAgY29uc3QgZ2V0UmVnaW9uc1JlcG9ydCA9IHVzZUNhbGxiYWNrKCgpID0+IHtcbiAgICBjb25zdCByZWdpb25zID0gZGF0YS5maWx0ZXIoKGl0ZW0gPT4gaXRlbS5jb2RlLmluY2x1ZGVzKCdSRUcnKSkpXG4gICAgY29uc3QgYnlDb2RlID0gZ3JvdXBCeShyZWdpb25zLCAnY29kZScpXG5cbiAgICByZXR1cm4gcmVwb3J0VG9HZW9KU09OKGJ5Q29kZSwgZGF0ZSlcbiAgfSwgW2RhdGUsIGRhdGFdKVxuXG4gIGNvbnN0IGdldERlcGFydGVtZW50c1JlcG9ydCA9IHVzZUNhbGxiYWNrKCgpID0+IHtcbiAgICBjb25zdCBkZXBhcnRlbWVudHMgPSBkYXRhLmZpbHRlcigoaXRlbSA9PiBpdGVtLmNvZGUuaW5jbHVkZXMoJ0RFUCcpKSlcbiAgICBjb25zdCBieUNvZGUgPSBncm91cEJ5KGRlcGFydGVtZW50cywgJ2NvZGUnKVxuXG4gICAgcmV0dXJuIHJlcG9ydFRvR2VvSlNPTihieUNvZGUsIGRhdGUpXG4gIH0sIFtkYXRlLCBkYXRhXSlcblxuICBjb25zdCBoYW5kbGVSZXNpemUgPSAoKSA9PiB7XG4gICAgY29uc3QgbW9iaWxlV2lkdGggPSB0aGVtZS5tb2JpbGVEaXNwbGF5LnNwbGl0KCdweCcpWzBdXG4gICAgc2V0SXNNb2JpbGVEZXZpY2Uod2luZG93LmlubmVyV2lkdGggPCBtb2JpbGVXaWR0aClcbiAgfVxuXG4gIHVzZUVmZmVjdCgoKSA9PiB7XG4gICAgY29uc3Qge2xhdGl0dWRlLCBsb25naXR1ZGV9ID0gdmlld3BvcnRcbiAgICBzZXRWaWV3cG9ydCh7XG4gICAgICBsYXRpdHVkZSxcbiAgICAgIGxvbmdpdHVkZSxcbiAgICAgIHpvb206IGlzTW9iaWxlRGV2aWNlID8gNC4zIDogNVxuICAgIH0pXG4gIH0sIFtpc01vYmlsZURldmljZV0pIC8vIGVzbGludC1kaXNhYmxlLWxpbmUgcmVhY3QtaG9va3MvZXhoYXVzdGl2ZS1kZXBzXG5cbiAgdXNlRWZmZWN0KCgpID0+IHtcbiAgICBjb25zdCBmcmFuY2VSZXBvcnQgPSBnZXRGcmFuY2VSZXBvcnQoKVxuICAgIHNldEZyYW5jZVJlcG9ydChmcmFuY2VSZXBvcnQpXG5cbiAgICBjb25zdCByZWdpb25zUmVwb3J0ID0gZ2V0UmVnaW9uc1JlcG9ydCgpXG4gICAgc2V0UmVnaW9uc1JlcG9ydChyZWdpb25zUmVwb3J0KVxuXG4gICAgY29uc3QgZGVwYXJ0ZW1lbnRzUmVwb3J0ID0gZ2V0RGVwYXJ0ZW1lbnRzUmVwb3J0KClcbiAgICBzZXREZXBhcnRlbWVudHNSZXBvcnQoZGVwYXJ0ZW1lbnRzUmVwb3J0KVxuICB9LCBbZGF0ZSwgZ2V0RnJhbmNlUmVwb3J0LCBnZXRSZWdpb25zUmVwb3J0LCBnZXREZXBhcnRlbWVudHNSZXBvcnRdKVxuXG4gIHVzZUVmZmVjdCgoKSA9PiB7XG4gICAgY29uc3QgbW9iaWxlV2lkdGggPSB0aGVtZS5tb2JpbGVEaXNwbGF5LnNwbGl0KCdweCcpWzBdXG4gICAgaWYgKHdpbmRvdy5pbm5lcldpZHRoIDwgbW9iaWxlV2lkdGgpIHtcbiAgICAgIHNldElzTW9iaWxlRGV2aWNlKHRydWUpXG4gICAgfVxuXG4gICAgd2luZG93LmFkZEV2ZW50TGlzdGVuZXIoJ3Jlc2l6ZScsIGhhbmRsZVJlc2l6ZSlcblxuICAgIHJldHVybiAoKSA9PiB7XG4gICAgICB3aW5kb3cucmVtb3ZlRXZlbnRMaXN0ZW5lcigncmVzaXplJywgaGFuZGxlUmVzaXplKVxuICAgIH1cbiAgfSwgW10pXG5cbiAgY29uc3QgbWFwcyA9IFtcbiAgICB7XG4gICAgICBuYW1lOiAnQ2FydGUgZGVzIGNhcyBjb25maXJtw6lzJyxcbiAgICAgIGNhdGVnb3J5OiAncsOpZ2lvbmFsZScsXG4gICAgICBkYXRhOiByZWdpb25zUmVwb3J0LFxuICAgICAgcHJvcGVydGllczogJ2Nhc0NvbmZpcm1lcycsXG4gICAgICBsYXllcnM6IFtjYXNDb25maXJtZXNMYXllciwgY2FzQ29uZmlybWVzQ291bnRMYXllcl1cbiAgICB9LFxuICAgIHtcbiAgICAgIG5hbWU6ICdDYXJ0ZSBkZXMgZMOpY8OocycsXG4gICAgICBjYXRlZ29yeTogJ3LDqWdpb25hbGUnLFxuICAgICAgZGF0YTogcmVnaW9uc1JlcG9ydCxcbiAgICAgIHByb3BlcnRpZXM6ICdkZWNlcycsXG4gICAgICBsYXllcnM6IFtkZWNlc0xheWVyLCBkZWNlc0NvdW50TGF5ZXJdXG4gICAgfSxcbiAgICB7XG4gICAgICBuYW1lOiAnQ2FydGUgZGVzIGNhcyBjb25maXJtw6lzJyxcbiAgICAgIGNhdGVnb3J5OiAnZMOpcGFydGVtZW50YWxlJyxcbiAgICAgIGRhdGE6IGRlcGFydGVtZW50c1JlcG9ydCxcbiAgICAgIHByb3BlcnRpZXM6ICdjYXNDb25maXJtZXMnLFxuICAgICAgbGF5ZXJzOiBbY2FzQ29uZmlybWVzTGF5ZXIsIGNhc0NvbmZpcm1lc0NvdW50TGF5ZXJdXG4gICAgfSxcbiAgICB7XG4gICAgICBuYW1lOiAnQ2FydGUgZGVzIGTDqWPDqHMnLFxuICAgICAgY2F0ZWdvcnk6ICdkw6lwYXJ0ZW1lbnRhbGUnLFxuICAgICAgZGF0YTogZGVwYXJ0ZW1lbnRzUmVwb3J0LFxuICAgICAgcHJvcGVydGllczogJ2RlY2VzJyxcbiAgICAgIGxheWVyczogW2RlY2VzTGF5ZXIsIGRlY2VzQ291bnRMYXllcl1cbiAgICB9XG4gIF1cblxuICByZXR1cm4gKFxuICAgIDxQYWdlIHRpdGxlPSdUYWJsZWF1IGRlIGJvcmQgZGUgc3VpdmkgZGUgbOKAmcOpcGlkw6ltaWUgZGUgY29yb25hdmlydXMgZW4gRnJhbmNlJz5cblxuICAgICAgPGRpdiBjbGFzc05hbWU9J21haW4tcGFnZS1jb250YWluZXInPlxuICAgICAgICA8QXBwQ29udGV4dC5Qcm92aWRlciB2YWx1ZT17e1xuICAgICAgICAgIGRhdGUsXG4gICAgICAgICAgZnJhbmNlUmVwb3J0LFxuICAgICAgICAgIHJlZ2lvbnNSZXBvcnQsXG4gICAgICAgICAgZGVwYXJ0ZW1lbnRzUmVwb3J0LFxuICAgICAgICAgIHByZXY6IGRhdGVJZHggPiAwID8gcHJldmlvdXNSZXBvcnQgOiBudWxsLFxuICAgICAgICAgIG5leHQ6IGRhdGVJZHggPCBkYXRlcy5sZW5ndGggLSAxID8gbmV4dFJlcG9ydCA6IG51bGwsXG4gICAgICAgICAgc2V0Vmlld3BvcnQsXG4gICAgICAgICAgbWFwcyxcbiAgICAgICAgICB2aWV3cG9ydCxcbiAgICAgICAgICBpc01vYmlsZURldmljZVxuICAgICAgICB9fVxuICAgICAgICA+XG4gICAgICAgICAge2lzTW9iaWxlRGV2aWNlID8gKFxuICAgICAgICAgICAgPE1vYmlsZVBhZ2UgLz5cbiAgICAgICAgICApIDogKFxuICAgICAgICAgICAgPFNjcmVlblBhZ2UgLz5cbiAgICAgICAgICApfVxuICAgICAgICA8L0FwcENvbnRleHQuUHJvdmlkZXI+XG5cbiAgICAgICAgPHN0eWxlIGpzeD57YFxuICAgICAgICAgIC5tYWluLXBhZ2UtY29udGFpbmVyIHtcbiAgICAgICAgICAgIGRpc3BsYXk6IGZsZXg7XG4gICAgICAgICAgICBwb3NpdGlvbjogYWJzb2x1dGU7XG4gICAgICAgICAgICB3aWR0aDogMTAwJTtcbiAgICAgICAgICAgIGhlaWdodDogMTAwJTtcbiAgICAgICAgICB9XG4gICAgICAgIGB9PC9zdHlsZT5cbiAgICAgIDwvZGl2PlxuICAgIDwvUGFnZT5cbiAgKVxufVxuXG5NYWluUGFnZS5wcm9wVHlwZXMgPSB7XG4gIGRhdGE6IFByb3BUeXBlcy5hcnJheS5pc1JlcXVpcmVkLFxuICBkYXRlczogUHJvcFR5cGVzLmFycmF5LmlzUmVxdWlyZWRcbn1cblxuTWFpblBhZ2UuZ2V0SW5pdGlhbFByb3BzID0gYXN5bmMgKCkgPT4ge1xuICBjb25zdCBkYXRhID0gYXdhaXQgZ2V0RGF0YSgpXG5cbiAgcmV0dXJuIHtcbiAgICBkYXRhLFxuICAgIGRhdGVzOiB1bmlxKGRhdGEuZmlsdGVyKHIgPT4gci5jb2RlID09PSAnRlJBJykubWFwKHIgPT4gci5kYXRlKSkuc29ydCgpXG4gIH1cbn1cblxuZXhwb3J0IGRlZmF1bHQgTWFpblBhZ2VcbiJdfQ== */\n/*@ sourceURL=/Users/jerome/opencovid19-fr/dashboard/pages/index.js */")));
 };
 
 MainPage.propTypes = {
@@ -79298,7 +80959,7 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ 1:
+/***/ 2:
 /*!**********************************************************************************************************************************!*\
   !*** multi next-client-pages-loader?page=%2F&absolutePagePath=%2FUsers%2Fjerome%2Fopencovid19-fr%2Fdashboard%2Fpages%2Findex.js ***!
   \**********************************************************************************************************************************/
@@ -79321,5 +80982,5 @@ module.exports = dll_82519ec661270f7f484f;
 
 /***/ })
 
-},[[1,"static/runtime/webpack.js"]]]);
+},[[2,"static/runtime/webpack.js"]]]);
 //# sourceMappingURL=index.js.map
