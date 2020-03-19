@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import {Bar} from 'react-chartjs-2'
+import {Bar, Line} from 'react-chartjs-2'
 
 import colors from '../styles/colors'
 
@@ -25,7 +25,8 @@ const options = {
       offset: true
     }],
     yAxes: [{
-      stacked: true
+      stacked: false,
+      id: 'y-axis-1'
     }]
   }
 }
@@ -36,16 +37,47 @@ const formatData = data => {
   if (data.some(h => h.casConfirmes)) {
     datasets.push({
       label: 'En vie',
+      type: 'line',
       data: data.map(h => h.casConfirmes - (h.deces || 0)),
-      backgroundColor: colors.orange
+      borderColor: colors.orange,
+      fill: false,
     })
   }
 
   if (data.some(h => h.deces)) {
     datasets.push({
       label: 'Décédés',
+      type: 'line',
       data: data.map(h => h.deces),
-      backgroundColor: colors.red
+      borderColor: colors.red,
+      fill: false,
+    })
+  }
+
+  return {
+    labels: data.map(h => new Date(h.date)),
+    datasets
+  }
+}
+
+const formatDataNewCases = data => {
+  const datasets = []
+
+  if (data.some(h => h.casConfirmes)) {
+    datasets.push({
+      label: 'Nouveaux cas',
+      type: 'bar',
+      data: data.map((h, index) => index === 0 ? null : h.casConfirmes - data[index - 1].casConfirmes),
+      backgroundColor: colors.orange,
+    })
+  }
+
+  if (data.some(h => h.deces)) {
+    datasets.push({
+      label: 'Nouveaux décés',
+      type: 'bar',
+      data: data.map((h, index) => index === 0 ? null : h.deces - data[index - 1].deces),
+      backgroundColor: colors.red,
     })
   }
 
@@ -57,7 +89,8 @@ const formatData = data => {
 
 const ConfirmedChart = ({data, height}) => (
   <div style={{padding: '1em'}}>
-    <Bar data={formatData(data)} options={options} height={height} />
+    <Line data={formatData(data)} options={options} height={height} />
+    <Bar data={formatDataNewCases(data)} options={options} height={height} />
   </div>
 )
 
